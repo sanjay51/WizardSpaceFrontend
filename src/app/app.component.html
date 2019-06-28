@@ -1,13 +1,35 @@
-<div class="main-container">
-  <div class="alert alert-app-level">
-    ...
-  </div>
-  <header class="header header-6">
-    ...
-  </header>
-  <nav class="subnav">
-    subnav here
-  </nav>
+<clr-main-container>
+  <clr-header>
+    <div class="branding">
+      <a href="/" class="nav-link">
+        <span class="title">Web app store</span>
+      </a>
+    </div>
+
+    <div class="header-nav">
+      <a href="/" class="active nav-link nav-text">Home</a>
+    </div>
+
+    <form class="search">
+      <label for="search_input">
+        <input if="search_input" type="text" placeholder="Search.." />
+      </label>
+    </form>
+
+    <div class="header-actions">
+      <clr-dropdown>
+        <button class="nav-text" clrDropdownTrigger>
+          Sanjay Verma
+          <clr-icon shape="caret down"></clr-icon>
+        </button>
+        
+        <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+            <a href="/account" clrDropdownItem>Account</a>
+            <a href="/logout" clrDropdownItem>Logout</a>
+        </clr-dropdown-menu>
+      </clr-dropdown>
+    </div>
+  </clr-header>
   <div class="content-container">
     <div class="content-area">
       <!--The content below is only a placeholder and can be replaced.-->
@@ -41,4 +63,4 @@
       sidenav here
     </nav>
   </div>
-</div>
+</clr-main-container>
