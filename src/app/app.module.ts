@@ -6,11 +6,13 @@ import { IxAngularElementsModule } from 'ix-angular-elements';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppEditorComponent } from './app-editor/app-editor.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppEditorComponent
+    AppEditorComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
