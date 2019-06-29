@@ -5,10 +5,10 @@ import { ClarityModule } from '@clr/angular';
 import { IxAngularElementsModule } from 'ix-angular-elements';
 import { AppEditorComponent } from './app-editor/app-editor.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { StateService } from './service/state.service';
 import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
+import { AppComponent } from './root/app.component';
+import { StateService } from './service/state.service';
 
 @NgModule({
   declarations: [
