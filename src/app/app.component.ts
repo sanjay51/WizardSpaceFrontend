@@ -10,8 +10,4 @@ export class AppComponent {
   title = 'wizard-space';
 
   constructor(private state: StateService) { }
-
-  getRouterLink(to) {
-    return '/' + to;
-  }
 }

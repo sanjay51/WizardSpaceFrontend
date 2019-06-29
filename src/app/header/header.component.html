@@ -1,0 +1,38 @@
+
+  <clr-header class="header header-2">
+        <div class="branding">
+          <a href="/" class="nav-link">
+            <span class="title">Web app store</span>
+          </a>
+        </div>
+    
+        <div class="header-nav">
+          <a href="/" class="active nav-link nav-text">Home</a>
+        </div>
+    
+        <form class="search">
+          <label for="search_input">
+            <input if="search_input" type="text" placeholder="Search.." />
+          </label>
+        </form>
+    
+        <div class="header-actions">
+          <div style="display: flex; align-items: center;">
+              <a [routerLink]="getRouterLink('app-editor')">
+                <button class="nav-btn btn btn-primary">Create new web app</button>
+              </a>
+          </div>
+          
+          <clr-dropdown>
+            <button class="nav-text" clrDropdownTrigger>
+              Sanjay Verma
+              <clr-icon shape="caret down"></clr-icon>
+            </button>
+            
+            <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+                <a href="/account" clrDropdownItem>Account</a>
+                <a href="/logout" clrDropdownItem>Logout</a>
+            </clr-dropdown-menu>
+          </clr-dropdown>
+        </div>
+      </clr-header>
