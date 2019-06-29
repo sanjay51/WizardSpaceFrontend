@@ -3,10 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule } from '@clr/angular';
 import { IxAngularElementsModule } from 'ix-angular-elements';
+import { AppEditorComponent } from './app-editor/app-editor.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AppEditorComponent } from './app-editor/app-editor.component';
 import { HomeComponent } from './home/home.component';
+import { StateService } from './service/state.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { HomeComponent } from './home/home.component';
     ClarityModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [StateService],
   bootstrap: [AppComponent],
   schemas: [
     NO_ERRORS_SCHEMA

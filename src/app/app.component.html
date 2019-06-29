@@ -18,7 +18,9 @@
 
     <div class="header-actions">
       <div style="display: flex; align-items: center;">
-          <button class="nav-btn btn btn-primary">Create new web app</button>
+          <a [routerLink]="getRouterLink('app-editor')">
+            <button class="nav-btn btn btn-primary">Create new web app</button>
+          </a>
       </div>
       
       <clr-dropdown>

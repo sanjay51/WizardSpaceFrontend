@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StateService } from './service/state.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'wizard-space';
+
+  constructor(private state: StateService) { }
+
+  getRouterLink(to) {
+    return '/' + to;
+  }
 }
