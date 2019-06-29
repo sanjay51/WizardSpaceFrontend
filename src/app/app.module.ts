@@ -5,10 +5,12 @@ import { ClarityModule } from '@clr/angular';
 import { IxAngularElementsModule } from 'ix-angular-elements';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AppEditorComponent } from './app-editor/app-editor.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AppEditorComponent
   ],
   imports: [
     BrowserModule,
