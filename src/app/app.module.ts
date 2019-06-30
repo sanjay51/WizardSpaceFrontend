@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule } from '@clr/angular';
 import { IxAngularElementsModule } from 'ix-angular-elements';
 import { AppEditorComponent } from './app-editor/app-editor.component';
+import { LiveEditorComponent } from './app-editor/live-editor/live-editor.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
@@ -15,7 +16,8 @@ import { StateService } from './service/state.service';
     AppComponent,
     AppEditorComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    LiveEditorComponent
   ],
   imports: [
     BrowserModule,

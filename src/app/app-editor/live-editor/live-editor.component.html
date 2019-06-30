@@ -1,0 +1,17 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js"></script>
+<div class="row">
+  <div class="col-lg-6" style="font-size: 10px">
+    {{status}} |
+    <button onclick="alert('Open this page in your browser\'s incognito mode to access live editor guide.')">Live editor guide</button>
+  </div>
+</div>
+<div class="clr-row">
+  <div class="clr-col-lg-5">
+    <div ace-editor [(text)]="data" [mode]="'html'" 
+    [options]="aceOptions"  [theme]="'crimson_editor'"
+    (textChanged)="onDataChange($event)"
+    style="height: 100%; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)"></div>
+  </div>
+  <div class="clr-col-lg-7" [innerHTML]="sanitizedData">
+  </div>
+</div>
