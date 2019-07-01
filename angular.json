@@ -56,7 +56,12 @@
               "node_modules/@clr/icons/clr-icons.min.js",
               {
                 "input": "node_modules/document-register-element/build/document-register-element.js"
-              }
+              },
+              "node_modules/ace-builds/src-min/ace.js",
+              "node_modules/ace-builds/src-min/mode-html.js",
+              "node_modules/ace-builds/src-min/worker-html.js",
+              "node_modules/ace-builds/src-min/theme-crimson_editor.js",
+              "node_modules/ace-builds/src-min/ext-language_tools.js"
             ],
             "es5BrowserSupport": true
           },

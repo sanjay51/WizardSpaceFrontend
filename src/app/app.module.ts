@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule } from '@clr/angular';
 import { IxAngularElementsModule } from 'ix-angular-elements';
+import { AceEditorModule } from 'ng2-ace-editor';
 import { AppEditorComponent } from './app-editor/app-editor.component';
 import { LiveEditorComponent } from './app-editor/live-editor/live-editor.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -24,7 +25,8 @@ import { StateService } from './service/state.service';
     AppRoutingModule,
     IxAngularElementsModule,
     ClarityModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AceEditorModule
   ],
   providers: [StateService],
   bootstrap: [AppComponent],

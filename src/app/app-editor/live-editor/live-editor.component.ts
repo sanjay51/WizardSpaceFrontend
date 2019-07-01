@@ -20,7 +20,7 @@ export class LiveEditorComponent implements OnInit {
     enableBasicAutocompletion: true,
     enableLiveAutocompletion: true,
     indentedSoftWrap: false,
-    useWorker: false //Syntax checker
+    useWorker: false, //Syntax checker
   };
 
   dataChanged: Subject<string> = new Subject<string>();
@@ -59,13 +59,12 @@ export class LiveEditorComponent implements OnInit {
   }
 
   getFirstTimeTutorialData() {
-    return "<h1>Learn how to use ixTutor live editor</h1> \n\
+    return "<h1>Learn how to use live app editor</h1> \n\
 This is a quick tutorial. Type in the editor (left) to see your changes rendered live (on the right). \n\
 <h3>1. You can use any HTML tags, including h1, h2, a, div etc.</h3> Example: \n\
-<table border='1'> \n\
-    <tr><td><h1>H1</h1></td></tr>  \n\
-    <tr><td>h2</td><td><h2>H2</h2></td></tr>  \n\
-    <tr><td>a</td><td><a href='google.com' target='_blank'>a link to google.com</a></td><td>some more cool stuff</td></td></tr> </table>  \n\
+ \n\
+<h1>h1</h1> <h2>h2</h2> <h3>h3</h3> <h4>h4</h4> <h5>h5</h5> <h6>h6</h6> \n\
+<a href='google.com' target='_blank'>a link to google.com</a>  \n\
 <br/> \n\
 <h3>2. Auto-save</h3> \n\
 All changes are automatically saved in your browser, so even if you refresh this page, your changes will not be lost.<br/> \n\
@@ -86,38 +85,6 @@ All changes are automatically saved in your browser, so even if you refresh this
 <button onclick=\"alert(\'Hello from ixTutor.com\')\">Say Hello!</button> \n\
 <br/>\n\
 Note: Errors, if any, are logged in your browser console.<br/>\n\
-<br/>\n\
-<h3>5. Custom ixTutor elements</h3>\n\
-These elements can be used when submitting a tutorial for ixTutor.com. You can send your submissions to <i>ixtutor.machine.learning@gmail.com</i> .<br/><br/> \
-<h5>5.1 <i>ix-note</i> element</h5>\n\
-<ix-note title=\"Note\" text=\"This is awesome!!!\"></ix-note>\n\
-<br/>\n\
-<h5>5.2 <i>post-heading</i> element</h5>\n\
-<post-heading text=\"We're learning about how to create custom ixtutor elements!\"></post-heading><br/>\n\
-\n\
-<h5>5.3 <i>question-answer</i> element</h5>\n\
-<question-answer question=\"Which of these is correct?\" options=\"asdf\" answer=1 answer-explanation=\"a is correct!\"]\"></question-answer>\n\
-Note: We'll soon expand the options format. <br/>\n\
-<br/>\n\
-<h5>5.4 <i>code-run</i> element</h5>\n\
-<code-run pre-code=\"\" code=\"import tensorflow as tf\n\
-\n\
-# Declare variables\n\
-x = tf.Variable(3, name='x')\n\
-y = tf.Variable(4, name='y')\n\
-      \n\
-# Function to compute\n\
-f = (x * x * y) + y + 2\n\
-\n\
-with tf.Session() as sess:\n\
-    x.initializer.run()\n\
-    y.initializer.run()\n\
-    result = f.eval()\n\
-      \n\
-print(result)\"\n\
-      post-code=\"\" output=\"42\"></code-run>\n\
-\n\
-<br/>\n\
-    "
+<br/>";
   }
 }
