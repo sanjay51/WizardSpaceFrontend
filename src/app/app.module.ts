@@ -2,7 +2,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClarityModule } from '@clr/angular';
-import { IxLoginFormComponent } from 'ix-angular-elements';
+import { IxAngularElementsModule } from 'ix-angular-elements';
 import { AceEditorModule } from 'ng2-ace-editor';
 import { AppEditorComponent } from './app-editor/app-editor.component';
 import { LiveEditorComponent } from './app-editor/live-editor/live-editor.component';
@@ -17,15 +17,15 @@ import { AppComponent } from './root/app.component';
     AppEditorComponent,
     HomeComponent,
     HeaderComponent,
-    LiveEditorComponent,
-    IxLoginFormComponent
+    LiveEditorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ClarityModule,
     BrowserAnimationsModule,
-    AceEditorModule
+    AceEditorModule,
+    IxAngularElementsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
