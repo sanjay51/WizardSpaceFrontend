@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { StateService } from '../service/state.service';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +8,5 @@ import { StateService } from '../service/state.service';
 export class AppComponent {
   title = 'wizard-space';
 
-  constructor(private state: StateService) { }
+  constructor() { }
 }
