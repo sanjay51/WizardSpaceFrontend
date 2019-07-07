@@ -1,7 +1,9 @@
-<clr-header class="header header-2">
+<clr-header class="header header-4">
   <div class="branding">
     <a routerLink="" class="nav-link">
-      <span class="title">Web app store</span>
+      <clr-icon shape="application" style="color: white" size="30"></clr-icon>
+      <span class="title">DevStudio.app</span>
+      <small style="display:none">Web app development</small>
     </a>
   </div>
 
@@ -28,7 +30,7 @@
         <a href="/logout" clrDropdownItem>Logout</a>
       </clr-dropdown-menu>
     </clr-dropdown>
-    
+
     <a [routerLink]="'login'" class="nav-link nav-text">
       Login
     </a>
@@ -37,7 +39,7 @@
     </a>
 
     <a [routerLink]="'app-editor'" class="nav-btn" style="margin-top:.25rem; margin-left:.5rem">
-        <button class="btn btn-primary">Create new web app</button>
+      <button class="btn btn-primary">Create new web app</button>
     </a>
   </div>
 </clr-header>

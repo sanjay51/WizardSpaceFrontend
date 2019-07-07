@@ -36,7 +36,7 @@ import { SignupComponent } from './user/signup/signup.component';
   providers: [
     {
       provide: URL_TOKEN, 
-      useValue: 'http://www.mocky.io/v2/5d1e1eb430000058b6d72518' 
+      useValue: 'https://msa1yzr6r9.execute-api.us-east-1.amazonaws.com/prod' 
     }
   ],
   bootstrap: [AppComponent],
