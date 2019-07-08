@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
-import { AuthenticationService, AuthStateService } from 'ix-angular-elements';
+import { APIService, AuthenticationService, AuthStateService } from 'ix-angular-elements';
 import { ROUTE_HOME, ROUTE_LOGIN } from '../../constants';
-import { SignupState } from './signupState';
+import { SignupAPI } from './signup.api';
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +12,7 @@ import { SignupState } from './signupState';
 export class SignupComponent implements OnInit {
 
   constructor(public authentication: AuthenticationService,
-    private state: AuthStateService) { }
+    private state: AuthStateService, private apiService: APIService) { }
 
   ngOnInit() {
   }
@@ -20,8 +20,14 @@ export class SignupComponent implements OnInit {
   form = {
     fields: [
       {
-        name: "name",
-        label: "Name",
+        name: "fname",
+        label: "First name",
+        validators: [Validators.required, Validators.minLength(6)],
+        defaultValue: '',
+      },
+      {
+        name: "lname",
+        label: "Last name",
         validators: [Validators.required, Validators.minLength(6)],
         defaultValue: '',
       },
@@ -45,13 +51,10 @@ export class SignupComponent implements OnInit {
     submitButtonLabel: "Sign up",
 
     onSubmit: (fields): Promise<any> => {
-      let signupState: SignupState = new SignupState(
-        fields.name.value,
-        fields.email.value,
-        fields.password.value,
-      );
-      
-      return this.authentication.login(null, null); // TODO: change to signup
+
+      let api: SignupAPI = new SignupAPI(fields.fname.value, fields.lname.value, 
+        fields.email.value, fields.password.value);
+      return this.apiService.call(api).toPromise();
     },
 
     postSubmit: (response) => {
@@ -62,5 +65,4 @@ export class SignupComponent implements OnInit {
       this.state.navigateTo(ROUTE_HOME);
     }
   }
-
 }
