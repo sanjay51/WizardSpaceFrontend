@@ -28,7 +28,7 @@ export class LiveEditorComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.data = JSON.parse(localStorage.getItem("wizardspace-live-editor-data"));
+    this.data = JSON.parse(localStorage.getItem("devstudio-app-live-editor-data"));
     this.status = "loading"; 
     this.updateView();
 
@@ -46,7 +46,7 @@ export class LiveEditorComponent implements OnInit {
     this.status = "updating..";
     let parsed = this.data;
     if (this.data != this.getFirstTimeTutorialData())
-      localStorage.setItem("wizardspace-live-editor-data", JSON.stringify(parsed));
+      localStorage.setItem("devstudio-app-live-editor-data", JSON.stringify(parsed));
     this.status = "saved";
 
     if (!this.data) this.data = this.getFirstTimeTutorialData();
