@@ -12,35 +12,29 @@
     <a routerLink="" class="active nav-link nav-text">Home</a>
   </div>
 
-  <form class="search">
-    <label for="search_input">
-      <input if="search_input" type="text" placeholder="Search.." />
-    </label>
-  </form>
-
   <div class="header-actions">
     <clr-dropdown *ngIf="isLoggedIn()">
       <button class="nav-text" clrDropdownTrigger>
         <clr-icon shape="user"></clr-icon>
-        Sanjay Verma
+        Sanjay&nbsp;
         <clr-icon shape="caret down"></clr-icon>
       </button>
 
       <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
         <a href="/account" clrDropdownItem>Account</a>
-        <a href="/logout" clrDropdownItem>Logout</a>
+        <a (click)="logout()" clrDropdownItem>Logout</a>
       </clr-dropdown-menu>
     </clr-dropdown>
 
-    <a [routerLink]="'login'" class="nav-link nav-text">
+    <a *ngIf="!isLoggedIn()" [routerLink]="'login'" class="nav-link nav-text">
       Login
     </a>
-    <a [routerLink]="'sign-up'" class="nav-link nav-text">
+    <a *ngIf="!isLoggedIn()" [routerLink]="'sign-up'" class="nav-link nav-text">
       Sign Up
     </a>
 
-    <a [routerLink]="'app-editor'" class="nav-btn" style="margin-top:.25rem; margin-left:.5rem">
-      <button class="btn btn-primary">Create new web app</button>
+    <a [routerLink]="'app-editor'" class="nav-btn" style="margin-top:.25rem; margin-left:.5rem;">
+      <button class="btn btn-success">Create new web app</button>
     </a>
   </div>
 </clr-header>
