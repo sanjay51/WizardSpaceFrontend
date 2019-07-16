@@ -9,7 +9,11 @@ import { debounceTime, distinctUntilChanged } from "rxjs/internal/operators";
   styleUrls: ['./live-editor.component.scss']
 })
 export class LiveEditorComponent implements OnInit {
-  public data;
+  public htmlData;
+  public cssData;
+  public jsData;
+  public readmeData;
+
   public prevData;
   public sanitizedData;
   public status = "saving"
@@ -28,14 +32,17 @@ export class LiveEditorComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.data = JSON.parse(localStorage.getItem("devstudio-app-live-editor-data"));
+    this.htmlData = JSON.parse(localStorage.getItem("devstudio-app-live-editor-data"));
+    this.cssData = "";
+    this.jsData = "";
+    
     this.status = "loading"; 
     this.updateView();
 
     this.dataChanged
       .pipe(debounceTime(500))
       .pipe(distinctUntilChanged())
-      .subscribe(data => { this.data = data; this.updateView(); });
+      .subscribe(htmlData => { this.htmlData = htmlData; this.updateView(); });
   }
 
   public onDataChange(query: string) {
@@ -44,13 +51,13 @@ export class LiveEditorComponent implements OnInit {
 
   public updateView() {
     this.status = "updating..";
-    let parsed = this.data;
-    if (this.data != this.getFirstTimeTutorialData())
+    let parsed = this.htmlData;
+    if (this.htmlData != this.getFirstTimeTutorialData())
       localStorage.setItem("devstudio-app-live-editor-data", JSON.stringify(parsed));
     this.status = "saved";
 
-    if (!this.data) this.data = this.getFirstTimeTutorialData();
-    this.sanitizedData = this.sanitizer.bypassSecurityTrustHtml(this.data);
+    if (!this.htmlData) this.htmlData = this.getFirstTimeTutorialData();
+    this.sanitizedData = this.sanitizer.bypassSecurityTrustHtml(this.htmlData);
     this.cd.detectChanges();
   }
   

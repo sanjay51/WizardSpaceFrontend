@@ -1,4 +1,5 @@
 <div class="row">
+
   <div class="col-lg-6" style="font-size: 10px">
     {{status}} |
     <button onclick="alert('Open this page in your browser\'s incognito mode to access live editor guide.')">Live editor
@@ -8,10 +9,45 @@
 
 <div class="clr-row">
   <div class="clr-col-lg-5">
-    <ace-editor [(text)]="data" [mode]="'html'" [options]="aceOptions" [theme]="'crimson_editor'"
-      (textChanged)="onDataChange($event)"
-      style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
-    </ace-editor>
+
+    <clr-tabs>
+      <clr-tab>
+        <button clrTabLink id="link1">HTML</button>
+        <clr-tab-content id="html" *clrIfActive>
+          <ace-editor [(text)]="htmlData" [mode]="'html'" [options]="aceOptions" [theme]="'crimson_editor'"
+            (textChanged)="onDataChange($event)"
+            style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
+          </ace-editor>
+        </clr-tab-content>
+      </clr-tab>
+      <clr-tab>
+        <button clrTabLink>CSS</button>
+        <clr-tab-content id="css" *clrIfActive="true">
+            <ace-editor [(text)]="cssData" [mode]="'css'" [options]="aceOptions" [theme]="'crimson_editor'"
+              (textChanged)="onDataChange($event)"
+              style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
+            </ace-editor>
+        </clr-tab-content>
+      </clr-tab>
+      <clr-tab>
+        <button clrTabLink>JS</button>
+        <clr-tab-content id="js" *clrIfActive="true">
+            <ace-editor [(text)]="jsData" [mode]="'javascript'" [options]="aceOptions" [theme]="'crimson_editor'"
+              (textChanged)="onDataChange($event)"
+              style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
+            </ace-editor>
+        </clr-tab-content>
+      </clr-tab>
+      <clr-tab>
+        <button clrTabLink>Readme.md</button>
+        <clr-tab-content id="readme" *clrIfActive="true">
+            <ace-editor [(text)]="readmeData" [mode]="'javascript'" [options]="aceOptions" [theme]="'crimson_editor'"
+              (textChanged)="onDataChange($event)"
+              style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
+            </ace-editor>
+        </clr-tab-content>
+      </clr-tab>
+    </clr-tabs>
   </div>
   <div class="clr-col-lg-7" [innerHTML]="sanitizedData"></div>
 </div>
