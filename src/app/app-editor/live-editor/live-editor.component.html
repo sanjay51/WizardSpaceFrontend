@@ -14,8 +14,8 @@
       <clr-tab>
         <button clrTabLink id="link1">HTML</button>
         <clr-tab-content id="html" *clrIfActive="true">
-          <ace-editor [(text)]="htmlData" [mode]="'html'" [options]="aceOptions" [theme]="'crimson_editor'"
-            (textChanged)="onDataChange($event)"
+          <ace-editor [(text)]="dataHolders['html'].data" [mode]="'html'" [options]="aceOptions" [theme]="'crimson_editor'"
+            (textChanged)="onDataChange($event, 'html')"
             style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
           </ace-editor>
         </clr-tab-content>
@@ -23,28 +23,28 @@
       <clr-tab>
         <button clrTabLink>CSS</button>
         <clr-tab-content id="css" *clrIfActive>
-            <ace-editor [(text)]="cssData" [mode]="'css'" [options]="aceOptions" [theme]="'crimson_editor'"
-              (textChanged)="onDataChange($event)"
-              style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
-            </ace-editor>
+          <ace-editor [(text)]="cssData" [mode]="'css'" [options]="aceOptions" [theme]="'crimson_editor'"
+            (textChanged)="onDataChange($event, 'css')"
+            style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
+          </ace-editor>
         </clr-tab-content>
       </clr-tab>
       <clr-tab>
-        <button clrTabLink>JS</button>
+        <button clrTabLink>&nbsp;&nbsp;JS&nbsp;&nbsp;</button>
         <clr-tab-content id="js" *clrIfActive>
-            <ace-editor [(text)]="jsData" [mode]="'javascript'" [options]="aceOptions" [theme]="'crimson_editor'"
-              (textChanged)="onDataChange($event)"
-              style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
-            </ace-editor>
+          <ace-editor [(text)]="jsData" [mode]="'javascript'" [options]="aceOptions" [theme]="'crimson_editor'"
+            (textChanged)="onDataChange($event, 'js')"
+            style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
+          </ace-editor>
         </clr-tab-content>
       </clr-tab>
       <clr-tab>
         <button clrTabLink>Readme.md</button>
         <clr-tab-content id="readme" *clrIfActive>
-            <ace-editor [(text)]="readmeData" [mode]="'javascript'" [options]="aceOptions" [theme]="'crimson_editor'"
-              (textChanged)="onDataChange($event)"
-              style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
-            </ace-editor>
+          <ace-editor [(text)]="readmeData" [mode]="'javascript'" [options]="aceOptions" [theme]="'crimson_editor'"
+            (textChanged)="onDataChange($event, 'readme')"
+            style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
+          </ace-editor>
         </clr-tab-content>
       </clr-tab>
     </clr-tabs>

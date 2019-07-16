@@ -27,42 +27,47 @@ export class LiveEditorComponent implements OnInit {
     useWorker: false, //Syntax checker
   };
 
-  dataChanged: Subject<string> = new Subject<string>();
+  public dataHolders = {
+    "html": new DataHolder("devstudio-app-live-editor-data-html"),
+    "css": new DataHolder("devstudio-app-live-editor-data-css"),
+    "js": new DataHolder("devstudio-app-live-editor-data-js"),
+    "readme": new DataHolder("devstudio-app-live-editor-data-readme")
+  }
 
   constructor(private sanitizer: DomSanitizer, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.htmlData = JSON.parse(localStorage.getItem("devstudio-app-live-editor-data"));
-    this.cssData = "";
-    this.jsData = "";
-    
     this.status = "loading"; 
     this.updateView();
 
-    this.dataChanged
-      .pipe(debounceTime(500))
-      .pipe(distinctUntilChanged())
-      .subscribe(htmlData => { this.htmlData = htmlData; this.updateView(); });
+    for (let dataHolder of Object.values(this.dataHolders)) {
+      dataHolder.dataSubscriber
+        .pipe(debounceTime(500))
+        .pipe(distinctUntilChanged())
+        .subscribe(data => { dataHolder.updateData(data); this.updateView() });
+    }
   }
 
-  public onDataChange(query: string) {
-    this.dataChanged.next(query);
+  public getData(type: string) {
+    return this.dataHolders[type].data;
+  }
+
+  public onDataChange(query: string, type: string) {
+    this.dataHolders[type].dataSubscriber.next(query);
   }
 
   public updateView() {
     this.status = "updating..";
-    let parsed = this.htmlData;
-    if (this.htmlData != this.getFirstTimeTutorialData())
-      localStorage.setItem("devstudio-app-live-editor-data", JSON.stringify(parsed));
-    this.status = "saved";
+    this.save()
 
-    if (!this.htmlData) this.htmlData = this.getFirstTimeTutorialData();
-    this.sanitizedData = this.sanitizer.bypassSecurityTrustHtml(this.htmlData);
+    if (!this.dataHolders['html'].data) this.dataHolders['html'].data = this.getFirstTimeTutorialData();
+    this.sanitizedData = this.sanitizer.bypassSecurityTrustHtml(this.dataHolders['html'].data);
     this.cd.detectChanges();
   }
-  
-  getTitle(): string {
-    return "Live Editor"
+
+  save() {
+    Object.values(this.dataHolders).forEach(dataHolder => dataHolder.save());
+    this.status = "saved";
   }
 
   getFirstTimeTutorialData() {
@@ -93,5 +98,24 @@ All changes are automatically saved in your browser, so even if you refresh this
 <br/>\n\
 Note: Errors, if any, are logged in your browser console.<br/>\n\
 <br/>";
+  }
+}
+
+class DataHolder {
+  public data: string;
+  public localStorageKey: string;
+  public dataSubscriber: Subject<string> = new Subject<string>();
+
+  public constructor(localStorageKey: string) {
+    this.localStorageKey = localStorageKey;
+    this.data = JSON.parse(localStorage.getItem(localStorageKey));
+  }
+
+  public updateData(data: string) {
+    this.data = data;
+  }
+
+  public save() {
+    localStorage.setItem(this.localStorageKey, JSON.stringify(this.data));
   }
 }
