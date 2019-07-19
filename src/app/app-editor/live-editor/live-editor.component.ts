@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from "rxjs/internal/operators";
@@ -34,7 +34,7 @@ export class LiveEditorComponent implements OnInit {
     "readme": new DataHolder("devstudio-app-live-editor-data-readme")
   }
 
-  constructor(private sanitizer: DomSanitizer, private cd: ChangeDetectorRef) { }
+  constructor(private elementRef:ElementRef, private renderer: Renderer2, private sanitizer: DomSanitizer, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.status = "loading"; 
@@ -60,8 +60,19 @@ export class LiveEditorComponent implements OnInit {
     this.status = "updating..";
     this.save()
 
-    if (!this.dataHolders['html'].data) this.dataHolders['html'].data = this.getFirstTimeTutorialData();
-    this.sanitizedData = this.sanitizer.bypassSecurityTrustHtml(this.dataHolders['html'].data);
+    if (!this.dataHolders['html'].data) {
+      this.dataHolders['html'].data = this.getFirstTimeTutorialData();
+    }
+    
+    this.sanitizedData = '<style> ' + this.dataHolders['css'].data + ' </style> ' +
+    '<script> ' + this.dataHolders['js'].data + ' </script> ' +
+      this.dataHolders['html'].data
+
+      var iframe = document.getElementById('iframeview') as HTMLIFrameElement;
+      iframe.contentWindow.document.open();
+      iframe.contentWindow.document.write(this.sanitizedData);
+      iframe.contentWindow.document.close();
+    
     this.cd.detectChanges();
   }
 
