@@ -11,6 +11,10 @@ const routes: Routes = [
     component: AppEditorComponent
   },
   { 
+    path: 'live-html-editor',
+    component: AppEditorComponent
+  },
+  { 
     path: '',
     component: HomeComponent
   },
@@ -18,7 +22,7 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
-  { 
+  {
     path: 'sign-up',
     component: SignupComponent
   },

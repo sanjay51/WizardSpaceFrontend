@@ -1,0 +1,25 @@
+<clr-dropdown [clrCloseMenuOnItemClick]="false">
+    <button type="button" clrDropdownTrigger aria-label="dropdown demo button">
+        File
+        <clr-icon shape="caret down"></clr-icon>
+    </button>
+    <clr-dropdown-menu *clrIfOpen>
+        <label class="dropdown-header">App</label>
+        <button type="button" clrDropdownItem>New App</button>
+        <button type="button" clrDropdownItem>Save</button>
+        <button type="button" clrDropdownItem>Reset HTML/CSS/JS</button>
+        <div class="dropdown-divider" role="separator"></div>
+        <button type="button" clrDropdownItem>Publish..</button>
+    </clr-dropdown-menu>
+</clr-dropdown>
+&nbsp;&nbsp;
+<clr-dropdown [clrCloseMenuOnItemClick]="false">
+    <button type="button" clrDropdownTrigger aria-label="dropdown demo button">
+        Help
+        <clr-icon shape="caret down"></clr-icon>
+    </button>
+    <clr-dropdown-menu *clrIfOpen>
+        <button type="button" clrDropdownItem>App Editor Guide</button>
+        <button type="button" clrDropdownItem>Contact us</button>
+    </clr-dropdown-menu>
+</clr-dropdown>

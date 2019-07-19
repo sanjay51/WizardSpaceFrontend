@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { AppComponent } from './root/app.component';
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
+import { FileMenuComponent } from './app-editor/file-menu/file-menu.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SignupComponent } from './user/signup/signup.component';
     HeaderComponent,
     LiveEditorComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    FileMenuComponent
   ],
   imports: [
     BrowserModule,
