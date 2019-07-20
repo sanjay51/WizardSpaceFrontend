@@ -68,10 +68,10 @@ export class LiveEditorComponent implements OnInit {
     '<script> ' + this.dataHolders['js'].data + ' </script> ' +
       this.dataHolders['html'].data
 
-      var iframe = document.getElementById('iframeview') as HTMLIFrameElement;
-      iframe.contentWindow.document.open();
-      iframe.contentWindow.document.write(this.sanitizedData);
-      iframe.contentWindow.document.close();
+    var iframe = document.getElementById('iframeview') as HTMLIFrameElement;
+    iframe.contentWindow.document.open();
+    iframe.contentWindow.document.write(this.sanitizedData);
+    iframe.contentWindow.document.close();
     
     this.cd.detectChanges();
   }

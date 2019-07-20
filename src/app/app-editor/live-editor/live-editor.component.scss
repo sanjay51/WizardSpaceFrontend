@@ -8,6 +8,12 @@
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 }
 
+.editor-tab-content {
+    height: 82vh; 
+    width: 100%; 
+    box-shadow: 5px 3px 10px rgb(236, 235, 235)
+}
+
 .tutorial-post {
     height: 100vh;
     overflow-y: scroll;

@@ -14,6 +14,7 @@ import { AppComponent } from './root/app.component';
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
 import { FileMenuComponent } from './app-editor/file-menu/file-menu.component';
+import { SettingsTabComponent } from './app-editor/settings-tab/settings-tab.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FileMenuComponent } from './app-editor/file-menu/file-menu.component';
     LiveEditorComponent,
     LoginComponent,
     SignupComponent,
-    FileMenuComponent
+    FileMenuComponent,
+    SettingsTabComponent
   ],
   imports: [
     BrowserModule,
