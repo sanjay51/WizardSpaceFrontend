@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, ElementRef, OnInit, Renderer2 } from '@an
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from "rxjs/internal/operators";
+import { InitFlowService } from '../flows/init-flow.service';
 
 @Component({
   selector: 'app-live-editor',
@@ -34,11 +35,13 @@ export class LiveEditorComponent implements OnInit {
     "readme": new DataHolder("devstudio-app-live-editor-data-readme")
   }
 
-  constructor(private elementRef:ElementRef, private renderer: Renderer2, private sanitizer: DomSanitizer, private cd: ChangeDetectorRef) { }
+  constructor(private initFlow: InitFlowService, private elementRef:ElementRef, private renderer: Renderer2, private sanitizer: DomSanitizer, private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.status = "loading"; 
     this.updateView();
+
+    this.initFlow.start();
 
     for (let dataHolder of Object.values(this.dataHolders)) {
       dataHolder.dataSubscriber

@@ -1,6 +1,15 @@
 import { State, Step } from 'ix-angular-elements';
 
-export class GetLocalAppId extends Step {
+export class GetLocalAppIdStep extends Step {
+
+    private constructor() {
+        super("getLocalAppId");
+    }
+
+    public static get(): GetLocalAppIdStep {
+        return new GetLocalAppIdStep();
+    }
+    
     init(): void {
         // do nothing
     }    
