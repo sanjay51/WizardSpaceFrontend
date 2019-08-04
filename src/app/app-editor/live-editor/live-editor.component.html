@@ -12,7 +12,7 @@
       <clr-tab>
         <button clrTabLink id="link1">HTML</button>
         <clr-tab-content id="html" *clrIfActive="true">
-          <ace-editor [(text)]="dataHolders['html'].data" [mode]="'html'" [options]="aceOptions" [theme]="'crimson_editor'"
+          <ace-editor [(text)]="getDataHolder('html').data" [mode]="'html'" [options]="aceOptions" [theme]="'crimson_editor'"
             (textChanged)="onDataChange($event, 'html')"
             style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
           </ace-editor>
@@ -21,7 +21,7 @@
       <clr-tab>
         <button clrTabLink>CSS</button>
         <clr-tab-content id="css" *clrIfActive>
-          <ace-editor [(text)]="dataHolders['css'].data" [mode]="'css'" [options]="aceOptions" [theme]="'crimson_editor'"
+          <ace-editor [(text)]="getDataHolder('css').data" [mode]="'css'" [options]="aceOptions" [theme]="'crimson_editor'"
             (textChanged)="onDataChange($event, 'css')"
             style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
           </ace-editor>
@@ -30,7 +30,7 @@
       <clr-tab>
         <button clrTabLink>&nbsp;&nbsp;JS&nbsp;&nbsp;</button>
         <clr-tab-content id="js" *clrIfActive>
-          <ace-editor [(text)]="dataHolders['js'].data" [mode]="'javascript'" [options]="aceOptions" [theme]="'crimson_editor'"
+          <ace-editor [(text)]="getDataHolder('js').data" [mode]="'javascript'" [options]="aceOptions" [theme]="'crimson_editor'"
             (textChanged)="onDataChange($event, 'js')"
             style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
           </ace-editor>
@@ -39,7 +39,7 @@
       <clr-tab>
         <button clrTabLink>Readme.md</button>
         <clr-tab-content id="readme" *clrIfActive>
-          <ace-editor [(text)]="dataHolders['readme'].data" [mode]="'javascript'" [options]="aceOptions" [theme]="'crimson_editor'"
+          <ace-editor [(text)]="getDataHolder('readme').data" [mode]="'javascript'" [options]="aceOptions" [theme]="'crimson_editor'"
             (textChanged)="onDataChange($event, 'readme')" class="editor-tab-content">
           </ace-editor>
         </clr-tab-content>

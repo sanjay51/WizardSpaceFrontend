@@ -1,28 +1,36 @@
 import { State, Step } from 'ix-angular-elements';
+import { FlowStateService } from '../flow-state.service';
 
 export class GetLocalAppDataStep extends Step {
 
-    private constructor() {
+    private constructor(private flowStateService: FlowStateService) {
         super("getLocalAppData");
     }
 
-    public static get(): GetLocalAppDataStep {
-        return new GetLocalAppDataStep();
+    public static get(flowStateService: FlowStateService): GetLocalAppDataStep {
+        return new GetLocalAppDataStep(flowStateService);
     }
 
     init(): void {
         // do nothing
     }    
     
+    /**
+     * Load appData from localStorage, populate FlowStateService's editorDataHolders
+     */
     execute(state: State): string {
         if (! state.get("appData")) {
-            let appData = JSON.parse(localStorage.getItem("appData"));
+            let data = JSON.parse(localStorage.getItem("appData"));
             
-            if (! appData) {
-                return "failure";
+            if (! data) {
+                return "failed";
             }
+            
+            Object.keys(data).forEach(type => {
+                this.flowStateService.dataHolders[type].setData(data[type]);
+            });
 
-            state.set("appData", appData);
+            state.set("appData", data);
         }
 
         return "success";
