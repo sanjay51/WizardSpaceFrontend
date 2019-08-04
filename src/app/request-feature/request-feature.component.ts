@@ -25,7 +25,7 @@ export class RequestFeatureComponent implements OnInit {
         defaultValue: '',
       },
       {
-        name: "description",
+        name: "details",
         label: "Details",
         validators: [],
         defaultValue: '',
@@ -46,11 +46,11 @@ export class RequestFeatureComponent implements OnInit {
 
       let api = new RequestFeatureAPI(fields.title.value, fields.details.value, 
         fields.email.value, this.state.getAuthStateAttribute("userId"));
-      return this.apiService.call(null).toPromise();
+      return this.apiService.call(api).toPromise();
     },
 
     postSubmit: (response) => {
-      this.state.navigateTo("/");
+      this.isSubmitted = true;
     },
 
     onCancel: () => {

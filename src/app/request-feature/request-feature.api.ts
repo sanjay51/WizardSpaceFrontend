@@ -20,12 +20,13 @@ export class RequestFeatureAPI extends PostAPI {
         return {
             "domain": "feature-requests",
             "id": this.email,
-            "value": {
+            "userId": this.userId,
+            "value": JSON.stringify({
                 "email": this.email,
                 "userId": this.userId,
                 "details": this.details,
                 "title": this.title
-            }
+            })
         }
     }    
     
