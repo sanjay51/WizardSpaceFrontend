@@ -8,7 +8,7 @@ export class Utils {
     }
 
     static parseEpochToDate(epoch: number) {
-      let todayEpoch = new Date().getTime()
-      return Math.round(((todayEpoch - epoch)) / (24*60*60*1000))
+        let todayEpoch = new Date().getTime()
+        return Math.round(((todayEpoch - epoch)) / (24 * 60 * 60 * 1000))
     }
 }
