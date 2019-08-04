@@ -18,7 +18,7 @@ export class GetLocalAppIdStep extends Step {
         if (! state.get("appId")) {
             let appId = localStorage.getItem("appId");
             if (! appId) {
-                return "failure";
+                return "failed";
             }
 
             state.set("appId", appId);

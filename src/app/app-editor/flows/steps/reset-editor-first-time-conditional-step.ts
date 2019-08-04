@@ -1,14 +1,14 @@
 import { State, Step } from 'ix-angular-elements';
 import { FlowStateService } from '../flow-state.service';
 
-export class RefreshEditorStep extends Step {
+export class ResetEditorFirstTimeConditionalStep extends Step {
 
     private constructor(private flowState: FlowStateService) {
         super("refreshEditor");
     }
 
-    public static get(flowState: FlowStateService): RefreshEditorStep {
-        return new RefreshEditorStep(flowState);
+    public static get(flowState: FlowStateService): ResetEditorFirstTimeConditionalStep {
+        return new ResetEditorFirstTimeConditionalStep(flowState);
     }
     
     init(): void {
@@ -20,7 +20,7 @@ export class RefreshEditorStep extends Step {
           this.flowState.dataHolders['html'].data = this.getFirstTimeTutorialData();
         }
         
-        return "refreshed";
+        return "resetDone";
     }
 
     getFirstTimeTutorialData() {

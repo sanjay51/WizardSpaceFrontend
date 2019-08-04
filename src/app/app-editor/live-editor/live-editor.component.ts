@@ -13,13 +13,6 @@ import { SaveLocalAppDataStep } from '../flows/steps/save-local-app-data-step';
   styleUrls: ['./live-editor.component.scss']
 })
 export class LiveEditorComponent implements OnInit {
-  public htmlData;
-  public cssData;
-  public jsData;
-  public readmeData;
-
-  public prevData;
-  public sanitizedData;
   public status = "saving"
 
   public aceOptions = {
