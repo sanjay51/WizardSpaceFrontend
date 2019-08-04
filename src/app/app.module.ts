@@ -15,6 +15,7 @@ import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
 import { FileMenuComponent } from './app-editor/file-menu/file-menu.component';
 import { SettingsTabComponent } from './app-editor/settings-tab/settings-tab.component';
+import { RequestFeatureComponent } from './request-feature/request-feature.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SettingsTabComponent } from './app-editor/settings-tab/settings-tab.com
     LoginComponent,
     SignupComponent,
     FileMenuComponent,
-    SettingsTabComponent
+    SettingsTabComponent,
+    RequestFeatureComponent
   ],
   imports: [
     BrowserModule,
