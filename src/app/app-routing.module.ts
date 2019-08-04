@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppEditorComponent } from './app-editor/app-editor.component';
+import { ContactDevstudioComponent } from './contact-devstudio/contact-devstudio.component';
 import { HomeComponent } from './home/home.component';
+import { ReportBugComponent } from './report-bug/report-bug.component';
 import { RequestFeatureComponent } from './request-feature/request-feature.component';
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
@@ -30,6 +32,14 @@ const routes: Routes = [
   {
     path: 'request-feature',
     component: RequestFeatureComponent
+  },
+  {
+    path: 'bug-report',
+    component: ReportBugComponent
+  },
+  {
+    path: 'contact',
+    component: ContactDevstudioComponent
   },
 ];
 

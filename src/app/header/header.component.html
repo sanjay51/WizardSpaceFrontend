@@ -1,6 +1,6 @@
 <clr-header class="header header-4">
   <div class="branding">
-    <a routerLink="" class="nav-link">
+    <a [routerLink]="['/']" class="nav-link">
       <!-- <img src='assets/app.png' width="16" />&nbsp; -->
       <clr-icon shape="application" style="color: white" size="24"></clr-icon>
       <span class="title">DevStudio.App</span>
@@ -9,11 +9,24 @@
   </div>
 
   <div class="header-nav">
-    <a routerLink="" class="nav-link nav-text">Home</a>
-    <a routerLink="/request-feature" class="nav-link nav-text">Request a feature</a>
+    <a [routerLink]="['/']" class="nav-link nav-text">Home</a>
+    <a [routerLink]="['request-feature']" class="nav-link nav-text">Request a feature</a>
+
   </div>
 
   <div class="header-actions">
+    <clr-dropdown>
+      <button class="nav-text" clrDropdownTrigger>
+        Help
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+        <a href="/contact" clrDropdownItem>Reach out to DevStudio</a>
+        <a href="/bug-report" clrDropdownItem>Report a bug</a>
+      </clr-dropdown-menu>
+    </clr-dropdown>
+
     <clr-dropdown *ngIf="isLoggedIn()">
       <button class="nav-text" clrDropdownTrigger>
         <clr-icon shape="user"></clr-icon>
@@ -34,7 +47,7 @@
       Sign Up
     </a>
 
-    <a [routerLink]="'app-editor'" class="nav-btn" style="margin-top:.25rem; margin-left:.5rem;">
+    <a [routerLink]="['app-editor']" class="nav-btn" style="margin-top:.25rem; margin-left:.5rem;">
       <button class="btn btn-success">Create new web app</button>
     </a>
   </div>

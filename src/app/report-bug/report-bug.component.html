@@ -1,0 +1,14 @@
+<div *ngIf="!isSubmitted" align=center>
+    <ix-note title="Note"
+        text="Bug reports can be submitted using below form, or by mailing directly to 'bug-report@devstudio.app'. Thank you!">
+    </ix-note>
+    <ix-form [form]="form" align=left></ix-form>
+</div>
+
+<div *ngIf="isSubmitted">
+    Thank you for submitting a bug report. It's under review, and a software engineer will get back to you on the
+    progress.
+    <br />
+    <button class="btn" (click)="goHome()">Go to home</button>
+    <button class="btn btn-success" (click)="fileAnother()">File another bug report</button>
+</div>

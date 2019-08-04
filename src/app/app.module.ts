@@ -16,6 +16,8 @@ import { SignupComponent } from './user/signup/signup.component';
 import { FileMenuComponent } from './app-editor/file-menu/file-menu.component';
 import { SettingsTabComponent } from './app-editor/settings-tab/settings-tab.component';
 import { RequestFeatureComponent } from './request-feature/request-feature.component';
+import { ReportBugComponent } from './report-bug/report-bug.component';
+import { ContactDevstudioComponent } from './contact-devstudio/contact-devstudio.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { RequestFeatureComponent } from './request-feature/request-feature.compo
     SignupComponent,
     FileMenuComponent,
     SettingsTabComponent,
-    RequestFeatureComponent
+    RequestFeatureComponent,
+    ReportBugComponent,
+    ContactDevstudioComponent
   ],
   imports: [
     BrowserModule,
