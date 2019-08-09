@@ -19,7 +19,7 @@ export class CreateAppAPI extends PostAPI {
             "authId": this.authId,
             "name": this.name
         }
-    }    
+    }
     
     validate() {
     }

@@ -18,6 +18,7 @@ import { SettingsTabComponent } from './app-editor/settings-tab/settings-tab.com
 import { RequestFeatureComponent } from './request-feature/request-feature.component';
 import { ReportBugComponent } from './report-bug/report-bug.component';
 import { ContactDevstudioComponent } from './contact-devstudio/contact-devstudio.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ContactDevstudioComponent } from './contact-devstudio/contact-devstudio
     SettingsTabComponent,
     RequestFeatureComponent,
     ReportBugComponent,
-    ContactDevstudioComponent
+    ContactDevstudioComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

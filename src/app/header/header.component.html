@@ -22,8 +22,8 @@
       </button>
 
       <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-        <a href="/contact" clrDropdownItem>Reach out to DevStudio</a>
-        <a href="/bug-report" clrDropdownItem>Report a bug</a>
+        <a [routerLink]="['contact']" clrDropdownItem>Reach out to DevStudio</a>
+        <a [routerLink]="['bug-report']" clrDropdownItem>Report a bug</a>
       </clr-dropdown-menu>
     </clr-dropdown>
 
