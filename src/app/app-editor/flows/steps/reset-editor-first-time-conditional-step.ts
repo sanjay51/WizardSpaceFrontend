@@ -15,7 +15,7 @@ export class ResetEditorFirstTimeConditionalStep extends Step {
         // do nothing
     }    
     
-    execute(state: State): string {
+    async execute(state: State): Promise<string> {
         if (!this.flowState.dataHolders['html'].data) {
           this.flowState.dataHolders['html'].data = this.getFirstTimeTutorialData();
         }

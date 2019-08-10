@@ -13,7 +13,7 @@ export class CheckIfOnlineStep extends Step {
         // do nothing
     }    
     
-    execute(state: State): string {
+    async execute(state: State): Promise<string> {
         return "yes";
     }
 }

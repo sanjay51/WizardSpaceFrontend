@@ -15,7 +15,7 @@ export class RefreshViewStep extends Step {
         // do nothing
     }    
     
-    execute(state: State): string {
+    async execute(state: State): Promise<string> {
       let sanitizedData = '<style> ' + this.flowState.dataHolders['css'].data + ' </style> ' +
         '<script> ' + this.flowState.dataHolders['js'].data + ' </script> ' +
         this.flowState.dataHolders['html'].data

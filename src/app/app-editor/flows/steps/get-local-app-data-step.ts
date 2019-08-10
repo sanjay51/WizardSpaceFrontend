@@ -18,7 +18,7 @@ export class GetLocalAppDataStep extends Step {
     /**
      * Load appData from localStorage, populate FlowStateService's editorDataHolders
      */
-    execute(state: State): string {
+    async execute(state: State): Promise<string> {
         if (! state.get("appData")) {
             let data = JSON.parse(localStorage.getItem("appData"));
             

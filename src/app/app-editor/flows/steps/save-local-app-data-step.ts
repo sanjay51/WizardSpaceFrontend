@@ -15,7 +15,7 @@ export class SaveLocalAppDataStep extends Step {
         // do nothing
     }
     
-    execute(state: State): string {
+    async execute(state: State): Promise<string> {
         let data = {};
 
         Object.keys(this.flowState.dataHolders).forEach(type => {
