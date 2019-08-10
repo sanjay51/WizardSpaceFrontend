@@ -14,6 +14,10 @@ const routes: Routes = [
     component: AppEditorComponent
   },
   { 
+    path: 'app-editor/:appId',
+    component: AppEditorComponent
+  },
+  { 
     path: 'live-html-editor',
     component: AppEditorComponent
   },

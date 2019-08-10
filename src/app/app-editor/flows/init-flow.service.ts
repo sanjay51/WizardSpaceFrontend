@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { APIService, FinishedStep, Flow } from 'ix-angular-elements';
 import { FlowStateService } from './flow-state.service';
 import { CheckIfOnlineStep } from './steps/check-if-online-step';
@@ -14,13 +15,15 @@ import { ResetEditorFirstTimeConditionalStep } from './steps/reset-editor-first-
 export class InitFlowService {
   private flow: Flow;
 
-  constructor(private flowStateService: FlowStateService, private apiService: APIService) {
+  constructor(private flowStateService: FlowStateService,
+    private apiService: APIService, private route: ActivatedRoute) {
+
     // Create flow with 'GetLocalAppIdStep' as first step.
-    this.flow = new Flow(GetLocalAppIdStep.get(), this.flowStateService.getFlowState());
+    this.flow = new Flow(GetLocalAppIdStep.get(route), this.flowStateService.getFlowState());
 
     // Get local App data
-    this.flow.addTransition(GetLocalAppIdStep.get(), "success", GetLocalAppDataStep.get(this.flowStateService));
-    this.flow.addTransition(GetLocalAppIdStep.get(), "failed", GetLocalAppDataStep.get(this.flowStateService));
+    this.flow.addTransition(GetLocalAppIdStep.get(route), "success", GetLocalAppDataStep.get(this.flowStateService));
+    this.flow.addTransition(GetLocalAppIdStep.get(route), "failed", GetLocalAppDataStep.get(this.flowStateService));
 
     // Check if online
     this.flow.addTransition(GetLocalAppDataStep.get(this.flowStateService), "success", CheckIfOnlineStep.get());

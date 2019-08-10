@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FinishedStep, Flow } from 'ix-angular-elements';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from "rxjs/internal/operators";
@@ -24,7 +25,8 @@ export class LiveEditorComponent implements OnInit {
     useWorker: false, //Syntax checker
   };
 
-  constructor(private initFlow: InitFlowService, private flowStateService: FlowStateService, private cd: ChangeDetectorRef) { }
+  constructor(private initFlow: InitFlowService, private flowStateService: FlowStateService, 
+    private cd: ChangeDetectorRef, private route: ActivatedRoute) { }
 
   /**
    * DataSubscribers debounce the keyboard input, and invoke the dataChangeHandler flow.
@@ -40,6 +42,10 @@ export class LiveEditorComponent implements OnInit {
 
   ngOnInit() {
     this.status = "loading";
+
+    let appId = this.route.snapshot.params.appId;
+    this.flowStateService.flowState.set("appId", appId);
+    
     this.dataChangeHandlerFlow = this.getDataChangeHanderFlow();
 
     for (let subscriber of Object.values(this.dataSubscribers)) {
