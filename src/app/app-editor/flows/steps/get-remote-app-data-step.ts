@@ -31,22 +31,23 @@ export class GetRemoteAppDataStep extends Step {
 
         let api: GetBigKvAPI = new GetBigKvAPI(null, null, "test-data", "sanjay");
         
+        let result = "failed";
         await this.apiService.call(api).toPromise().then(
             response => {
                 console.log(response);
                 this.isLoading = false;
-                return "success"
+                result = "success"
             },
             error => {
                 console.log(error); 
                 this.isLoading = false;
-                return "failed"; 
+                result = "failed"; 
             }
         )
 
         this.isLoading = false;
         console.log('end')
 
-        return "failed";
+        return result;
     }
 }

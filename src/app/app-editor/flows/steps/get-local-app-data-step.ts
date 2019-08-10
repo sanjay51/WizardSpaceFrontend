@@ -1,5 +1,5 @@
 import { State, Step } from 'ix-angular-elements';
-import { FlowStateService } from '../flow-state.service';
+import { AppData, FlowStateService } from '../flow-state.service';
 
 export class GetLocalAppDataStep extends Step {
 
@@ -20,17 +20,18 @@ export class GetLocalAppDataStep extends Step {
      */
     async execute(state: State): Promise<string> {
         if (! state.get("appData")) {
-            let data = JSON.parse(localStorage.getItem("appData"));
+            let appData: AppData = JSON.parse(localStorage.getItem("appData"));
             
-            if (! data) {
+            if (! appData) {
                 return "failed";
             }
             
-            Object.keys(data).forEach(type => {
-                this.flowStateService.dataHolders[type].setData(data[type]);
-            });
+            this.flowStateService.dataHolders["html"].setData(appData.html);
+            this.flowStateService.dataHolders["css"].setData(appData.css);
+            this.flowStateService.dataHolders["js"].setData(appData.js);
+            this.flowStateService.dataHolders["readme"].setData(appData.readme);
 
-            state.set("appData", data);
+            state.set("appData", appData);
         }
 
         return "success";

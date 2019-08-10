@@ -36,3 +36,10 @@ export class EditorDataHolder {
     this.data = data;
   }
 }
+
+export class AppData {
+  html: string;
+  css: string;
+  js: string;
+  readme: string;
+}

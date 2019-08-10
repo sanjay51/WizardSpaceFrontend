@@ -64,8 +64,13 @@ export class LiveEditorComponent implements OnInit {
   }
 
   getDataChangeHanderFlow(): Flow {
+    // Refresh View
     let flow = new Flow(RefreshViewStep.get(this.flowStateService), this.flowStateService.getFlowState());
+
+    // Save data in local
     flow.addTransition(RefreshViewStep.get(this.flowStateService), "refreshed", SaveLocalAppDataStep.get(this.flowStateService))
+    
+    // Finish
     flow.addTransition(SaveLocalAppDataStep.get(this.flowStateService), "saved", FinishedStep.get());
 
     return flow;

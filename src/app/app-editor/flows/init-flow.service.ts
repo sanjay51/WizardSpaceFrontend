@@ -29,7 +29,8 @@ export class InitFlowService {
     // Reset editor for first time use, (conditional) with default html template
     this.flow.addTransition(CheckIfOnlineStep.get(), "yes", GetRemoteAppDataStep.get(this.flowStateService, this.apiService));
 
-    this.flow.addTransition(GetRemoteAppDataStep.get(this.flowStateService, this.apiService), "loading", ResetEditorFirstTimeConditionalStep.get(this.flowStateService));
+    this.flow.addTransition(GetRemoteAppDataStep.get(this.flowStateService, this.apiService), "failed", ResetEditorFirstTimeConditionalStep.get(this.flowStateService));
+    this.flow.addTransition(GetRemoteAppDataStep.get(this.flowStateService, this.apiService), "success", RefreshViewStep.get(this.flowStateService));
 
     // Refresh View
     this.flow.addTransition(ResetEditorFirstTimeConditionalStep.get(this.flowStateService), "resetDone", RefreshViewStep.get(this.flowStateService));
