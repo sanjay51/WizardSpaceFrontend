@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { APIService, AuthenticationService, FinishedStep, Flow } from 'ix-angular-elements';
 import { FlowStateService } from './flow-state.service';
 import { AppDataResolverStep } from './steps/app-data-resolver-step';
-import { AppIdResolverStep } from './steps/app-id-resolver-step';
+import { AppInfoResolverStep } from './steps/app-id-resolver-step';
 import { OnlineStatusResolverStep } from './steps/online-status-resolver-step';
 import { RefreshViewStep } from './steps/refresh-view-step';
 
@@ -17,7 +17,7 @@ export class InitFlowService {
     private apiService: APIService, private route: ActivatedRoute, private auth: AuthenticationService) {
 
     let onlineStatusResolverStep = OnlineStatusResolverStep.get();
-    let appIdResolverStep = AppIdResolverStep.get(this.route, this.auth, this.flowStateService);
+    let appIdResolverStep = AppInfoResolverStep.get(this.route, this.auth, this.flowStateService);
     let appDataResolverStep = AppDataResolverStep.get(this.flowStateService);
     let refreshViewStep = RefreshViewStep.get(this.flowStateService);
     let finishedStep = FinishedStep.get();

@@ -6,7 +6,8 @@ import { debounceTime, distinctUntilChanged } from "rxjs/internal/operators";
 import { FlowStateService } from '../flows/flow-state.service';
 import { InitFlowService } from '../flows/init-flow.service';
 import { RefreshViewStep } from '../flows/steps/refresh-view-step';
-import { SaveLocalAppDataStep } from '../flows/steps/save-local-app-data-step';
+import { SaveAppDataStep } from '../flows/steps/save-app-data-step';
+import { SaveAppInfoStep } from '../flows/steps/save-app-info-step';
 
 @Component({
   selector: 'app-live-editor',
@@ -74,11 +75,14 @@ export class LiveEditorComponent implements OnInit {
     // Refresh View
     let flow = new Flow(RefreshViewStep.get(this.flowStateService), this.flowStateService.getFlowState());
 
-    // Save data in local
-    flow.addTransition(RefreshViewStep.get(this.flowStateService), "refreshed", SaveLocalAppDataStep.get(this.flowStateService))
+    // Save data
+    flow.addTransition(RefreshViewStep.get(this.flowStateService), "refreshed", SaveAppDataStep.get(this.flowStateService))
+
+    // Save app info
+    flow.addTransition(SaveAppDataStep.get(this.flowStateService), "saved", SaveAppInfoStep.get(this.flowStateService))
     
     // Finish
-    flow.addTransition(SaveLocalAppDataStep.get(this.flowStateService), "saved", FinishedStep.get());
+    flow.addTransition(SaveAppInfoStep.get(this.flowStateService), "saved", FinishedStep.get());
 
     return flow;
   }

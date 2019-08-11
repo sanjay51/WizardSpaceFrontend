@@ -32,16 +32,15 @@ export class AppDataResolverStep extends Step {
         }
 
         let appData: AppData = null;
-        if (initSource == "local") {
+        if (initSource == "first-time") {
+            // first time user
+            appData = new AppData();
+            appData.html = this.getFirstTimeTutorialData();
+        } else if (initSource == "local") {
+            // data already in local
             appData = JSON.parse(localStorage.getItem(appDataKey));
         } else {
             // get from remote
-        }
-
-        // first time user
-        if (!appData) {
-            appData = new AppData();
-            appData.html = this.getFirstTimeTutorialData();
         }
 
         // Populate App Data

@@ -2,18 +2,18 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService, State, Step } from 'ix-angular-elements';
 import { FlowStateService } from '../flow-state.service';
 
-export class AppIdResolverStep extends Step {
+export class AppInfoResolverStep extends Step {
 
-    private static INSTANCE: AppIdResolverStep = null;
+    private static INSTANCE: AppInfoResolverStep = null;
 
     private constructor(private route: ActivatedRoute,
         private authentication: AuthenticationService,
         private flowStateService: FlowStateService) {
-        super("getLocalAppId");
+        super("getLocalAppInfo");
     }
 
-    public static get(route: ActivatedRoute, auth: AuthenticationService, flowStateService: FlowStateService): AppIdResolverStep {
-        if (!this.INSTANCE) this.INSTANCE = new AppIdResolverStep(route, auth, flowStateService);
+    public static get(route: ActivatedRoute, auth: AuthenticationService, flowStateService: FlowStateService): AppInfoResolverStep {
+        if (!this.INSTANCE) this.INSTANCE = new AppInfoResolverStep(route, auth, flowStateService);
 
         return this.INSTANCE;
     }
@@ -43,28 +43,39 @@ export class AppIdResolverStep extends Step {
         let remoteAppId: string = null;
         let remoteAppVersion: number = 0;
         /* Check online next, if user is logged in */
-        if (this.authentication.isLoggedIn()) {
-            // get draft app from remote
+        if (localAppId != "draft" && this.authentication.isLoggedIn()) {
+            // only get appId, appVersion from remote, if local is either null or non-draft
         }
 
         /* Most recently updated app wins */
         let appId = null;
         let appVersion = null;
         let initSource = "local";
-        if (remoteAppId && remoteAppVersion >= localAppVersion) {
-            appId = remoteAppId;
-            appVersion = remoteAppVersion;
-            initSource = "remote";
-        } else {
+        if (localAppId == null && remoteAppId == null) {
+            // first time user
+            appId = "draft";
+            appVersion = 0;
+            initSource = "first-time"
+        } else if (localAppId == "draft") {
+            // local already contains a draft without appId
+            appId = "draft"
+            appVersion = 0;
+            initSource = "local";
+        } else if (remoteAppId == null) {
+            // assign this appId under my account; 
+            appId = localAppId;
+            appVersion = localAppVersion;
+            initSource = "local"
+            //TODO: call(): assign this appId under my account;
+        } else if (localAppVersion > remoteAppVersion) {
+            // do nothing; save() will update remote later
             appId = localAppId;
             appVersion = localAppVersion;
             initSource = "local";
-        }
-
-        // first time user
-        if (!appId) {
-            appId = "draft";
-            appVersion = 0;
+        } else {
+            appId = remoteAppId
+            appVersion = remoteAppVersion
+            initSource = "remote"
         }
 
         state.set("appId", appId);

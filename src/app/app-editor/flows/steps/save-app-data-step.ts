@@ -1,14 +1,17 @@
 import { State, Step } from 'ix-angular-elements';
 import { AppData, FlowStateService } from '../flow-state.service';
 
-export class SaveLocalAppDataStep extends Step {
+export class SaveAppDataStep extends Step {
+    private static INSTANCE: SaveAppDataStep = null;
 
     private constructor(private flowStateService: FlowStateService) {
-        super("saveLocalAppData");
+        super("SaveAppDataStep");
     }
 
-    public static get(flowState: FlowStateService): SaveLocalAppDataStep {
-        return new SaveLocalAppDataStep(flowState);
+    public static get(flowState: FlowStateService): SaveAppDataStep {
+        if (! this.INSTANCE) this.INSTANCE = new SaveAppDataStep(flowState);
+        
+        return this.INSTANCE;
     }
 
     init(): void {
@@ -18,6 +21,7 @@ export class SaveLocalAppDataStep extends Step {
     async execute(state: State): Promise<string> {
         let data = new AppData();
         let appId = this.flowStateService.getFlowState().get("appId");
+        let isAppDataChanged = "yes";
 
         if (this.flowStateService.dataHolders["html"].data) {
             data.html = this.flowStateService.dataHolders["html"].data;
@@ -27,6 +31,7 @@ export class SaveLocalAppDataStep extends Step {
         }
 
         localStorage.setItem(this.flowStateService.getAppDataKey(appId), JSON.stringify(data));
+        localStorage.setItem("isAppDataChanged", isAppDataChanged);
         return "saved";
     }
 }
