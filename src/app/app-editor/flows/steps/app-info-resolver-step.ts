@@ -1,5 +1,6 @@
 import { ActivatedRoute } from '@angular/router';
-import { AuthenticationService, State, Step } from 'ix-angular-elements';
+import { APIService, AuthenticationService, State, Step } from 'ix-angular-elements';
+import { GetAppByIdAPI } from '../api/get-app-by-id.api';
 import { FlowStateService } from '../flow-state.service';
 
 export class AppInfoResolverStep extends Step {
@@ -8,12 +9,15 @@ export class AppInfoResolverStep extends Step {
 
     private constructor(private route: ActivatedRoute,
         private authentication: AuthenticationService,
-        private flowStateService: FlowStateService) {
+        private flowStateService: FlowStateService,
+        private apiService: APIService) {
         super("getLocalAppInfo");
     }
 
-    public static get(route: ActivatedRoute, auth: AuthenticationService, flowStateService: FlowStateService): AppInfoResolverStep {
-        if (!this.INSTANCE) this.INSTANCE = new AppInfoResolverStep(route, auth, flowStateService);
+    public static get(route: ActivatedRoute,
+        auth: AuthenticationService,
+        flowStateService: FlowStateService, apiService: APIService): AppInfoResolverStep {
+        if (!this.INSTANCE) this.INSTANCE = new AppInfoResolverStep(route, auth, flowStateService, apiService);
 
         return this.INSTANCE;
     }
@@ -45,9 +49,11 @@ export class AppInfoResolverStep extends Step {
         /* Check online next, if user is logged in */
         if (localAppId != "draft" && this.authentication.isLoggedIn()) {
             // only get appId, appVersion from remote, if local is either null or non-draft
+            let remoteApp = await this.getRemoteApp(localAppId);
+            remoteAppId = remoteApp.appId;
+            remoteAppVersion = remoteApp.appVersion;
         }
 
-        /* Most recently updated app wins */
         let appId = null;
         let appVersion = null;
         let initSource = "local";
@@ -83,4 +89,26 @@ export class AppInfoResolverStep extends Step {
         state.set(this.flowStateService.getAppVersionKey(appId), appVersion);
         return "success";
     }
+
+    async getRemoteApp(appId: string): Promise<App> {
+        let userId = this.authentication.state.getAuthStateAttribute("userId");
+        let authId = this.authentication.state.getAuthStateAttribute("authId");
+        let api = new GetAppByIdAPI(appId, userId, authId);
+
+        let x = await this.apiService.call(api).toPromise()
+            .then(
+                response => {
+                    console.log(response);
+                })
+            .catch(error => {
+                console.log(error);
+            });
+
+        return new App();
+    }
+}
+
+class App {
+    appId: string;
+    appVersion: number;
 }

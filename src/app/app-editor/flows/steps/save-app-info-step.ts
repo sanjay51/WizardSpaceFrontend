@@ -1,15 +1,17 @@
-import { State, Step } from 'ix-angular-elements';
+import { APIService, AuthenticationService, State, Step } from 'ix-angular-elements';
+import { CreateAppAPI } from '../api/create-app.api';
 import { FlowStateService } from '../flow-state.service';
 
 export class SaveAppInfoStep extends Step {
     private static INSTANCE: SaveAppInfoStep = null;
 
-    private constructor(private flowStateService: FlowStateService) {
+    private constructor(private flowStateService: FlowStateService,
+        private authentication: AuthenticationService, private apiService: APIService) {
         super("SaveAppInfoStep");
     }
 
-    public static get(flowState: FlowStateService): SaveAppInfoStep {
-        if (! this.INSTANCE) this.INSTANCE = new SaveAppInfoStep(flowState);
+    public static get(flowState: FlowStateService, authentication: AuthenticationService, api: APIService): SaveAppInfoStep {
+        if (! this.INSTANCE) this.INSTANCE = new SaveAppInfoStep(flowState, authentication, api);
         
         return this.INSTANCE;
     }
@@ -24,10 +26,53 @@ export class SaveAppInfoStep extends Step {
         let appVersion = +this.flowStateService.getFlowState().get(appVersionKey);
         let newAppVersion = appVersion + 1;
 
+        if (appId == "draft") {
+            let remoteApp: App = await this.getRemoteApp();
+            
+            if (remoteApp.appId) {
+                appId = remoteApp.appId;
+                newAppVersion = newAppVersion;
+            }
+        }
+        
+        this.flowStateService.flowState.set("appId", appId);
         localStorage.setItem("appId", appId);
         localStorage.setItem(appVersionKey, newAppVersion.toString());
 
         // save in remote
         return "saved";
+    }
+
+    async getRemoteApp(): Promise<App> {
+        let userId = this.authentication.state.getAuthStateAttribute("userId");
+        let authId = this.authentication.state.getAuthStateAttribute("authId");
+        let api = new CreateAppAPI(userId, authId, "untitled");
+
+        let appResponse = null;
+        let x = await this.apiService.call(api).toPromise()
+            .then(
+                response => {
+                    appResponse = response;
+                    console.log(response);
+                })
+            .catch(error => {
+                console.log(error);
+            });
+
+        if (appResponse) {
+            return new App(appResponse.appId, +appResponse.draftVersion);
+        }
+
+        return new App(null, 0);
+    }
+}
+
+class App {
+    appId: string;
+    appVersion: number;
+
+    constructor(appId: string, appVersion: number) {
+        this.appId = appId;
+        this.appVersion = appVersion;
     }
 }

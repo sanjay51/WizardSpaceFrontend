@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FinishedStep, Flow } from 'ix-angular-elements';
+import { APIService, AuthenticationService, FinishedStep, Flow } from 'ix-angular-elements';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from "rxjs/internal/operators";
 import { FlowStateService } from '../flows/flow-state.service';
@@ -26,7 +26,8 @@ export class LiveEditorComponent implements OnInit {
     useWorker: false, //Syntax checker
   };
 
-  constructor(private initFlow: InitFlowService, private flowStateService: FlowStateService, 
+  constructor(private initFlow: InitFlowService, private flowStateService: FlowStateService,
+    private authentication: AuthenticationService, private api: APIService, 
     private cd: ChangeDetectorRef, private route: ActivatedRoute) { }
 
   /**
@@ -72,17 +73,20 @@ export class LiveEditorComponent implements OnInit {
   }
 
   getDataChangeHanderFlow(): Flow {
+    let saveAppInfoStep = SaveAppInfoStep.get(this.flowStateService, this.authentication, this.api);
+    let saveAppDataStep = SaveAppDataStep.get(this.flowStateService, this.authentication, this.api);
+
     // Refresh View
     let flow = new Flow(RefreshViewStep.get(this.flowStateService), this.flowStateService.getFlowState());
 
     // Save data
-    flow.addTransition(RefreshViewStep.get(this.flowStateService), "refreshed", SaveAppDataStep.get(this.flowStateService))
+    flow.addTransition(RefreshViewStep.get(this.flowStateService), "refreshed", saveAppInfoStep)
 
     // Save app info
-    flow.addTransition(SaveAppDataStep.get(this.flowStateService), "saved", SaveAppInfoStep.get(this.flowStateService))
+    flow.addTransition(saveAppInfoStep, "saved", saveAppDataStep)
     
     // Finish
-    flow.addTransition(SaveAppInfoStep.get(this.flowStateService), "saved", FinishedStep.get());
+    flow.addTransition(saveAppDataStep, "saved", FinishedStep.get());
 
     return flow;
   }

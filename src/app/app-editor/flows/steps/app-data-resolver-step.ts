@@ -39,6 +39,8 @@ export class AppDataResolverStep extends Step {
         } else if (initSource == "local") {
             // data already in local
             appData = JSON.parse(localStorage.getItem(appDataKey));
+            console.log(appDataKey);
+            console.log(appData);
         } else {
             // get from remote
         }
