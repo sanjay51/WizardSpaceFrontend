@@ -3,7 +3,7 @@ import { AppData, FlowStateService } from '../flow-state.service';
 
 export class SaveLocalAppDataStep extends Step {
 
-    private constructor(private flowState: FlowStateService) {
+    private constructor(private flowStateService: FlowStateService) {
         super("saveLocalAppData");
     }
 
@@ -17,15 +17,16 @@ export class SaveLocalAppDataStep extends Step {
 
     async execute(state: State): Promise<string> {
         let data = new AppData();
+        let appId = this.flowStateService.getFlowState().get("appId");
 
-        if (this.flowState.dataHolders["html"].data) {
-            data.html = this.flowState.dataHolders["html"].data;
-            data.css = this.flowState.dataHolders["css"].data;
-            data.js = this.flowState.dataHolders["js"].data;
-            data.readme = this.flowState.dataHolders["readme"].data;
+        if (this.flowStateService.dataHolders["html"].data) {
+            data.html = this.flowStateService.dataHolders["html"].data;
+            data.css = this.flowStateService.dataHolders["css"].data;
+            data.js = this.flowStateService.dataHolders["js"].data;
+            data.readme = this.flowStateService.dataHolders["readme"].data;
         }
 
-        localStorage.setItem("appData", JSON.stringify(data));
+        localStorage.setItem(this.flowStateService.getAppDataKey(appId), JSON.stringify(data));
         return "saved";
     }
 }

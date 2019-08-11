@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { APIService, FinishedStep, Flow } from 'ix-angular-elements';
+import { APIService, AuthenticationService, FinishedStep, Flow } from 'ix-angular-elements';
 import { FlowStateService } from './flow-state.service';
-import { CheckIfOnlineStep } from './steps/check-if-online-step';
-import { GetLocalAppDataStep } from './steps/get-local-app-data-step';
-import { GetLocalAppIdStep } from './steps/get-local-app-id-step';
-import { GetRemoteAppDataStep } from './steps/get-remote-app-data-step';
+import { AppDataResolverStep } from './steps/app-data-resolver-step';
+import { AppIdResolverStep } from './steps/app-id-resolver-step';
+import { OnlineStatusResolverStep } from './steps/online-status-resolver-step';
 import { RefreshViewStep } from './steps/refresh-view-step';
-import { ResetEditorFirstTimeConditionalStep } from './steps/reset-editor-first-time-conditional-step';
 
 @Injectable({
   providedIn: 'root'
@@ -16,30 +14,28 @@ export class InitFlowService {
   private flow: Flow;
 
   constructor(private flowStateService: FlowStateService,
-    private apiService: APIService, private route: ActivatedRoute) {
+    private apiService: APIService, private route: ActivatedRoute, private auth: AuthenticationService) {
 
-    // Create flow with 'GetLocalAppIdStep' as first step.
-    this.flow = new Flow(GetLocalAppIdStep.get(route), this.flowStateService.getFlowState());
+    let onlineStatusResolverStep = OnlineStatusResolverStep.get();
+    let appIdResolverStep = AppIdResolverStep.get(this.route, this.auth, this.flowStateService);
+    let appDataResolverStep = AppDataResolverStep.get(this.flowStateService);
+    let refreshViewStep = RefreshViewStep.get(this.flowStateService);
+    let finishedStep = FinishedStep.get();
 
-    // Get local App data
-    this.flow.addTransition(GetLocalAppIdStep.get(route), "success", GetLocalAppDataStep.get(this.flowStateService));
-    this.flow.addTransition(GetLocalAppIdStep.get(route), "failed", GetLocalAppDataStep.get(this.flowStateService));
+    // Create flow with 'OnlineStatusResolverStep' as first step.
+    this.flow = new Flow(onlineStatusResolverStep, this.flowStateService.getFlowState());
 
-    // Check if online
-    this.flow.addTransition(GetLocalAppDataStep.get(this.flowStateService), "success", CheckIfOnlineStep.get());
-    this.flow.addTransition(GetLocalAppDataStep.get(this.flowStateService), "failed", CheckIfOnlineStep.get());
+    // Resolve App Id
+    this.flow.addTransition(onlineStatusResolverStep, "yes", appIdResolverStep);
 
-    // Reset editor for first time use, (conditional) with default html template
-    this.flow.addTransition(CheckIfOnlineStep.get(), "yes", GetRemoteAppDataStep.get(this.flowStateService, this.apiService));
+    // Resolve App Data
+    this.flow.addTransition(appIdResolverStep, "success", appDataResolverStep);
 
-    this.flow.addTransition(GetRemoteAppDataStep.get(this.flowStateService, this.apiService), "failed", ResetEditorFirstTimeConditionalStep.get(this.flowStateService));
-    this.flow.addTransition(GetRemoteAppDataStep.get(this.flowStateService, this.apiService), "success", RefreshViewStep.get(this.flowStateService));
+    // Update / Refresh view
+    this.flow.addTransition(appDataResolverStep, "success", refreshViewStep);
 
-    // Refresh View
-    this.flow.addTransition(ResetEditorFirstTimeConditionalStep.get(this.flowStateService), "resetDone", RefreshViewStep.get(this.flowStateService));
-
-    // Finish
-    this.flow.addTransition(RefreshViewStep.get(this.flowStateService), "refreshed", FinishedStep.get());
+    // Finished!
+    this.flow.addTransition(refreshViewStep, "refreshed", finishedStep);
   }
 
   async start() {

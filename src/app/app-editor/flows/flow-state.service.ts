@@ -20,6 +20,31 @@ export class FlowStateService {
   getFlowState(): State {
     return this.flowState;
   }
+
+  getAppId(): string {
+    return this.flowState.get("appId");
+  }
+
+  getAppDataKey(appId: string): string {
+    let appDataKey = "appData-draft";
+
+    if (appId) {
+        appDataKey = "appData-" + appId;
+    }
+
+    return appDataKey;
+  }
+
+  getAppVersionKey(appId: string): string {
+    let appVersionKey = "appVersion-draft";
+
+    if (appId) {
+      appVersionKey = "appVersion-" + appId;
+    }
+
+    return appVersionKey;
+
+  }
 }
 
 export class EditorDataHolder {

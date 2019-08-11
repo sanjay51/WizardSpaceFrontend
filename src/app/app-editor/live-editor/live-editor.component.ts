@@ -43,6 +43,7 @@ export class LiveEditorComponent implements OnInit {
   ngOnInit() {
     this.status = "loading";
 
+    // get appId from route
     let appId = this.route.snapshot.params.appId;
     this.flowStateService.flowState.set("appId", appId);
     
