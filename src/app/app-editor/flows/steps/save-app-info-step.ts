@@ -1,5 +1,6 @@
 import { APIService, AuthenticationService, State, Step } from 'ix-angular-elements';
 import { CreateAppAPI } from '../api/create-app.api';
+import { UpdateAppAPI } from '../api/update-app.api';
 import { FlowStateService } from '../flow-state.service';
 
 export class SaveAppInfoStep extends Step {
@@ -27,11 +28,18 @@ export class SaveAppInfoStep extends Step {
         let newAppVersion = appVersion + 1;
 
         if (appId == "draft") {
-            let remoteApp: App = await this.getRemoteApp();
+            let remoteApp: App = await this.createRemoteApp();
             
             if (remoteApp.appId) {
                 appId = remoteApp.appId;
                 newAppVersion = newAppVersion;
+            }
+        } else {
+            // update remote app
+            let remoteApp: App = await this.updateRemoteApp(appId);
+
+            if (remoteApp.appId) {
+                newAppVersion = remoteApp.appVersion;
             }
         }
         
@@ -43,7 +51,7 @@ export class SaveAppInfoStep extends Step {
         return "saved";
     }
 
-    async getRemoteApp(): Promise<App> {
+    async createRemoteApp(): Promise<App> {
         let userId = this.authentication.state.getAuthStateAttribute("userId");
         let authId = this.authentication.state.getAuthStateAttribute("authId");
         let api = new CreateAppAPI(userId, authId, "untitled");
@@ -64,6 +72,30 @@ export class SaveAppInfoStep extends Step {
         }
 
         return new App(null, 0);
+    }
+
+    async updateRemoteApp(appId: string): Promise<App> {
+        let userId = this.authentication.state.getAuthStateAttribute("userId");
+        let authId = this.authentication.state.getAuthStateAttribute("authId");
+        let api = new UpdateAppAPI(appId, "description", userId, authId);
+
+        let appResponse = null;
+        let x = await this.apiService.call(api).toPromise()
+            .then(
+                response => {
+                    appResponse = response;
+                    console.log(response);
+                })
+            .catch(error => {
+                console.log(error);
+            });
+
+        if (appResponse) {
+            return new App(appResponse.appId, +appResponse.draftVersion);
+        }
+
+        return new App(null, 0);
+
     }
 }
 

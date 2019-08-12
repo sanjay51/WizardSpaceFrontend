@@ -1,6 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { APIService, AuthenticationService, State, Step } from 'ix-angular-elements';
 import { GetAppByIdAPI } from '../api/get-app-by-id.api';
+import { GetAppsByDevIdAPI } from '../api/get-apps-by-dev-id.api';
 import { FlowStateService } from '../flow-state.service';
 
 export class AppInfoResolverStep extends Step {
@@ -11,7 +12,7 @@ export class AppInfoResolverStep extends Step {
         private authentication: AuthenticationService,
         private flowStateService: FlowStateService,
         private apiService: APIService) {
-        super("getLocalAppInfo");
+        super("AppInfoResolverStep");
     }
 
     public static get(route: ActivatedRoute,
@@ -49,7 +50,13 @@ export class AppInfoResolverStep extends Step {
         /* Check online next, if user is logged in */
         if (localAppId != "draft" && this.authentication.isLoggedIn()) {
             // only get appId, appVersion from remote, if local is either null or non-draft
-            let remoteApp = await this.getRemoteApp(localAppId);
+            let remoteApp: App;
+            if (localAppId == null) {
+                remoteApp = await this.getLatestDraftByUser();
+            } else {
+                remoteApp = await this.getRemoteApp(localAppId);
+            }
+
             remoteAppId = remoteApp.appId;
             remoteAppVersion = remoteApp.appVersion;
         }
@@ -94,6 +101,23 @@ export class AppInfoResolverStep extends Step {
         let userId = this.authentication.state.getAuthStateAttribute("userId");
         let authId = this.authentication.state.getAuthStateAttribute("authId");
         let api = new GetAppByIdAPI(appId, userId, authId);
+
+        let x = await this.apiService.call(api).toPromise()
+            .then(
+                response => {
+                    console.log(response);
+                })
+            .catch(error => {
+                console.log(error);
+            });
+
+        return new App();
+    }
+
+    async getLatestDraftByUser(): Promise<App> {
+        let userId = this.authentication.state.getAuthStateAttribute("userId");
+        let authId = this.authentication.state.getAuthStateAttribute("authId");
+        let api = new GetAppsByDevIdAPI(userId, authId);
 
         let x = await this.apiService.call(api).toPromise()
             .then(
