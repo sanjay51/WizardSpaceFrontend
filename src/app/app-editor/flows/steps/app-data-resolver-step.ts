@@ -1,15 +1,18 @@
-import { State, Step } from 'ix-angular-elements';
+import { APIService, AuthenticationService, State, Step } from 'ix-angular-elements';
+import { GetBigKvAPI } from '../api/get-big-kv.api';
 import { AppData, FlowStateService } from '../flow-state.service';
 
 export class AppDataResolverStep extends Step {
     private static INSTANCE: AppDataResolverStep = null;
 
-    private constructor(private fss: FlowStateService) {
+    private constructor(private fss: FlowStateService,
+        private authentication: AuthenticationService, private apiService: APIService) {
         super("getLocalAppData");
     }
 
-    public static get(flowStateService: FlowStateService): AppDataResolverStep {
-        if (!this.INSTANCE) this.INSTANCE = new AppDataResolverStep(flowStateService);
+    public static get(flowStateService: FlowStateService,
+        authentication: AuthenticationService, apiService: APIService): AppDataResolverStep {
+        if (!this.INSTANCE) this.INSTANCE = new AppDataResolverStep(flowStateService, authentication, apiService);
 
         return this.INSTANCE;
     }
@@ -42,7 +45,8 @@ export class AppDataResolverStep extends Step {
             console.log(appDataKey);
             console.log(appData);
         } else {
-            // get from remote
+            appData = await this.getAppDataFromRemote(appId);
+            console.log(appData);
         }
 
         // Populate App Data
@@ -55,6 +59,26 @@ export class AppDataResolverStep extends Step {
         state.set(appDataKey, appData);
 
         return "success";
+    }
+
+    async getAppDataFromRemote(appId: string): Promise<AppData> {
+        let userId = this.authentication.state.getAuthStateAttribute("userId");
+        let authId = this.authentication.state.getAuthStateAttribute("authId");
+
+        let api = new GetBigKvAPI(userId, authId, "wz-app-data", appId);
+        
+        let appData = new AppData();
+        await this.apiService.call(api).toPromise().then(
+            response => {
+                console.log(response);
+                appData = JSON.parse(response.value);
+            },
+            error => {
+                console.log(error);
+            }
+        )
+
+        return appData;
     }
 
     getFirstTimeTutorialData() {

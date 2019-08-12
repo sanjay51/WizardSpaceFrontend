@@ -18,7 +18,7 @@ export class InitFlowService {
 
     let onlineStatusResolverStep = OnlineStatusResolverStep.get();
     let appIdResolverStep = AppInfoResolverStep.get(this.route, this.auth, this.flowStateService, this.api);
-    let appDataResolverStep = AppDataResolverStep.get(this.flowStateService);
+    let appDataResolverStep = AppDataResolverStep.get(this.flowStateService, this.auth, this.api);
     let refreshViewStep = RefreshViewStep.get(this.flowStateService);
     let finishedStep = FinishedStep.get();
 
