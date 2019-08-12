@@ -102,16 +102,19 @@ export class AppInfoResolverStep extends Step {
         let authId = this.authentication.state.getAuthStateAttribute("authId");
         let api = new GetAppByIdAPI(appId, userId, authId);
 
+        let app = new App(null, null);
         let x = await this.apiService.call(api).toPromise()
             .then(
                 response => {
                     console.log(response);
+                    app.appId = response.appId;
+                    app.appVersion = response.draftVersion;
                 })
             .catch(error => {
                 console.log(error);
             });
 
-        return new App();
+        return app;
     }
 
     async getLatestDraftByUser(): Promise<App> {
@@ -119,20 +122,39 @@ export class AppInfoResolverStep extends Step {
         let authId = this.authentication.state.getAuthStateAttribute("authId");
         let api = new GetAppsByDevIdAPI(userId, authId);
 
+        let app: App = new App(null, null);
         let x = await this.apiService.call(api).toPromise()
             .then(
                 response => {
                     console.log(response);
+                    app = this.findMostRecentApp(response);
+                    console.log(app);
                 })
             .catch(error => {
                 console.log(error);
             });
 
-        return new App();
+        return app;
+    }
+
+    findMostRecentApp(arr: Array<any>): App {
+        let app = arr[0]
+        for (let e of arr) {
+            if (e.draftVersion && e.draftVersion > app.draftVersion) {
+                app = e;
+            }
+        }
+
+        return new App(app.appId, app.draftVersion)
     }
 }
 
 class App {
     appId: string;
     appVersion: number;
+
+    constructor(appId: string, appVersion: number) {
+        this.appId = appId;
+        this.appVersion = appVersion;
+    }
 }
