@@ -19,6 +19,7 @@ import { RequestFeatureComponent } from './request-feature/request-feature.compo
 import { ReportBugComponent } from './report-bug/report-bug.component';
 import { ContactDevstudioComponent } from './contact-devstudio/contact-devstudio.component';
 import { FooterComponent } from './footer/footer.component';
+import { AppPlayerComponent } from './app-player/app-player.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { FooterComponent } from './footer/footer.component';
     RequestFeatureComponent,
     ReportBugComponent,
     ContactDevstudioComponent,
-    FooterComponent
+    FooterComponent,
+    AppPlayerComponent
   ],
   imports: [
     BrowserModule,
