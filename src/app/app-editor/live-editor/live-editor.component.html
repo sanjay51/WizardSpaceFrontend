@@ -6,7 +6,7 @@
   <file-menu></file-menu>
 </div>
 
-<div class="clr-row" *ngIf="status != 'initializing'">
+<div class="clr-row" [hidden]="status == 'initializing'">
   <div class="clr-col-lg-5">
 
     <clr-tabs>
