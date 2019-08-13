@@ -9,6 +9,7 @@ import { InitFlowService } from '../flows/init-flow.service';
 import { RefreshViewStep } from '../flows/steps/refresh-view-step';
 import { SaveAppDataStep } from '../flows/steps/save-app-data-step';
 import { SaveAppInfoStep } from '../flows/steps/save-app-info-step';
+import { Quotes } from '../quotes';
 
 @Component({
   selector: 'app-live-editor',
@@ -90,5 +91,11 @@ export class LiveEditorComponent implements OnInit {
     flow.addTransition(saveAppDataStep, "saved", FinishedStep.get());
 
     return flow;
+  }
+
+  private quote = null;
+  public getQuote(): string {
+    if (! this.quote) this.quote = Quotes.getQuote();
+    return this.quote;
   }
 }
