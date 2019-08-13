@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { APIService, AuthenticationService, FinishedStep, Flow } from 'ix-angular-elements';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from "rxjs/internal/operators";
+import { LOADING_GIF_SRC } from '../../constants';
 import { FlowStateService } from '../flows/flow-state.service';
 import { InitFlowService } from '../flows/init-flow.service';
 import { RefreshViewStep } from '../flows/steps/refresh-view-step';
@@ -15,7 +16,8 @@ import { SaveAppInfoStep } from '../flows/steps/save-app-info-step';
   styleUrls: ['./live-editor.component.scss']
 })
 export class LiveEditorComponent implements OnInit {
-  public status = "saving"
+  public status = "initializing"
+  LOADING_GIF_SRC: string = LOADING_GIF_SRC;
 
   public aceOptions = {
     wrap: true,
@@ -43,7 +45,6 @@ export class LiveEditorComponent implements OnInit {
   private dataChangeHandlerFlow: Flow;
 
   ngOnInit() {
-    this.status = "loading";
 
     // get appId from route
     let appId = this.route.snapshot.params.appId;
@@ -61,7 +62,7 @@ export class LiveEditorComponent implements OnInit {
         });
     }
 
-    this.initFlow.start();
+    this.initFlow.start().finally(() => this.status="initialized");
   }
 
   onDataChange(query: string, type: string) {

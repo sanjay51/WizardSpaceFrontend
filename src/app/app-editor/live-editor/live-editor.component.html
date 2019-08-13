@@ -1,19 +1,20 @@
-<div class="row">
-
-  <div class="col-lg-6" style="font-size: 10px">
-    {{status}}
-  </div>
+<div class="row" *ngIf="status == 'initializing'">
+  Loading.. hold on a second!!
+  <img [src]="LOADING_GIF_SRC" />
+</div>
+<div class="row" *ngIf="status != 'initializing'">
+  <file-menu></file-menu>
 </div>
 
-<div class="clr-row">
+<div class="clr-row" *ngIf="status != 'initializing'">
   <div class="clr-col-lg-5">
 
     <clr-tabs>
       <clr-tab>
         <button clrTabLink id="link1">HTML</button>
         <clr-tab-content id="html" *clrIfActive="true">
-          <ace-editor [(text)]="getDataHolder('html').data" [mode]="'html'" [options]="aceOptions" [theme]="'crimson_editor'"
-            (textChanged)="onDataChange($event, 'html')"
+          <ace-editor [(text)]="getDataHolder('html').data" [mode]="'html'" [options]="aceOptions"
+            [theme]="'crimson_editor'" (textChanged)="onDataChange($event, 'html')"
             style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
           </ace-editor>
         </clr-tab-content>
@@ -21,8 +22,8 @@
       <clr-tab>
         <button clrTabLink>CSS</button>
         <clr-tab-content id="css" *clrIfActive>
-          <ace-editor [(text)]="getDataHolder('css').data" [mode]="'css'" [options]="aceOptions" [theme]="'crimson_editor'"
-            (textChanged)="onDataChange($event, 'css')"
+          <ace-editor [(text)]="getDataHolder('css').data" [mode]="'css'" [options]="aceOptions"
+            [theme]="'crimson_editor'" (textChanged)="onDataChange($event, 'css')"
             style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
           </ace-editor>
         </clr-tab-content>
@@ -30,8 +31,8 @@
       <clr-tab>
         <button clrTabLink>&nbsp;&nbsp;JS&nbsp;&nbsp;</button>
         <clr-tab-content id="js" *clrIfActive>
-          <ace-editor [(text)]="getDataHolder('js').data" [mode]="'javascript'" [options]="aceOptions" [theme]="'crimson_editor'"
-            (textChanged)="onDataChange($event, 'js')"
+          <ace-editor [(text)]="getDataHolder('js').data" [mode]="'javascript'" [options]="aceOptions"
+            [theme]="'crimson_editor'" (textChanged)="onDataChange($event, 'js')"
             style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
           </ace-editor>
         </clr-tab-content>
@@ -39,8 +40,8 @@
       <clr-tab>
         <button clrTabLink>Readme.md</button>
         <clr-tab-content id="readme" *clrIfActive>
-          <ace-editor [(text)]="getDataHolder('readme').data" [mode]="'javascript'" [options]="aceOptions" [theme]="'crimson_editor'"
-            (textChanged)="onDataChange($event, 'readme')" class="editor-tab-content">
+          <ace-editor [(text)]="getDataHolder('readme').data" [mode]="'javascript'" [options]="aceOptions"
+            [theme]="'crimson_editor'" (textChanged)="onDataChange($event, 'readme')" class="editor-tab-content">
           </ace-editor>
         </clr-tab-content>
       </clr-tab>
@@ -55,5 +56,5 @@
   <div id="view" class="clr-col-lg-7">
     <iframe id="iframeview" class="iframeview"></iframe>
   </div>
-  
+
 </div>
