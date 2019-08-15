@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthStateService } from 'ix-angular-elements';
 
 @Component({
   selector: 'file-menu',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FileMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private state: AuthStateService) { }
 
   ngOnInit() {
   }
 
+  run() {
+    this.state.navigateWithParams("/play/blah", {"debug": true})
+  }
 }
