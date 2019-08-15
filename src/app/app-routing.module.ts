@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppEditorComponent } from './app-editor/app-editor.component';
 import { AppPlayerComponent } from './app-player/app-player.component';
+import { ROUTE_PLAY } from './constants';
 import { ContactDevstudioComponent } from './contact-devstudio/contact-devstudio.component';
 import { HomeComponent } from './home/home.component';
 import { ReportBugComponent } from './report-bug/report-bug.component';
@@ -19,7 +20,7 @@ const routes: Routes = [
     component: AppEditorComponent
   },
   { 
-    path: 'play/:appId',
+    path: ROUTE_PLAY + '/:appId',
     component: AppPlayerComponent
   },
   { 

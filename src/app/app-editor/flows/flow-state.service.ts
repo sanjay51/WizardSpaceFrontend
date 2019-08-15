@@ -45,6 +45,10 @@ export class FlowStateService {
     return appVersionKey;
 
   }
+
+  getAppDataFromLocal(appId: string): AppData {
+    return JSON.parse(localStorage.getItem(this.getAppDataKey(appId)));
+  }
 }
 
 export class EditorDataHolder {

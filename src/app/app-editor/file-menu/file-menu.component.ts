@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthStateService } from 'ix-angular-elements';
+import { FlowStateService } from '../flows/flow-state.service';
 
 @Component({
   selector: 'file-menu',
@@ -8,12 +9,13 @@ import { AuthStateService } from 'ix-angular-elements';
 })
 export class FileMenuComponent implements OnInit {
 
-  constructor(private state: AuthStateService) { }
+  constructor(private state: AuthStateService, private flowState: FlowStateService) { }
 
   ngOnInit() {
   }
 
   run() {
-    this.state.navigateWithParams("/play/blah", {"debug": true})
+    window.open("/play/" + this.flowState.getAppId() + "?debug=true", "_blank");
+    //this.state.navigateWithParams("/play/" + this.flowState.getAppId(), {"debug": true})
   }
 }

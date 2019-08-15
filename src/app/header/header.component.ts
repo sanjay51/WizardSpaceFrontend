@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from 'ix-angular-elements';
+import { ROUTE_PLAY } from '../constants';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +10,7 @@ import { AuthenticationService } from 'ix-angular-elements';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authentication: AuthenticationService) { }
+  constructor(private authentication: AuthenticationService, private route: Router) { }
 
   ngOnInit() {
   }
@@ -19,5 +21,9 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authentication.logout();
+  }
+
+  isPlayerPage(): boolean {
+    return (this.route.url.startsWith("/" + ROUTE_PLAY + "/"));
   }
 }
