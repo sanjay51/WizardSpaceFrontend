@@ -6,21 +6,21 @@ import { ClarityModule } from '@clr/angular';
 import { IxAngularElementsModule, URL_TOKEN } from 'ix-angular-elements';
 import { AceEditorModule } from 'ng2-ace-editor';
 import { AppEditorComponent } from './app-editor/app-editor.component';
+import { FileMenuComponent } from './app-editor/file-menu/file-menu.component';
 import { LiveEditorComponent } from './app-editor/live-editor/live-editor.component';
+import { PublishAppModalComponent } from './app-editor/publish-app-modal/publish-app-modal.component';
+import { SettingsTabComponent } from './app-editor/settings-tab/settings-tab.component';
+import { AppPlayerComponent } from './app-player/app-player.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ContactDevstudioComponent } from './contact-devstudio/contact-devstudio.component';
+import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
+import { ReportBugComponent } from './report-bug/report-bug.component';
+import { RequestFeatureComponent } from './request-feature/request-feature.component';
 import { AppComponent } from './root/app.component';
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
-import { FileMenuComponent } from './app-editor/file-menu/file-menu.component';
-import { SettingsTabComponent } from './app-editor/settings-tab/settings-tab.component';
-import { RequestFeatureComponent } from './request-feature/request-feature.component';
-import { ReportBugComponent } from './report-bug/report-bug.component';
-import { ContactDevstudioComponent } from './contact-devstudio/contact-devstudio.component';
-import { FooterComponent } from './footer/footer.component';
-import { AppPlayerComponent } from './app-player/app-player.component';
-import { PublishAppModalComponent } from './publish-app-modal/publish-app-modal.component';
 
 @NgModule({
   declarations: [
