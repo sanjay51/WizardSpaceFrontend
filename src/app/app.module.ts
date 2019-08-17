@@ -20,6 +20,7 @@ import { ReportBugComponent } from './report-bug/report-bug.component';
 import { ContactDevstudioComponent } from './contact-devstudio/contact-devstudio.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppPlayerComponent } from './app-player/app-player.component';
+import { PublishAppModalComponent } from './publish-app-modal/publish-app-modal.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AppPlayerComponent } from './app-player/app-player.component';
     ReportBugComponent,
     ContactDevstudioComponent,
     FooterComponent,
-    AppPlayerComponent
+    AppPlayerComponent,
+    PublishAppModalComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthStateService } from 'ix-angular-elements';
+import { AppStateService } from 'src/app/app-state.service';
 import { FlowStateService } from '../flows/flow-state.service';
 
 @Component({
@@ -9,7 +10,9 @@ import { FlowStateService } from '../flows/flow-state.service';
 })
 export class FileMenuComponent implements OnInit {
 
-  constructor(private state: AuthStateService, private flowState: FlowStateService) { }
+  constructor(private state: AuthStateService, 
+    private flowState: FlowStateService,
+    private appState: AppStateService) { }
 
   ngOnInit() {
   }
@@ -17,5 +20,9 @@ export class FileMenuComponent implements OnInit {
   run() {
     window.open("/play/" + this.flowState.getAppId() + "?debug=true", "_blank");
     //this.state.navigateWithParams("/play/" + this.flowState.getAppId(), {"debug": true})
+  }
+
+  showPublishAppModal() {
+    this.appState.isPublishAppModalVisible = true;
   }
 }

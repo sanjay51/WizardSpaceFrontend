@@ -1,0 +1,8 @@
+<clr-modal [(clrModalOpen)]="appState.isPublishAppModalVisible" [clrModalSize]="'lg'">
+    <h3 class="modal-title">Publish app</h3>
+    <div class="modal-body">Publish your app to the web app store.</div>
+    <div class="modal-footer">
+        <button type="button" class="btn" (click)="setModalVisibility(false)">Cancel</button>
+        <button type="button" class="btn btn-success" (click)="setModalVisibility(false)">Publish</button>
+    </div>
+</clr-modal>
