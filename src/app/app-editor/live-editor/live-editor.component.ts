@@ -40,7 +40,8 @@ export class LiveEditorComponent implements OnInit {
     "html": new Subject<string>(),
     "css": new Subject<string>(),
     "js": new Subject<string>(),
-    "readme": new Subject<string>()
+    "readme": new Subject<string>(),
+    "config": new Subject<string>()
   }
 
   private dataChangeHandlerFlow: Flow;

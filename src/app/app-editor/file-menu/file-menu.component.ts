@@ -19,10 +19,13 @@ export class FileMenuComponent implements OnInit {
 
   run() {
     window.open("/play/" + this.flowState.getAppId() + "?debug=true", "_blank");
-    //this.state.navigateWithParams("/play/" + this.flowState.getAppId(), {"debug": true})
   }
 
   showPublishAppModal() {
     this.appState.isPublishAppModalVisible = true;
+  }
+
+  showSettingsModal() {
+    this.appState.isSettingsModalVisible = true;
   }
 }

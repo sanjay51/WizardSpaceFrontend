@@ -6,10 +6,10 @@ import { ClarityModule } from '@clr/angular';
 import { IxAngularElementsModule, URL_TOKEN } from 'ix-angular-elements';
 import { AceEditorModule } from 'ng2-ace-editor';
 import { AppEditorComponent } from './app-editor/app-editor.component';
+import { AppSettingsFormComponent } from './app-editor/app-settings-form/app-settings-form.component';
 import { FileMenuComponent } from './app-editor/file-menu/file-menu.component';
 import { LiveEditorComponent } from './app-editor/live-editor/live-editor.component';
 import { PublishAppModalComponent } from './app-editor/publish-app-modal/publish-app-modal.component';
-import { SettingsTabComponent } from './app-editor/settings-tab/settings-tab.component';
 import { AppPlayerComponent } from './app-player/app-player.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ContactDevstudioComponent } from './contact-devstudio/contact-devstudio.component';
@@ -32,13 +32,13 @@ import { SignupComponent } from './user/signup/signup.component';
     LoginComponent,
     SignupComponent,
     FileMenuComponent,
-    SettingsTabComponent,
     RequestFeatureComponent,
     ReportBugComponent,
     ContactDevstudioComponent,
     FooterComponent,
     AppPlayerComponent,
-    PublishAppModalComponent
+    PublishAppModalComponent,
+    AppSettingsFormComponent
   ],
   imports: [
     BrowserModule,

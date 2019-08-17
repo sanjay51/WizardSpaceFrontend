@@ -46,9 +46,11 @@
         </clr-tab-content>
       </clr-tab>
       <clr-tab>
-        <button clrTabLink>Settings</button>
-        <clr-tab-content id="settings" *clrIfActive>
-          <settings-tab class="editor-tab-content"></settings-tab>
+        <button clrTabLink>Config.json</button>
+        <clr-tab-content id="config" *clrIfActive>
+            <ace-editor [(text)]="getDataHolder('config').data" [mode]="'javascript'" [options]="aceOptions"
+              [theme]="'crimson_editor'" (textChanged)="onDataChange($event, 'config')" class="editor-tab-content">
+            </ace-editor>
         </clr-tab-content>
       </clr-tab>
     </clr-tabs>

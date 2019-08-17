@@ -31,6 +31,7 @@ export class SaveAppDataStep extends Step {
             data.css = this.flowStateService.dataHolders["css"].data;
             data.js = this.flowStateService.dataHolders["js"].data;
             data.readme = this.flowStateService.dataHolders["readme"].data;
+            data.config = this.flowStateService.dataHolders["config"].data;
         }
 
         localStorage.setItem(this.flowStateService.getAppDataKey(appId), JSON.stringify(data));

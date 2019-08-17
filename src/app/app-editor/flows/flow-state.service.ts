@@ -12,7 +12,8 @@ export class FlowStateService {
     "html": new EditorDataHolder("devstudio-app-live-editor-data-html"),
     "css": new EditorDataHolder("devstudio-app-live-editor-data-css"),
     "js": new EditorDataHolder("devstudio-app-live-editor-data-js"),
-    "readme": new EditorDataHolder("devstudio-app-live-editor-data-readme")
+    "readme": new EditorDataHolder("devstudio-app-live-editor-data-readme"),
+    "config": new EditorDataHolder("devstudio-app-live-editor-data-config")
   };
 
   constructor() { }
@@ -71,4 +72,5 @@ export class AppData {
   css: string;
   js: string;
   readme: string;
+  config: string;
 }

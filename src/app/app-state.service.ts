@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AppStateService {
   isPublishAppModalVisible = false;
+  isSettingsModalVisible = false;
 
   constructor() { }
 }

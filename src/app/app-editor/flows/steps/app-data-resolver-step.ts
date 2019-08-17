@@ -54,6 +54,7 @@ export class AppDataResolverStep extends Step {
         this.fss.dataHolders["css"].setData(appData.css);
         this.fss.dataHolders["js"].setData(appData.js);
         this.fss.dataHolders["readme"].setData(appData.readme);
+        this.fss.dataHolders["config"].setData(appData.config);
 
         // Update state
         state.set(appDataKey, appData);
