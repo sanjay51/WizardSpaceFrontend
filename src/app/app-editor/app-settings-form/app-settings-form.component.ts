@@ -13,7 +13,7 @@ export class AppSettingsFormComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
   setModalVisibility(isVisible: boolean) {
     this.appState.isSettingsModalVisible = isVisible;
   }
@@ -65,12 +65,27 @@ export class AppSettingsFormComponent implements OnInit {
       //this.state.navigateTo(this.successPath);
     },
 
-    parseError: (error) : string => {
+    parseError: (error): string => {
       return "Invalid username or password.";
     },
 
     onCancel: () => {
-      //this.state.navigateTo(this.cancelPath);
+      this.setModalVisibility(false)
+    },
+
+    heading: {
+      style: {
+        'display': 'none'
+      }
+    },
+
+    container: {
+      style: {
+        'width': '100%',
+        'background-color': 'white',
+        'border-radius': '0px',
+        'box-shadow': '0px 0px 0px 0px black'
+      }
     }
   }
 

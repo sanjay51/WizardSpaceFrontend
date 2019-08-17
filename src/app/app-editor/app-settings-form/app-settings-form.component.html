@@ -1,10 +1,8 @@
-<clr-modal [(clrModalOpen)]="appState.isSettingsModalVisible" [clrModalSize]="'lg'">
+<clr-modal [(clrModalOpen)]="appState.isSettingsModalVisible" [clrModalSize]="'md'">
     <h3 class="modal-title">App Settings</h3>
     <div class="modal-body" align=center>
         <ix-form [form]="form" align=left></ix-form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn" (click)="setModalVisibility(false)">Cancel</button>
-        <button type="button" class="btn btn-success" (click)="setModalVisibility(false)">Publish</button>
     </div>
 </clr-modal>
