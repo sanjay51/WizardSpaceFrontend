@@ -77,7 +77,7 @@ export class SaveAppInfoStep extends Step {
     async updateRemoteApp(appId: string): Promise<App> {
         let userId = this.authentication.state.getAuthStateAttribute("userId");
         let authId = this.authentication.state.getAuthStateAttribute("authId");
-        let api = new UpdateAppAPI(appId, "description", userId, authId);
+        let api = new UpdateAppAPI(appId, null, null, null, null, null, userId, authId);
 
         let appResponse = null;
         let x = await this.apiService.call(api).toPromise()

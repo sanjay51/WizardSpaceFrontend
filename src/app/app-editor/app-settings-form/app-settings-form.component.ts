@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
+import { APIService, AuthenticationService } from 'ix-angular-elements';
 import { AppStateService } from 'src/app/app-state.service';
+import { UpdateAppAPI } from '../flows/api/update-app.api';
 
 @Component({
   selector: 'app-settings-form',
@@ -9,7 +11,7 @@ import { AppStateService } from 'src/app/app-state.service';
 })
 export class AppSettingsFormComponent implements OnInit {
 
-  constructor(private appState: AppStateService) { }
+  constructor(private appState: AppStateService, private apiService: APIService, private authentication: AuthenticationService) { }
 
   ngOnInit() {
   }
@@ -48,19 +50,19 @@ export class AppSettingsFormComponent implements OnInit {
         defaultValue: ''
       },
       {
-        name: "screenshot-1",
+        name: "screenshot1",
         label: "Screenshot-1 URL*",
         validators: [Validators.required],
         defaultValue: ''
       },
       {
-        name: "screenshot-2",
+        name: "screenshot2",
         label: "Screenshot-2 URL",
         validators: [],
         defaultValue: ''
       },
       {
-        name: "screenshot-3",
+        name: "screenshot3",
         label: "Screenshot-3 URL",
         validators: [],
         defaultValue: ''
@@ -78,16 +80,24 @@ export class AppSettingsFormComponent implements OnInit {
     submitButtonLabel: "Save",
 
     onSubmit: (fields): Promise<any> => {
-      return null; //this.authentication.login(fields.email.value, fields.password.value)
+      let images: string[] = [fields.screenshot1.value];
+      if (fields.screenshot2) images.push(fields.screenshot2.value)
+      if (fields.screenshot3) images.push(fields.screenshot3.value)
+
+      let api = new UpdateAppAPI(this.appState.state.getAppId(), fields.title.value, 
+      fields.description.value, fields.category.value, fields.logo.value,
+      images, this.authentication.state.getAuthStateAttribute("userId"),
+      this.authentication.state.getAuthStateAttribute("authId"));
+      console.log(api);
+      return this.apiService.call(api).toPromise();
     },
 
     postSubmit: (response) => {
-      //this.initializer.initializeAfterLogin(response, response.authId);
-      //this.state.navigateTo(this.successPath);
+      console.log(response);
     },
 
     parseError: (error): string => {
-      return "Invalid username or password.";
+      return "Could not save. Please try again";
     },
 
     onCancel: () => {

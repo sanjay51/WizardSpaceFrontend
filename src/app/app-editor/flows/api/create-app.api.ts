@@ -17,7 +17,7 @@ export class CreateAppAPI extends PostAPI {
         return {
             "userId": this.userId,
             "authId": this.authId,
-            "name": this.name
+            "appName": this.name
         }
     }
     
