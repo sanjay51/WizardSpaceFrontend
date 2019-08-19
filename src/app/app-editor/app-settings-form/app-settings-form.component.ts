@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { APIService, AuthenticationService } from 'ix-angular-elements';
 import { AppStateService } from 'src/app/app-state.service';
+import { LOADING_GIF_SRC } from 'src/app/constants';
+import { App } from '../app';
+import { GetAppByIdAPI } from '../flows/api/get-app-by-id.api';
 import { UpdateAppAPI } from '../flows/api/update-app.api';
 
 @Component({
@@ -10,14 +13,49 @@ import { UpdateAppAPI } from '../flows/api/update-app.api';
   styleUrls: ['./app-settings-form.component.scss']
 })
 export class AppSettingsFormComponent implements OnInit {
+  status = 'initial';
+  LOADING_GIF_SRC: string = LOADING_GIF_SRC;
+  app: App = new App();
+  saveScreenMessage = "";
 
   constructor(private appState: AppStateService, private apiService: APIService, private authentication: AuthenticationService) { }
 
   ngOnInit() {
   }
 
+  loadAppData() {
+    this.status = 'loading';
+    let userId = this.authentication.state.getAuthStateAttribute("userId");
+    let authId = this.authentication.state.getAuthStateAttribute("authId");
+    let api = new GetAppByIdAPI(this.appState.state.getAppId(), userId, authId);
+    this.apiService.call(api).toPromise().then(response => {
+      this.updateApp(response);
+      this.status = 'show-form'
+    }).catch(error => {
+      console.log(error);
+      this.status = 'error'
+    });
+  }
+
+  updateApp(app: App) {
+    this.app = app;
+    if (this.app.appName) this.form.fields.find(field => field.name == "title").defaultValue = this.app.appName;
+    if (this.app.description) this.form.fields.find(field => field.name == "description").defaultValue = this.app.description;
+    if (this.app.category) this.form.fields.find(field => field.name == "category").defaultValue = this.app.category;
+    if (this.app.logo) this.form.fields.find(field => field.name == "logo").defaultValue = this.app.logo;
+    if (this.app.images[0]) this.form.fields.find(field => field.name == "screenshot1").defaultValue = this.app.images[0];
+    if (this.app.images[1]) this.form.fields.find(field => field.name == "screenshot2").defaultValue = this.app.images[1];
+    if (this.app.images[2]) this.form.fields.find(field => field.name == "screenshot3").defaultValue = this.app.images[2];
+    if (this.app.video) this.form.fields.find(field => field.name == "video").defaultValue = this.app.video;
+  }
+
   setModalVisibility(isVisible: boolean) {
     this.appState.isSettingsModalVisible = isVisible;
+  }
+
+  close() {
+    this.status = 'initial';
+    this.appState.isSettingsModalVisible = false;
   }
 
   form = {
@@ -94,14 +132,27 @@ export class AppSettingsFormComponent implements OnInit {
 
     postSubmit: (response) => {
       console.log(response);
+      this.status = 'success';
+
+      if (response.isNameTaken == true) {
+        if (response.appName)
+          this.saveScreenMessage = "However, the name you chose for the app is already taken, hence it's reverted to '" + response.appName + "'. Please go back and choose another name if you wish to change it."
+        else 
+          this.saveScreenMessage = "However, the name you chose for the app is already taken. Please go back and choose another name."
+      } else {
+        this.saveScreenMessage = "";
+      }
+
+      this.updateApp(response);
     },
 
     parseError: (error): string => {
-      return "Could not save. Please try again";
+      console.log(error);
+      return "Could not save. Please try again.";
     },
 
     onCancel: () => {
-      this.setModalVisibility(false)
+      this.close();
     },
 
     heading: {

@@ -61,6 +61,7 @@ export class AppInfoResolverStep extends Step {
             remoteAppVersion = remoteApp.appVersion;
         }
 
+        let app: App;
         let appId = null;
         let appVersion = null;
         let initSource = "local";
