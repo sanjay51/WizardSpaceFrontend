@@ -1,8 +1,17 @@
 <clr-modal [(clrModalOpen)]="appState.isPublishAppModalVisible" [clrModalSize]="'lg'">
     <h3 class="modal-title">Publish app</h3>
-    <div class="modal-body">Publish your app to the web app store.</div>
+    <div class="modal-body" align=center style="outline: none">
+        <div *ngIf="screen == Screen.INITIAL">
+            Publishing your app to the web app store will make it available for everyone.<br/><br/>
+            <button type="button" class="btn" (click)="close()">Cancel</button>
+            <button type="button" class="btn btn-success" (click)="initialScreenContinue()">Continue</button>
+        </div>
+        <div *ngIf="screen == Screen.MUST_LOGIN">
+            You must login before publishing the app.<br/><br/>
+            <button type="button" class="btn" (click)="setModalVisibility(false)">Cancel</button>
+            <button type="button" class="btn btn-success" (click)="setModalVisibility(false)">Login</button>
+        </div>
+    </div>
     <div class="modal-footer">
-        <button type="button" class="btn" (click)="setModalVisibility(false)">Cancel</button>
-        <button type="button" class="btn btn-success" (click)="setModalVisibility(false)">Publish</button>
     </div>
 </clr-modal>
