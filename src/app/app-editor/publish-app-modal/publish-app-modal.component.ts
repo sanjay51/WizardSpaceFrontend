@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'ix-angular-elements';
+import { LOADING_GIF_SRC, ROUTE_LOGIN } from 'src/app/constants';
 import { AppStateService } from '../../app-state.service';
 
 @Component({
@@ -10,8 +11,10 @@ import { AppStateService } from '../../app-state.service';
 export class PublishAppModalComponent implements OnInit {
   screen = Screen.INITIAL;
   Screen = Screen;
+  LOADING_GIF_SRC = LOADING_GIF_SRC;
 
-  constructor(private appState: AppStateService, private authentication: AuthenticationService) { }
+  constructor(private appState: AppStateService, 
+    private authentication: AuthenticationService) { }
 
   ngOnInit() {
   }
@@ -21,11 +24,18 @@ export class PublishAppModalComponent implements OnInit {
     this.screen = Screen.INITIAL;
   }
 
-  initialScreenContinue() {
-    if (this.authentication.isLoggedIn()) {
+  gotoLoginPage() {
+    this.close();
+    this.authentication.state.navigateTo(ROUTE_LOGIN);
+  }
 
+  initialScreenContinue() {
+    if (! this.authentication.isLoggedIn()) {
+      this.screen = Screen.MUST_LOGIN;
+      return;
     }
-    this.screen = Screen.MUST_LOGIN;
+
+    this.screen = Screen.VERIFYING_APP;
   }
 
   setModalVisibility(isVisible: boolean) {
@@ -34,5 +44,5 @@ export class PublishAppModalComponent implements OnInit {
 }
 
 enum Screen {
-  INITIAL, MUST_LOGIN, LOADING_APP_INFO, PUBLISH, SUCCESS
+  INITIAL, MUST_LOGIN, VERIFYING_APP, PUBLISH, SUCCESS
 }

@@ -8,8 +8,12 @@
         </div>
         <div *ngIf="screen == Screen.MUST_LOGIN">
             You must login before publishing the app.<br/><br/>
-            <button type="button" class="btn" (click)="setModalVisibility(false)">Cancel</button>
-            <button type="button" class="btn btn-success" (click)="setModalVisibility(false)">Login</button>
+            <button type="button" class="btn" (click)="close()">Cancel</button>
+            <button type="button" class="btn btn-success" (click)="gotoLoginPage()">Login</button>
+        </div>
+        <div *ngIf="screen == Screen.VERIFYING_APP">
+            Verifying app for publishing, just a moment <img [src]="LOADING_GIF_SRC" /> <br/><br/>
+            <button type="button" class="btn" (click)="close()">Cancel</button>
         </div>
     </div>
     <div class="modal-footer">
