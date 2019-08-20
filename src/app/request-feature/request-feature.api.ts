@@ -7,26 +7,29 @@ export class RequestFeatureAPI extends PostAPI {
     details: string;
     email: string;
     userId: string;
+    authId: string;
 
-    constructor(title: string, details: string, email: string, userId: string) {
+    constructor(title: string, details: string, email: string, userId: string, authId: string) {
         super();
         this.title = title;
         this.details = details;
         this.email = email;
         this.userId = userId;
+        this.authId = authId;
     }
 
     getBody() {
         return {
             "domain": "feature-requests",
-            "id": this.email,
-            "userId": this.userId,
+            "key": this.email,
             "value": JSON.stringify({
                 "email": this.email,
                 "userId": this.userId,
                 "details": this.details,
                 "title": this.title
-            })
+            }),
+            "userId": this.userId,
+            "authId": this.authId
         }
     }    
     

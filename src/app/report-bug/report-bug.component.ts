@@ -45,7 +45,8 @@ export class ReportBugComponent implements OnInit {
     onSubmit: (fields): Promise<any> => {
 
       let api = new ReportBugAPI(fields.title.value, fields.details.value, 
-        fields.email.value, this.state.getAuthStateAttribute("userId"));
+        fields.email.value, this.state.getAuthStateAttribute("userId"),
+        this.state.getAuthStateAttribute("authId"));
       return this.apiService.call(api).toPromise();
     },
 
