@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppSubmissionsGuardService } from './admin/app-submissions/app-submissions-guard.service';
+import { AppSubmissionsComponent } from './admin/app-submissions/app-submissions.component';
 import { AppEditorComponent } from './app-editor/app-editor.component';
 import { AppPlayerComponent } from './app-player/app-player.component';
 import { ROUTE_PLAY } from './constants';
@@ -50,6 +52,12 @@ const routes: Routes = [
   {
     path: 'contact',
     component: ContactDevstudioComponent
+  },
+
+  {
+    path: 'admin/app-submissions',
+    component: AppSubmissionsComponent,
+    canActivate: [AppSubmissionsGuardService]
   },
 ];
 

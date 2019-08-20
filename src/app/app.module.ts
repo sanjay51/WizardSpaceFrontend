@@ -21,6 +21,7 @@ import { RequestFeatureComponent } from './request-feature/request-feature.compo
 import { AppComponent } from './root/app.component';
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
+import { AppSubmissionsComponent } from './admin/app-submissions/app-submissions.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SignupComponent } from './user/signup/signup.component';
     FooterComponent,
     AppPlayerComponent,
     PublishAppModalComponent,
-    AppSettingsFormComponent
+    AppSettingsFormComponent,
+    AppSubmissionsComponent
   ],
   imports: [
     BrowserModule,
