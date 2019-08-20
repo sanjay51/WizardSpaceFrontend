@@ -38,14 +38,19 @@
             <br /><br />
             <button type="button" class="btn" (click)="close()">Cancel</button>
             <button type="button" class="btn" (click)="openAppSettingsModal()">Go to app settings</button>
-            <button type="button" class="btn btn-success" (click)="publishApp()">Submit for publishing</button>
+            <button type="button" class="btn btn-success" (click)="submitForPublishing()">Submit for publishing</button>
         </div>
         <div *ngIf="screen == Screen.PUBLISHING">
             Submitting your app for publishing to web app store, just a moment <img
                 [src]="LOADING_GIF_SRC" /><br /><br />
             <button type="button" class="btn" (click)="close()">Cancel</button>
         </div>
-        <div *ngIf="screen == Screen.SUCCESS">
+        <div *ngIf="screen == Screen.PUBLISHING_ERROR">
+            An error occured in submitting app, possibly a network issue. Please try again.<br /><br />
+            <button type="button" class="btn" (click)="close()">Cancel</button>
+            <button type="button" class="btn btn-success" (click)="submitForPublishing()">Try again</button>
+        </div>
+        <div *ngIf="screen == Screen.PUBLISHED">
             Congratulations! Your app has been submitted for publishing to web app store. You'll receive an email once
             it's live.<br /><br />
             <button type="button" class="btn btn-success" (click)="close()">Close</button>

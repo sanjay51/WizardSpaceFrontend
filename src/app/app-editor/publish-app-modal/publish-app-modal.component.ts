@@ -4,6 +4,7 @@ import { LOADING_GIF_SRC, ROUTE_LOGIN } from 'src/app/constants';
 import { AppStateService } from '../../app-state.service';
 import { App } from '../app';
 import { GetAppByIdAPI } from '../flows/api/get-app-by-id.api';
+import { PublishAppAPI } from './publish-app.api';
 
 @Component({
   selector: 'publish-app-modal',
@@ -51,9 +52,20 @@ export class PublishAppModalComponent implements OnInit {
     this.appState.isSettingsModalVisible = true;
   }
 
-  publishApp() {
+  submitForPublishing() {
     this.screen = Screen.PUBLISHING;
-    console.log("published: " + this.app);
+    let userId = this.authentication.state.getAuthStateAttribute("userId");
+    let authId = this.authentication.state.getAuthStateAttribute("authId");
+
+    let api = new PublishAppAPI(this.appState.state.getAppId(), this.app, userId, authId);
+
+    this.apiService.call(api).toPromise().then(response => {
+      console.log(response);
+      this.screen = Screen.PUBLISHED;
+    }).catch(error => {
+      console.log(error);
+      this.screen = Screen.PUBLISHING_ERROR;
+    });
   }
 
   verifyAppName() {
@@ -69,6 +81,7 @@ export class PublishAppModalComponent implements OnInit {
       }
 
     }).catch(error => {
+      console.log(error);
       this.screen = Screen.VERIFYING_APP_ERROR;
     });
   }
@@ -85,5 +98,5 @@ export class PublishAppModalComponent implements OnInit {
 }
 
 enum Screen {
-  INITIAL, MUST_LOGIN, VERIFYING_APP, VERIFYING_APP_ERROR, VERIFYING_APP_FAILED, READY_TO_PUBLISH, PUBLISHING, PUBLISHED, SUCCESS,
+  INITIAL, MUST_LOGIN, VERIFYING_APP, VERIFYING_APP_ERROR, VERIFYING_APP_FAILED, READY_TO_PUBLISH, PUBLISHING, PUBLISHING_ERROR, PUBLISHED,
 }
