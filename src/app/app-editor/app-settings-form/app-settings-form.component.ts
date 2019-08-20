@@ -18,7 +18,7 @@ export class AppSettingsFormComponent implements OnInit {
   app: App = new App();
   saveScreenMessage = "";
 
-  constructor(private appState: AppStateService, private apiService: APIService, private authentication: AuthenticationService) { }
+  constructor(public appState: AppStateService, private apiService: APIService, private authentication: AuthenticationService) { }
 
   ngOnInit() {
   }

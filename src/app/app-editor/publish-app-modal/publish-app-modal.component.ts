@@ -17,7 +17,7 @@ export class PublishAppModalComponent implements OnInit {
   app: App = null;
   LOADING_GIF_SRC = LOADING_GIF_SRC;
 
-  constructor(private appState: AppStateService, 
+  constructor(public appState: AppStateService, 
     private authentication: AuthenticationService, private apiService: APIService) { }
 
   ngOnInit() {
