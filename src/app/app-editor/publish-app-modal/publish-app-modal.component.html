@@ -2,18 +2,53 @@
     <h3 class="modal-title">Publish app</h3>
     <div class="modal-body" align=center style="outline: none">
         <div *ngIf="screen == Screen.INITIAL">
-            Publishing your app to the web app store will make it available for everyone.<br/><br/>
+            Publishing your app to the web app store will make it available for everyone.<br /><br />
             <button type="button" class="btn" (click)="close()">Cancel</button>
             <button type="button" class="btn btn-success" (click)="initialScreenContinue()">Continue</button>
         </div>
         <div *ngIf="screen == Screen.MUST_LOGIN">
-            You must login before publishing the app.<br/><br/>
+            You must login before publishing the app.<br /><br />
             <button type="button" class="btn" (click)="close()">Cancel</button>
             <button type="button" class="btn btn-success" (click)="gotoLoginPage()">Login</button>
         </div>
         <div *ngIf="screen == Screen.VERIFYING_APP">
-            Verifying app for publishing, just a moment <img [src]="LOADING_GIF_SRC" /> <br/><br/>
+            Verifying app for publishing, just a moment <img [src]="LOADING_GIF_SRC" /> <br /><br />
             <button type="button" class="btn" (click)="close()">Cancel</button>
+        </div>
+        <div *ngIf="screen == Screen.VERIFYING_APP_ERROR">
+            An error occured in verifying app, possibly a network issue. Please try again.<br /><br />
+            <button type="button" class="btn" (click)="close()">Cancel</button>
+            <button type="button" class="btn btn-success" (click)="initialScreenContinue()">Try again</button>
+        </div>
+        <div *ngIf="screen == Screen.VERIFYING_APP_FAILED">
+            Your app doesn't have a name yet. Please go to settings and set app name.<br /><br />
+            <button type="button" class="btn" (click)="close()">Cancel</button>
+            <button type="button" class="btn btn-success" (click)="openAppSettingsModal()">Go to settings</button>
+        </div>
+        <div *ngIf="screen == Screen.READY_TO_PUBLISH">
+            You're ready to submit your app for publishing. Please verify below app settings are correct. <br />
+            <table class="table table-vertical">
+                <tbody>
+                    <tr *ngFor="let attribute of getApp()">
+                        <th>{{attribute.name}}</th>
+                        <td>{{attribute.value}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br /><br />
+            <button type="button" class="btn" (click)="close()">Cancel</button>
+            <button type="button" class="btn" (click)="openAppSettingsModal()">Go to app settings</button>
+            <button type="button" class="btn btn-success" (click)="publishApp()">Submit for publishing</button>
+        </div>
+        <div *ngIf="screen == Screen.PUBLISHING">
+            Submitting your app for publishing to web app store, just a moment <img
+                [src]="LOADING_GIF_SRC" /><br /><br />
+            <button type="button" class="btn" (click)="close()">Cancel</button>
+        </div>
+        <div *ngIf="screen == Screen.SUCCESS">
+            Congratulations! Your app has been submitted for publishing to web app store. You'll receive an email once
+            it's live.<br /><br />
+            <button type="button" class="btn btn-success" (click)="close()">Close</button>
         </div>
     </div>
     <div class="modal-footer">

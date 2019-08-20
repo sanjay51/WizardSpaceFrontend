@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from 'ix-angular-elements';
+import { APIService, AuthenticationService } from 'ix-angular-elements';
 import { LOADING_GIF_SRC, ROUTE_LOGIN } from 'src/app/constants';
 import { AppStateService } from '../../app-state.service';
+import { App } from '../app';
+import { GetAppByIdAPI } from '../flows/api/get-app-by-id.api';
 
 @Component({
   selector: 'publish-app-modal',
@@ -11,10 +13,11 @@ import { AppStateService } from '../../app-state.service';
 export class PublishAppModalComponent implements OnInit {
   screen = Screen.INITIAL;
   Screen = Screen;
+  app: App = null;
   LOADING_GIF_SRC = LOADING_GIF_SRC;
 
   constructor(private appState: AppStateService, 
-    private authentication: AuthenticationService) { }
+    private authentication: AuthenticationService, private apiService: APIService) { }
 
   ngOnInit() {
   }
@@ -36,13 +39,51 @@ export class PublishAppModalComponent implements OnInit {
     }
 
     this.screen = Screen.VERIFYING_APP;
+    this.verifyAppName();
   }
 
   setModalVisibility(isVisible: boolean) {
     this.appState.isPublishAppModalVisible = isVisible;
   }
+
+  openAppSettingsModal() {
+    this.setModalVisibility(false);
+    this.appState.isSettingsModalVisible = true;
+  }
+
+  publishApp() {
+    this.screen = Screen.PUBLISHING;
+    console.log("published: " + this.app);
+  }
+
+  verifyAppName() {
+    let userId = this.authentication.state.getAuthStateAttribute("userId");
+    let authId = this.authentication.state.getAuthStateAttribute("authId");
+    let api = new GetAppByIdAPI(this.appState.state.getAppId(), userId, authId);
+    this.apiService.call(api).toPromise().then(response => {
+      if (response.appName) {
+        this.screen = Screen.READY_TO_PUBLISH;
+        this.app = response;
+      } else {
+        this.screen = Screen.VERIFYING_APP_FAILED;
+      }
+
+    }).catch(error => {
+      this.screen = Screen.VERIFYING_APP_ERROR;
+    });
+  }
+
+  getApp() {
+    return [
+      { name: "appName", value: this.app.appName },
+      { name: "category", value: this.app.category },
+      { name: "description", value: this.app.description },
+      { name: "logo", value: this.app.logo },
+      { name: "screenshots", value: this.app.images }
+    ];
+  }
 }
 
 enum Screen {
-  INITIAL, MUST_LOGIN, VERIFYING_APP, PUBLISH, SUCCESS
+  INITIAL, MUST_LOGIN, VERIFYING_APP, VERIFYING_APP_ERROR, VERIFYING_APP_FAILED, READY_TO_PUBLISH, PUBLISHING, PUBLISHED, SUCCESS,
 }

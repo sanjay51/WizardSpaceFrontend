@@ -29,7 +29,7 @@ export class AppSettingsFormComponent implements OnInit {
     let authId = this.authentication.state.getAuthStateAttribute("authId");
     let api = new GetAppByIdAPI(this.appState.state.getAppId(), userId, authId);
     this.apiService.call(api).toPromise().then(response => {
-      this.updateApp(response);
+      this.updateFormData(response);
       this.status = 'show-form'
     }).catch(error => {
       console.log(error);
@@ -37,7 +37,7 @@ export class AppSettingsFormComponent implements OnInit {
     });
   }
 
-  updateApp(app: App) {
+  updateFormData(app: App) {
     this.app = app;
     if (this.app.appName) this.form.fields.find(field => field.name == "title").defaultValue = this.app.appName;
     if (this.app.description) this.form.fields.find(field => field.name == "description").defaultValue = this.app.description;
@@ -143,7 +143,7 @@ export class AppSettingsFormComponent implements OnInit {
         this.saveScreenMessage = "";
       }
 
-      this.updateApp(response);
+      this.updateFormData(response);
     },
 
     parseError: (error): string => {
