@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthStateService } from 'ix-angular-elements';
+import { ROUTE_APP_SUBMISSIONS } from '../constants';
 
 @Component({
   selector: 'admin',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
-  constructor() { }
+  constructor(private state: AuthStateService) { }
 
   ngOnInit() {
+  }
+
+  gotoAppSubmissions() {
+    this.state.navigateTo(ROUTE_APP_SUBMISSIONS);
   }
 
 }
