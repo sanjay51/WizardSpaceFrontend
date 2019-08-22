@@ -22,6 +22,7 @@ import { AppComponent } from './root/app.component';
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
 import { AppSubmissionsComponent } from './admin/app-submissions/app-submissions.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AppSubmissionsComponent } from './admin/app-submissions/app-submissions
     AppPlayerComponent,
     PublishAppModalComponent,
     AppSettingsFormComponent,
-    AppSubmissionsComponent
+    AppSubmissionsComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

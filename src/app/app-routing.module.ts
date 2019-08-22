@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminComponent } from './admin/admin.component';
 import { AppSubmissionsGuardService } from './admin/app-submissions/app-submissions-guard.service';
 import { AppSubmissionsComponent } from './admin/app-submissions/app-submissions.component';
 import { AppEditorComponent } from './app-editor/app-editor.component';
@@ -52,6 +53,12 @@ const routes: Routes = [
   {
     path: 'contact',
     component: ContactDevstudioComponent
+  },
+
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AppSubmissionsGuardService]
   },
 
   {

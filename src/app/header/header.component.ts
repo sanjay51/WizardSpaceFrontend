@@ -26,4 +26,8 @@ export class HeaderComponent implements OnInit {
   isPlayerPage(): boolean {
     return (this.route.url.startsWith("/" + ROUTE_PLAY + "/"));
   }
+
+  isAdmin(): boolean {
+    return this.isLoggedIn() && this.authentication.state.getAuthStateAttribute("accessLevel") == "TWELVE";
+  }
 }

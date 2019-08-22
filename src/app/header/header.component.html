@@ -27,6 +27,10 @@
       </clr-dropdown-menu>
     </clr-dropdown>
 
+    <a *ngIf="isAdmin()" [routerLink]="'admin'" class="nav-link nav-text">
+      Admin
+    </a>
+
     <clr-dropdown *ngIf="isLoggedIn()">
       <button class="nav-text" clrDropdownTrigger>
         <clr-icon shape="user"></clr-icon>
