@@ -20,7 +20,7 @@ export class RequestFeatureAPI extends PostAPI {
 
     getBody() {
         return {
-            "domain": "feature-requests",
+            "domain": "FEATURE_REQUESTS",
             "key": this.email,
             "value": JSON.stringify({
                 "email": this.email,

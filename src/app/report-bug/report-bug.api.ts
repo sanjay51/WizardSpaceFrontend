@@ -20,7 +20,7 @@ export class ReportBugAPI extends PostAPI {
 
     getBody() {
         return {
-            "domain": "bug-reports",
+            "domain": "BUG_REPORTS",
             "key": this.email,
             "value": JSON.stringify({
                 "email": this.email,

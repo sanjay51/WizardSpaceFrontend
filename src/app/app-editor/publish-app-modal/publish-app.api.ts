@@ -20,7 +20,7 @@ export class PublishAppAPI extends PostAPI {
 
     getBody() {
         return {
-            "domain": "app-submissions",
+            "domain": "APP_SUBMISSIONS",
             "key": this.appId,
             "value": JSON.stringify(this.app),
             "userId": this.userId,

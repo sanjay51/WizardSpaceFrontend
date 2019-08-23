@@ -20,7 +20,7 @@ export class ContactDevstudioAPI extends PostAPI {
 
     getBody() {
         return {
-            "domain": "contact-devstudio",
+            "domain": "CONTACT_DEVSTUDIO",
             "key": this.email,
             "value": JSON.stringify({
                 "email": this.email,
