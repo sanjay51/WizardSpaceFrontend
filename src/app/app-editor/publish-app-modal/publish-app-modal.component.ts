@@ -4,7 +4,7 @@ import { LOADING_GIF_SRC, ROUTE_LOGIN } from 'src/app/constants';
 import { AppStateService } from '../../app-state.service';
 import { App } from '../app';
 import { GetAppByIdAPI } from '../flows/api/get-app-by-id.api';
-import { PublishAppAPI } from './publish-app.api';
+import { SubmitAppAPI } from './publish-app.api';
 
 @Component({
   selector: 'publish-app-modal',
@@ -57,7 +57,7 @@ export class PublishAppModalComponent implements OnInit {
     let userId = this.authentication.state.getAuthStateAttribute("userId");
     let authId = this.authentication.state.getAuthStateAttribute("authId");
 
-    let api = new PublishAppAPI(this.appState.state.getAppId(), this.app, userId, authId);
+    let api = new SubmitAppAPI(this.appState.state.getAppId(), this.app, userId, authId);
 
     this.apiService.call(api).toPromise().then(response => {
       console.log(response);

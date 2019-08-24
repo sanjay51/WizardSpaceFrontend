@@ -47,7 +47,7 @@ export class SaveAppDataStep extends Step {
         let userId = this.authentication.state.getAuthStateAttribute("userId");
         let authId = this.authentication.state.getAuthStateAttribute("authId");
 
-        let api: SetBigKvAPI = new SetBigKvAPI(userId, authId, "wz-app-data", appId, appData);
+        let api: SetBigKvAPI = new SetBigKvAPI(userId, authId, "DRAFT_APPS", appId, appData);
         
         let result = "failed";
         await this.apiService.call(api).toPromise().then(

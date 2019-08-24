@@ -1,39 +1,35 @@
 import { PostAPI, Resource } from 'ix-angular-elements';
-import { Utils } from '../../utils';
-import { App } from '../app';
+import { Utils } from 'src/app/utils';
 
-export class SubmitAppAPI extends PostAPI {
-    public static API_NAME: string = "SubmitApp";
+export class PublishAppAPI extends PostAPI {
+    public static API_NAME: string = "publishApp";
 
     appId: string;
-    app: App;
     userId: string;
     authId: string;
 
-    constructor(appId: string, app: App, userId: string, authId: string) {
+    constructor(appId: string, userId: string, authId: string) {
         super();
         this.appId = appId;
-        this.app = app;
         this.userId = userId;
         this.authId = authId;
     }
 
     getBody() {
         return {
-            "domain": "APP_SUBMISSIONS",
-            "key": this.appId,
-            "value": JSON.stringify(this.app),
+            "appId": this.appId,
             "userId": this.userId,
             "authId": this.authId
         }
-    }    
-    
+    }
+
     validate() {
         Utils.assertNotEmpty(this.appId, "appId");
         Utils.assertNotEmpty(this.userId, "userId");
+        Utils.assertNotEmpty(this.authId, "authId");
     }
-    
+
     getResource(): Resource {
-        return new Resource("kv");
+        return new Resource("publish-apps");
     }
 }
