@@ -30,6 +30,6 @@ export class PublishAppAPI extends PostAPI {
     }
 
     getResource(): Resource {
-        return new Resource("publish-apps");
+        return new Resource("live-apps");
     }
 }
