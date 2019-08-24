@@ -15,7 +15,9 @@
         <tbody>
 
             <tr *ngFor="let submission of submissions">
-                <th class="left"><button class="btn btn-sm">Approve</button></th>
+                <th class="left">
+                    <button (click)="approveSubmission(submission)" class="btn btn-sm">Approve</button>
+                </th>
                 <td class="left">{{submission.userId}}</td>
                 <td class="left">{{submission.value}}</td>
                 <td class="left">{{submission.lastUpdatedEpoch}}</td>
