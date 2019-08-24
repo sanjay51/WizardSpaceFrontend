@@ -1,4 +1,38 @@
 <h1>App submissions</h1>
-<button (click)="gotoAdminHome()">&lt; Back</button><br/>
+<button (click)="gotoAdminHome()">&lt; Back</button><br />
 
-App 1
+<div *ngIf="status == 'loading'">Loading app settings <img [src]="LOADING_GIF_SRC" /></div>
+<div *ngIf="status == 'loaded'">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="left"></th>
+                <th class="left">UserId</th>
+                <th class="left">App</th>
+                <th class="left">Last updated</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let submission of submissions">
+                <th class="left"><button class="btn btn-sm">Approve</button></th>
+                <td class="left">{{submission.userId}}</td>
+                <td class="left">{{submission.value}}</td>
+                <td class="left">{{submission.lastUpdatedEpoch}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!--
+creationEpoch: 1566621973178
+lastUpdatedEpoch: 1566621973178
+userId: "bd52e962-c5ee-4494-b052-d091e7456194"
+value: "{"devId":"bd52e962-c5ee-4494-b052-d091e7456194","images":["hey hey 2","asdfasdfasdf"],"appName":"my first app
+","description":"asdfasdfasd
+jjjxx","creationEpoch":1566155234658,"appId":"1930329f-5e1b-49e2-b25f-47180af36058","logo":"my first app
+logo","lastUpdatedEpoch":1566621967820,"category":"Productivity","draftVersion":1566621967820}"
+wzdomain: "APP_SUBMISSIONS"
+wzkey: "1930329f-5e1b-49e2-b25f-47180af36058_bd52e962-c5ee-4494-b052-d091e7456194_637e50bd-bb5a-42cc-86b6-897a1b15ed5d"
+-->

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthStateService } from 'ix-angular-elements';
-import { ROUTE_ADMIN } from 'src/app/constants';
+import { APIService, AuthStateService } from 'ix-angular-elements';
+import { LOADING_GIF_SRC, ROUTE_ADMIN } from 'src/app/constants';
+import { GetAppsSubmissionsAPI } from './get-apps-by-group.api';
 
 @Component({
   selector: 'app-submissions',
@@ -8,14 +9,34 @@ import { ROUTE_ADMIN } from 'src/app/constants';
   styleUrls: ['./app-submissions.component.scss']
 })
 export class AppSubmissionsComponent implements OnInit {
+  LOADING_GIF_SRC: string = LOADING_GIF_SRC;
+  status = 'loading';
 
-  constructor(private state: AuthStateService) { }
+  submissions = [];
+
+  constructor(private state: AuthStateService, private apiService: APIService) { }
 
   ngOnInit() {
+    this.getAppSubmissions();
   }
 
   gotoAdminHome() {
     this.state.navigateTo(ROUTE_ADMIN);
+  }
+
+  async getAppSubmissions() {
+    this.status = 'loading';
+    let userId = this.state.getAuthStateAttribute("userId");
+    let authId = this.state.getAuthStateAttribute("authId");
+    
+    let api = new GetAppsSubmissionsAPI(userId, authId);
+    await this.apiService.call(api).toPromise()
+      .then(response => { 
+        console.log(response); 
+        this.submissions = response; 
+        this.status = 'loaded';
+      })
+      .catch(error => console.log(error));
   }
 
 }
