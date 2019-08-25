@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { APIService, AuthStateService, IxCard } from 'ix-angular-elements';
+import { APIService, AuthStateService } from 'ix-angular-elements';
+import { App } from '../app-editor/app';
 import { GetAppsByGroupIdAPI } from '../get-apps-by-group.api';
 
 @Component({
@@ -8,7 +9,7 @@ import { GetAppsByGroupIdAPI } from '../get-apps-by-group.api';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  cards: IxCard[] = [];
+  apps: App[] = [];
   /*
     new IxCard("image-gallery", "APP 1", "App 1 description", "link", "black", "white"),
     new IxCard("ruler-pencil", "APP 2", "App 2 description", "link", "gray", "white"),
@@ -29,8 +30,8 @@ export class HomeComponent implements OnInit {
     let authId = this.state.getAuthStateAttribute("authId");
     let api = new GetAppsByGroupIdAPI("LIVE_APPS", userId, authId);
     this.apiService.call(api).toPromise().then(response => {
-      for (let card of response) {
-        this.cards.push(new IxCard("image-gallery", card.appName, card.description, "link", "black", "white"))
+      for (let app of response) {
+        this.apps.push(app);
       }
       console.log(response)
     });
