@@ -12,7 +12,7 @@
     <clr-tabs>
       <clr-tab>
         <button clrTabLink id="link1">HTML</button>
-        <clr-tab-content id="html" *clrIfActive="true">
+        <clr-tab-content id="html">
           <ace-editor [(text)]="getDataHolder('html').data" [mode]="'html'" [options]="aceOptions"
             [theme]="'crimson_editor'" (textChanged)="onDataChange($event, 'html')"
             style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
@@ -21,7 +21,7 @@
       </clr-tab>
       <clr-tab>
         <button clrTabLink>CSS</button>
-        <clr-tab-content id="css" *clrIfActive>
+        <clr-tab-content id="css">
           <ace-editor [(text)]="getDataHolder('css').data" [mode]="'css'" [options]="aceOptions"
             [theme]="'crimson_editor'" (textChanged)="onDataChange($event, 'css')"
             style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
@@ -30,7 +30,7 @@
       </clr-tab>
       <clr-tab>
         <button clrTabLink>&nbsp;&nbsp;JS&nbsp;&nbsp;</button>
-        <clr-tab-content id="js" *clrIfActive>
+        <clr-tab-content id="js">
           <ace-editor [(text)]="getDataHolder('js').data" [mode]="'javascript'" [options]="aceOptions"
             [theme]="'crimson_editor'" (textChanged)="onDataChange($event, 'js')"
             style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
@@ -39,7 +39,7 @@
       </clr-tab>
       <clr-tab>
         <button clrTabLink>Readme.md</button>
-        <clr-tab-content id="readme" *clrIfActive>
+        <clr-tab-content id="readme">
           <ace-editor [(text)]="getDataHolder('readme').data" [mode]="'javascript'" [options]="aceOptions"
             [theme]="'crimson_editor'" (textChanged)="onDataChange($event, 'readme')" class="editor-tab-content">
           </ace-editor>
@@ -47,7 +47,7 @@
       </clr-tab>
       <clr-tab>
         <button clrTabLink>Config.json</button>
-        <clr-tab-content id="config" *clrIfActive>
+        <clr-tab-content id="config">
             <ace-editor [(text)]="getDataHolder('config').data" [mode]="'javascript'" [options]="aceOptions"
               [theme]="'crimson_editor'" (textChanged)="onDataChange($event, 'config')" class="editor-tab-content">
             </ace-editor>

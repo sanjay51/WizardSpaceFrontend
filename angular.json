@@ -60,7 +60,7 @@
               "node_modules/ace-builds/src-min/theme-crimson_editor.js",
               "node_modules/ace-builds/src-min/ext-language_tools.js"
             ],
-            "es5BrowserSupport": true
+            "es5BrowserSupport": true,
           },
           "configurations": {
             "production": {
