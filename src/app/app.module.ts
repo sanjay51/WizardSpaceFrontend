@@ -15,7 +15,6 @@ import { AppPlayerComponent } from './app-player/app-player.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ContactDevstudioComponent } from './contact-devstudio/contact-devstudio.component';
 import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
 import { AppCardComponent } from './home/app-card/app-card.component';
 import { HomeComponent } from './home/home.component';
 import { ReportBugComponent } from './report-bug/report-bug.component';
@@ -33,7 +32,6 @@ import {MatDividerModule} from '@angular/material/divider';
     AppComponent,
     AppEditorComponent,
     HomeComponent,
-    HeaderComponent,
     LiveEditorComponent,
     LoginComponent,
     SignupComponent,
