@@ -26,6 +26,7 @@ import { SignupComponent } from './user/signup/signup.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule, MatIconModule } from "@angular/material";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     MatListModule,
     MatIconModule,
     MatButtonModule,
+    MatDividerModule,
     FlexLayoutModule
   ],
   providers: [
