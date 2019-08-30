@@ -23,6 +23,9 @@ import { RequestFeatureComponent } from './request-feature/request-feature.compo
 import { AppComponent } from './root/app.component';
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule, MatIconModule } from "@angular/material";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -51,7 +54,16 @@ import { SignupComponent } from './user/signup/signup.component';
     BrowserAnimationsModule,
     AceEditorModule,
     IxAngularElementsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
+    FlexLayoutModule
   ],
   providers: [
     {
