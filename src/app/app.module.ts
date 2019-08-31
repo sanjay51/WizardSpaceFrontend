@@ -10,7 +10,6 @@ import { AppEditorComponent } from './app-editor/app-editor.component';
 import { AppSettingsFormComponent } from './app-editor/app-settings-form/app-settings-form.component';
 import { FileMenuComponent } from './app-editor/file-menu/file-menu.component';
 import { LiveEditorComponent } from './app-editor/live-editor/live-editor.component';
-import { PublishAppModalComponent } from './app-editor/publish-app-modal/publish-app-modal.component';
 import { AppPlayerComponent } from './app-player/app-player.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ContactDevstudioComponent } from './contact-devstudio/contact-devstudio.component';
@@ -23,9 +22,10 @@ import { AppComponent } from './root/app.component';
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule, MatIconModule, MatCardModule, MatTabsModule, MatGridListModule } from "@angular/material";
+import { MatToolbarModule, MatDialogModule, MatSidenavModule, MatListModule, MatButtonModule, MatIconModule, MatCardModule, MatTabsModule, MatGridListModule } from "@angular/material";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import {MatDividerModule} from '@angular/material/divider';
+import { PublishAppDialog } from './app-editor/publish-app-dialog/publish-app-dialog.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import {MatDividerModule} from '@angular/material/divider';
     ContactDevstudioComponent,
     FooterComponent,
     AppPlayerComponent,
-    PublishAppModalComponent,
+    PublishAppDialog,
     AppSettingsFormComponent,
     AppSubmissionsComponent,
     AdminComponent,
@@ -66,7 +66,8 @@ import {MatDividerModule} from '@angular/material/divider';
     FlexLayoutModule,
     MatCardModule,
     MatTabsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDialogModule
   ],
   providers: [
     {
@@ -78,5 +79,6 @@ import {MatDividerModule} from '@angular/material/divider';
   schemas: [
     NO_ERRORS_SCHEMA
   ],
+  entryComponents: [PublishAppDialog]
 })
 export class AppModule { }

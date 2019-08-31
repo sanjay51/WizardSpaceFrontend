@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthStateService } from 'ix-angular-elements';
 import { AppStateService } from 'src/app/app-state.service';
 import { FlowStateService } from '../flows/flow-state.service';
+import { MatDialog } from '@angular/material';
+import { PublishAppDialog } from '../publish-app-dialog/publish-app-dialog.component';
 
 @Component({
   selector: 'file-menu',
@@ -12,7 +14,7 @@ export class FileMenuComponent implements OnInit {
 
   constructor(private state: AuthStateService, 
     private flowState: FlowStateService,
-    private appState: AppStateService) { }
+    private appState: AppStateService, public dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -27,5 +29,16 @@ export class FileMenuComponent implements OnInit {
 
   showSettingsModal() {
     this.appState.isSettingsModalVisible = true;
+  }
+
+  openPublishAppDialog(): void {
+    console.log('opening dialog (publish app)');
+    const dialogRef = this.dialog.open(PublishAppDialog, {
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }

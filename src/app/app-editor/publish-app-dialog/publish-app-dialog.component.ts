@@ -1,31 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { APIService, AuthenticationService } from 'ix-angular-elements';
 import { LOADING_GIF_SRC, ROUTE_LOGIN } from 'src/app/constants';
 import { AppStateService } from '../../app-state.service';
 import { App } from '../app';
 import { GetAppByIdAPI } from '../flows/api/get-app-by-id.api';
 import { SubmitAppAPI } from './publish-app.api';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
-  selector: 'publish-app-modal',
-  templateUrl: './publish-app-modal.component.html',
-  styleUrls: ['./publish-app-modal.component.scss']
+  selector: 'publish-app-dialog',
+  templateUrl: './publish-app-dialog.component.html',
+  styleUrls: ['./publish-app-dialog.component.scss']
 })
-export class PublishAppModalComponent implements OnInit {
+export class PublishAppDialog implements OnInit {
   screen = Screen.INITIAL;
   Screen = Screen;
   app: App = null;
   LOADING_GIF_SRC = LOADING_GIF_SRC;
 
-  constructor(public appState: AppStateService, 
-    private authentication: AuthenticationService, private apiService: APIService) { }
+  constructor(public appState: AppStateService,
+    private authentication: AuthenticationService,
+    private apiService: APIService,
+    public dialogRef: MatDialogRef<PublishAppDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
   }
 
   close() {
-    this.setModalVisibility(false);
     this.screen = Screen.INITIAL;
+    this.dialogRef.close();
+  }
+
+  openAppSettingsModal() {
+    this.close();
+    this.appState.isSettingsModalVisible = true;
   }
 
   gotoLoginPage() {
@@ -34,22 +43,13 @@ export class PublishAppModalComponent implements OnInit {
   }
 
   initialScreenContinue() {
-    if (! this.authentication.isLoggedIn()) {
+    if (!this.authentication.isLoggedIn()) {
       this.screen = Screen.MUST_LOGIN;
       return;
     }
 
     this.screen = Screen.VERIFYING_APP;
     this.verifyAppName();
-  }
-
-  setModalVisibility(isVisible: boolean) {
-    this.appState.isPublishAppModalVisible = isVisible;
-  }
-
-  openAppSettingsModal() {
-    this.setModalVisibility(false);
-    this.appState.isSettingsModalVisible = true;
   }
 
   submitForPublishing() {

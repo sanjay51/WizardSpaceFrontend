@@ -1,0 +1,60 @@
+<h1 mat-dialog-title>Publish app</h1>
+<div mat-dialog-content align=center>
+  
+    <div *ngIf="screen == Screen.INITIAL">
+        Publishing your app to the web app store will make it available for everyone.<br /><br />
+        <button mat-button (click)="close()">Cancel</button>&nbsp;&nbsp;
+        <button mat-raised-button color="primary" (click)="initialScreenContinue()">Continue</button>
+    </div>
+    <div *ngIf="screen == Screen.MUST_LOGIN">
+        You must login before publishing the app.<br /><br />
+        <button mat-button (click)="close()">Cancel</button>&nbsp;&nbsp;
+        <button mat-raised-button color="primary" (click)="gotoLoginPage()">Login</button>
+    </div>
+    <div *ngIf="screen == Screen.VERIFYING_APP">
+        Verifying app for publishing, just a moment <img [src]="LOADING_GIF_SRC" /> <br /><br />
+        <button mat-button (click)="close()">Cancel</button>
+    </div>
+    <div *ngIf="screen == Screen.VERIFYING_APP_ERROR">
+        An error occured in verifying app, possibly a network issue. Please try again.<br /><br />
+        <button mat-button (click)="close()">Cancel</button>&nbsp;&nbsp;
+        <button mat-raised-button color="primary" (click)="initialScreenContinue()">Try again</button>
+    </div>
+    <div *ngIf="screen == Screen.VERIFYING_APP_FAILED">
+        Your app doesn't have a name yet. Please go to settings and set app name.<br /><br />
+        <button mat-button (click)="close()">Cancel</button>&nbsp;&nbsp;
+        <button mat-raised-button color="primary" (click)="openAppSettingsModal()">Go to settings</button>
+    </div>
+    <div *ngIf="screen == Screen.READY_TO_PUBLISH">
+        You're ready to submit your app for publishing. Please verify below app settings are correct. <br />
+        <table class="table table-vertical">
+            <tbody>
+                <tr *ngFor="let attribute of getApp()">
+                    <th>{{attribute.name}}</th>
+                    <td>{{attribute.value}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <br /><br />
+        <button mat-button (click)="close()">Cancel</button>&nbsp;&nbsp;
+        <button mat-raised-button (click)="openAppSettingsModal()">Go to app settings</button>&nbsp;&nbsp;
+        <button mat-raised-button color="primary" (click)="submitForPublishing()">Submit for publishing</button>
+    </div>
+    <div *ngIf="screen == Screen.PUBLISHING">
+        Submitting your app for publishing to web app store, just a moment <img
+            [src]="LOADING_GIF_SRC" /><br /><br />
+        <button mat-button (click)="close()">Cancel</button>
+    </div>
+    <div *ngIf="screen == Screen.PUBLISHING_ERROR">
+        An error occured in submitting app, possibly a network issue. Please try again.<br /><br />
+        <button type="button" class="btn" (click)="close()">Cancel</button>&nbsp;&nbsp;
+        <button mat-raised-button color="primary" (click)="submitForPublishing()">Try again</button>
+    </div>
+    <div *ngIf="screen == Screen.PUBLISHED">
+        Congratulations! Your app has been submitted for publishing to web app store. You'll receive an email once
+        it's live.<br /><br />
+        <button mat-raised-button (click)="close()">Close</button>
+    </div>
+</div>
+<div mat-dialog-actions>
+</div>
