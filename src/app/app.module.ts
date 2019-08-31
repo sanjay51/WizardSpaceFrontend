@@ -23,7 +23,7 @@ import { AppComponent } from './root/app.component';
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule, MatIconModule } from "@angular/material";
+import { MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule, MatIconModule, MatCardModule, MatTabsModule, MatGridListModule } from "@angular/material";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import {MatDividerModule} from '@angular/material/divider';
 
@@ -63,7 +63,10 @@ import {MatDividerModule} from '@angular/material/divider';
     MatIconModule,
     MatButtonModule,
     MatDividerModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatCardModule,
+    MatTabsModule,
+    MatGridListModule
   ],
   providers: [
     {

@@ -8,55 +8,57 @@
 </div>
 
 <div class="clr-row" [hidden]="status == 'initializing'">
-  <div class="clr-col-lg-5">
-    <clr-tabs>
-      <clr-tab>
-        <button clrTabLink id="link1">HTML</button>
-        <clr-tab-content id="html">
-          <ace-editor [(text)]="getDataHolder('html').data" [mode]="'html'" [options]="aceOptions"
-            [theme]="'crimson_editor'" (textChanged)="onDataChange($event, 'html')"
-            style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
-          </ace-editor>
-        </clr-tab-content>
-      </clr-tab>
-      <clr-tab>
-        <button clrTabLink>CSS</button>
-        <clr-tab-content id="css">
-          <ace-editor [(text)]="getDataHolder('css').data" [mode]="'css'" [options]="aceOptions"
-            [theme]="'crimson_editor'" (textChanged)="onDataChange($event, 'css')"
-            style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
-          </ace-editor>
-        </clr-tab-content>
-      </clr-tab>
-      <clr-tab>
-        <button clrTabLink>&nbsp;&nbsp;JS&nbsp;&nbsp;</button>
-        <clr-tab-content id="js">
-          <ace-editor [(text)]="getDataHolder('js').data" [mode]="'javascript'" [options]="aceOptions"
-            [theme]="'crimson_editor'" (textChanged)="onDataChange($event, 'js')"
-            style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
-          </ace-editor>
-        </clr-tab-content>
-      </clr-tab>
-      <clr-tab>
-        <button clrTabLink>Readme.md</button>
-        <clr-tab-content id="readme">
-          <ace-editor [(text)]="getDataHolder('readme').data" [mode]="'javascript'" [options]="aceOptions"
-            [theme]="'crimson_editor'" (textChanged)="onDataChange($event, 'readme')" class="editor-tab-content">
-          </ace-editor>
-        </clr-tab-content>
-      </clr-tab>
-      <clr-tab>
-        <button clrTabLink>Config.json</button>
-        <clr-tab-content id="config">
-            <ace-editor [(text)]="getDataHolder('config').data" [mode]="'javascript'" [options]="aceOptions"
-              [theme]="'crimson_editor'" (textChanged)="onDataChange($event, 'config')" class="editor-tab-content">
-            </ace-editor>
-        </clr-tab-content>
-      </clr-tab>
-    </clr-tabs>
-  </div>
-  <div id="view" class="clr-col-lg-7">
-    <iframe id="iframeview" class="iframeview"></iframe>
-  </div>
+  <mat-grid-list cols="2" rowHeight="1:1">
+    <mat-grid-tile>
+        <mat-tab-group>
+          <mat-tab label="HTML">
+            <div id="html">
+              <ace-editor [(text)]="getDataHolder('html').data" [mode]="'html'" [options]="aceOptions"
+                [theme]="'crimson_editor'" (textChanged)="onDataChange($event, 'html')"
+                style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
+              </ace-editor>
+            </div>
+          </mat-tab>
 
+          <mat-tab label="CSS">
+            <div id="css">
+              <ace-editor [(text)]="getDataHolder('css').data" [mode]="'css'" [options]="aceOptions"
+                [theme]="'crimson_editor'" (textChanged)="onDataChange($event, 'css')"
+                style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
+              </ace-editor>
+            </div>
+          </mat-tab>
+
+          <mat-tab label="JS">
+            <clr-tab-content id="js">
+              <ace-editor [(text)]="getDataHolder('js').data" [mode]="'javascript'" [options]="aceOptions"
+                [theme]="'crimson_editor'" (textChanged)="onDataChange($event, 'js')"
+                style="height: 82vh; width: 100%; box-shadow: 5px 3px 10px rgb(236, 235, 235)">
+              </ace-editor>
+            </clr-tab-content>
+          </mat-tab>
+
+          <mat-tab label="Readme.md">
+            <clr-tab-content id="readme">
+              <ace-editor [(text)]="getDataHolder('readme').data" [mode]="'javascript'" [options]="aceOptions"
+                [theme]="'crimson_editor'" (textChanged)="onDataChange($event, 'readme')" class="editor-tab-content">
+              </ace-editor>
+            </clr-tab-content>
+          </mat-tab>
+
+          <mat-tab label="Config.json">
+            <clr-tab-content id="config">
+              <ace-editor [(text)]="getDataHolder('config').data" [mode]="'javascript'" [options]="aceOptions"
+                [theme]="'crimson_editor'" (textChanged)="onDataChange($event, 'config')" class="editor-tab-content">
+              </ace-editor>
+            </clr-tab-content>
+          </mat-tab>
+        </mat-tab-group>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div>
+        <iframe id="iframeview" class="iframeview"></iframe>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>
