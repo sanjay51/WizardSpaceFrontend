@@ -1,29 +1,4 @@
-<clr-dropdown [clrCloseMenuOnItemClick]="false">
-    <button type="button" clrDropdownTrigger aria-label="dropdown demo button">
-        File
-        <clr-icon shape="caret down"></clr-icon>
-    </button>
-    <clr-dropdown-menu *clrIfOpen>
-        <label class="dropdown-header">App</label>
-        <button type="button" clrDropdownItem>New App</button>
-        <button type="button" clrDropdownItem>Save</button>
-        <button type="button" clrDropdownItem>Reset HTML/CSS/JS</button>
-        <div class="dropdown-divider" role="separator"></div>
-        <button type="button" (click)="openPublishAppDialog()" clrDropdownItem>Publish..</button>
-        <button type="button" clrDropdownItem>Share..</button>
-    </clr-dropdown-menu>
-</clr-dropdown>
-&nbsp;&nbsp;
-<clr-dropdown [clrCloseMenuOnItemClick]="false">
-    <button type="button" clrDropdownTrigger aria-label="dropdown demo button">
-        Help
-        <clr-icon shape="caret down"></clr-icon>
-    </button>
-    <clr-dropdown-menu *clrIfOpen>
-        <button type="button" clrDropdownItem>App Editor Guide</button>
-        <button type="button" clrDropdownItem>Contact us</button>
-    </clr-dropdown-menu>
-</clr-dropdown>
-&nbsp;&nbsp;<button class="btn btn-success-outline btn-sm button-menu" (click)="run()">Run</button>
-<button class="btn btn-success-outline btn-sm button-menu" (click)="openAppSettingsDialog()">Settings</button>
-<button class="btn btn-success-outline btn-sm button-menu" (click)="openPublishAppDialog()">Publish</button>
+<button mat-raised-button class="btn-menu">App Editor Guide</button>
+<button mat-raised-button (click)="openAppSettingsDialog()" class="btn-menu">Settings</button>
+<button mat-raised-button (click)="openPublishAppDialog()" class="btn-menu">Publish</button>&nbsp;&nbsp;
+<button mat-raised-button color="primary" (click)="run()" class="btn-menu">Run</button>

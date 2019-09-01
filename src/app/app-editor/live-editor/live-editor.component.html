@@ -3,7 +3,7 @@
   <img [src]="LOADING_GIF_SRC" />
   <h4>{{getQuote()}}</h4>
 </div>
-<div class="row" *ngIf="status != 'initializing'">
+<div class="row" *ngIf="status != 'initializing'" style="margin-bottom:10px">
   <file-menu></file-menu>
 </div>
 
