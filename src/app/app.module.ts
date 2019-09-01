@@ -7,7 +7,6 @@ import { AceEditorModule } from 'ng2-ace-editor';
 import { AdminComponent } from './admin/admin.component';
 import { AppSubmissionsComponent } from './admin/app-submissions/app-submissions.component';
 import { AppEditorComponent } from './app-editor/app-editor.component';
-import { AppSettingsFormComponent } from './app-editor/app-settings-form/app-settings-form.component';
 import { FileMenuComponent } from './app-editor/file-menu/file-menu.component';
 import { LiveEditorComponent } from './app-editor/live-editor/live-editor.component';
 import { AppPlayerComponent } from './app-player/app-player.component';
@@ -26,6 +25,7 @@ import { MatToolbarModule, MatDialogModule, MatSidenavModule, MatListModule, Mat
 import { FlexLayoutModule } from "@angular/flex-layout";
 import {MatDividerModule} from '@angular/material/divider';
 import { PublishAppDialog } from './app-editor/publish-app-dialog/publish-app-dialog.component';
+import { AppSettingsDialogComponent } from './app-editor/app-settings-dialog/app-settings-dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,7 @@ import { PublishAppDialog } from './app-editor/publish-app-dialog/publish-app-di
     FooterComponent,
     AppPlayerComponent,
     PublishAppDialog,
-    AppSettingsFormComponent,
+    AppSettingsDialogComponent,
     AppSubmissionsComponent,
     AdminComponent,
     AppCardComponent
@@ -79,6 +79,6 @@ import { PublishAppDialog } from './app-editor/publish-app-dialog/publish-app-di
   schemas: [
     NO_ERRORS_SCHEMA
   ],
-  entryComponents: [PublishAppDialog]
+  entryComponents: [PublishAppDialog, AppSettingsDialogComponent]
 })
 export class AppModule { }

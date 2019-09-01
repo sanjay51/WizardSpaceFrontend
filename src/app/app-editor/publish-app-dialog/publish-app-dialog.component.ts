@@ -5,7 +5,8 @@ import { AppStateService } from '../../app-state.service';
 import { App } from '../app';
 import { GetAppByIdAPI } from '../flows/api/get-app-by-id.api';
 import { SubmitAppAPI } from './publish-app.api';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
+import { AppSettingsDialogComponent } from '../app-settings-dialog/app-settings-dialog.component';
 
 @Component({
   selector: 'publish-app-dialog',
@@ -22,6 +23,7 @@ export class PublishAppDialog implements OnInit {
     private authentication: AuthenticationService,
     private apiService: APIService,
     public dialogRef: MatDialogRef<PublishAppDialog>,
+    public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
@@ -34,7 +36,15 @@ export class PublishAppDialog implements OnInit {
 
   openAppSettingsModal() {
     this.close();
-    this.appState.isSettingsModalVisible = true;
+    
+    const dialogRef = this.dialog.open(AppSettingsDialogComponent, {
+      minWidth: '60%',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
   gotoLoginPage() {

@@ -4,6 +4,7 @@ import { AppStateService } from 'src/app/app-state.service';
 import { FlowStateService } from '../flows/flow-state.service';
 import { MatDialog } from '@angular/material';
 import { PublishAppDialog } from '../publish-app-dialog/publish-app-dialog.component';
+import { AppSettingsDialogComponent } from '../app-settings-dialog/app-settings-dialog.component';
 
 @Component({
   selector: 'file-menu',
@@ -23,14 +24,6 @@ export class FileMenuComponent implements OnInit {
     window.open("/play/" + this.flowState.getAppId() + "?debug=true", "_blank");
   }
 
-  showPublishAppModal() {
-    this.appState.isPublishAppModalVisible = true;
-  }
-
-  showSettingsModal() {
-    this.appState.isSettingsModalVisible = true;
-  }
-
   openPublishAppDialog(): void {
     console.log('opening dialog (publish app)');
     const dialogRef = this.dialog.open(PublishAppDialog, {
@@ -40,5 +33,18 @@ export class FileMenuComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  openAppSettingsDialog(): void {
+    console.log('opening dialog (app settings)');
+    const dialogRef = this.dialog.open(AppSettingsDialogComponent, {
+      minWidth: '60%',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+
   }
 }

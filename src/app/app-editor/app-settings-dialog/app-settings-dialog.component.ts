@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { APIService, AuthenticationService } from 'ix-angular-elements';
 import { AppStateService } from 'src/app/app-state.service';
@@ -6,19 +6,24 @@ import { LOADING_GIF_SRC } from 'src/app/constants';
 import { App } from '../app';
 import { GetAppByIdAPI } from '../flows/api/get-app-by-id.api';
 import { UpdateAppAPI } from '../flows/api/update-app.api';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
-  selector: 'app-settings-form',
-  templateUrl: './app-settings-form.component.html',
-  styleUrls: ['./app-settings-form.component.scss']
+  selector: 'app-settings-dialog',
+  templateUrl: './app-settings-dialog.component.html',
+  styleUrls: ['./app-settings-dialog.component.scss']
 })
-export class AppSettingsFormComponent implements OnInit {
+export class AppSettingsDialogComponent implements OnInit {
   status = 'initial';
   LOADING_GIF_SRC: string = LOADING_GIF_SRC;
   app: App = new App();
   saveScreenMessage = "";
 
-  constructor(public appState: AppStateService, private apiService: APIService, private authentication: AuthenticationService) { }
+  constructor(public appState: AppStateService, 
+    private apiService: APIService, 
+    private authentication: AuthenticationService,
+    public dialogRef: MatDialogRef<AppSettingsDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
   }
@@ -49,13 +54,9 @@ export class AppSettingsFormComponent implements OnInit {
     if (this.app.video) this.form.fields.find(field => field.name == "video").defaultValue = this.app.video;
   }
 
-  setModalVisibility(isVisible: boolean) {
-    this.appState.isSettingsModalVisible = isVisible;
-  }
-
   close() {
     this.status = 'initial';
-    this.appState.isSettingsModalVisible = false;
+    this.dialogRef.close();
   }
 
   form = {

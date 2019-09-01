@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>App Settings</h1>
+<div mat-dialog-content>
+    <div class="modal-body" align=center style="outline: none">
+        <div *ngIf="status == 'initial'">
+                <button mat-button (click)="close()">Close</button>&nbsp;&nbsp;
+                <button mat-raised-button color="primary" (click)="loadAppData()">Load app settings</button>
+        </div>
+
+        <div *ngIf="status == 'loading'">
+            Loading app settings <img [src]="LOADING_GIF_SRC" />
+        </div>
+
+        <ix-form *ngIf="status == 'show-form'" [form]="form" align=left></ix-form>
+
+        <div *ngIf="status == 'error'">
+            An error occured, could be a network issue. Please try again.<br />
+            <button mat-raised-button color="primary" (click)="loadAppData()">Try again</button>
+        </div>
+
+        <div *ngIf="status == 'success'">
+            App settings have been updated. <b>{{saveScreenMessage}}</b><br /><br />
+            <button mat-button (click)="status = 'show-form'">Go back</button>&nbsp;&nbsp;
+            <button mat-raised-button color="primary" (click)="close()">Close</button>
+        </div>
+    </div>
+</div>

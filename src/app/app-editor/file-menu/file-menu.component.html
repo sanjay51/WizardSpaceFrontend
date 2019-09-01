@@ -9,7 +9,7 @@
         <button type="button" clrDropdownItem>Save</button>
         <button type="button" clrDropdownItem>Reset HTML/CSS/JS</button>
         <div class="dropdown-divider" role="separator"></div>
-        <button type="button" (click)="showPublishAppModal()" clrDropdownItem>Publish..</button>
+        <button type="button" (click)="openPublishAppDialog()" clrDropdownItem>Publish..</button>
         <button type="button" clrDropdownItem>Share..</button>
     </clr-dropdown-menu>
 </clr-dropdown>
@@ -25,5 +25,5 @@
     </clr-dropdown-menu>
 </clr-dropdown>
 &nbsp;&nbsp;<button class="btn btn-success-outline btn-sm button-menu" (click)="run()">Run</button>
-<button class="btn btn-success-outline btn-sm button-menu" (click)="showSettingsModal()">Settings</button>
+<button class="btn btn-success-outline btn-sm button-menu" (click)="openAppSettingsDialog()">Settings</button>
 <button class="btn btn-success-outline btn-sm button-menu" (click)="openPublishAppDialog()">Publish</button>
