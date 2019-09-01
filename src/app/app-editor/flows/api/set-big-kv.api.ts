@@ -1,5 +1,5 @@
 import { PostAPI, Resource } from 'ix-angular-elements';
-import { Utils } from 'src/app/utils';
+import { Utils } from '../../../utils';
 export class SetBigKvAPI extends PostAPI {
     public static API_NAME: string = "setBigKv";
 

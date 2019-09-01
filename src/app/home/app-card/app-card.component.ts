@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { App } from 'src/app/app-editor/app';
+import { App } from '../../app-editor/app';
 import { AuthStateService } from 'ix-angular-elements';
-import { ROUTE_APP_SUBMISSIONS, ROUTE_APP_DETAILS } from 'src/app/constants';
+import { ROUTE_APP_SUBMISSIONS, ROUTE_APP_DETAILS } from '../../constants';
 
 @Component({
   selector: 'app-card',

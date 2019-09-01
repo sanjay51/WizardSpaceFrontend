@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { GetAPI, Resource } from 'ix-angular-elements';
-import { Utils } from 'src/app/utils';
+import { Utils } from '../../../utils';
 export class GetBigKvAPI extends GetAPI {
     public static API_NAME: string = "getBigKv";
 

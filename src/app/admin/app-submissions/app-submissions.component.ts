@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService, AuthStateService } from 'ix-angular-elements';
-import { App } from 'src/app/app-editor/app';
-import { LOADING_GIF_SRC, ROUTE_ADMIN } from 'src/app/constants';
+import { App } from '../../app-editor/app';
 import { GetAppsSubmissionsAPI } from './get-apps-by-group.api';
 import { PublishAppAPI } from './publish-app.api';
+import { LOADING_GIF_SRC, ROUTE_ADMIN } from '../../constants';
 
 @Component({
   selector: 'app-submissions',

@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { APIService, AuthenticationService } from 'ix-angular-elements';
-import { LOADING_GIF_SRC, ROUTE_LOGIN } from 'src/app/constants';
+import { LOADING_GIF_SRC, ROUTE_LOGIN } from '../../constants';
 import { AppStateService } from '../../app-state.service';
 import { App } from '../app';
 import { GetAppByIdAPI } from '../flows/api/get-app-by-id.api';

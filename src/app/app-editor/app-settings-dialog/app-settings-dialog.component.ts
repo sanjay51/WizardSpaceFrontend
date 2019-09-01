@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { APIService, AuthenticationService } from 'ix-angular-elements';
-import { AppStateService } from 'src/app/app-state.service';
-import { LOADING_GIF_SRC } from 'src/app/constants';
+import { AppStateService } from '../../app-state.service';
+import { LOADING_GIF_SRC } from '../../constants';
 import { App } from '../app';
 import { GetAppByIdAPI } from '../flows/api/get-app-by-id.api';
 import { UpdateAppAPI } from '../flows/api/update-app.api';

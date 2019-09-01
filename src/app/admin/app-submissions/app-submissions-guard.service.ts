@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { AuthenticationService } from 'ix-angular-elements';
-import { ROUTE_HOME } from 'src/app/constants';
+import { ROUTE_HOME } from '../../constants';
 
 @Injectable({
   providedIn: 'root'

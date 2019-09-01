@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LOADING_GIF_SRC } from 'src/app/constants';
+import { LOADING_GIF_SRC } from '../../constants';
 import { Quotes } from '../quotes';
 
 @Component({

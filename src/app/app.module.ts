@@ -28,6 +28,7 @@ import { PublishAppDialog } from './app-editor/publish-app-dialog/publish-app-di
 import { AppSettingsDialogComponent } from './app-editor/app-settings-dialog/app-settings-dialog.component';
 import { AppDetailsPageComponent } from './app-details-page/app-details-page.component';
 import { LoadingBarComponent } from './util/loading-bar/loading-bar.component';
+import {BidiModule} from '@angular/cdk/bidi';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { LoadingBarComponent } from './util/loading-bar/loading-bar.component';
   ],
   imports: [
     BrowserModule,
+    BidiModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AceEditorModule,

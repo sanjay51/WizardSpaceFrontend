@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthStateService } from 'ix-angular-elements';
-import { AppStateService } from 'src/app/app-state.service';
+import { AppStateService } from '../../app-state.service';
 import { FlowStateService } from '../flows/flow-state.service';
 import { MatDialog } from '@angular/material';
 import { PublishAppDialog } from '../publish-app-dialog/publish-app-dialog.component';
