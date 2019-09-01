@@ -1,7 +1,4 @@
-<div class="row" *ngIf="status == 'loading'">
-    Loading.. hold on a second!!
-    <img [src]="LOADING_GIF_SRC" />
-</div>
+<loading-bar *ngIf="status == 'loading'"></loading-bar>
 
 <div class="row" *ngIf="status == 'ready'" align=center>
     <div style="background-color: white; width: 80%; padding: 20px" align=left>

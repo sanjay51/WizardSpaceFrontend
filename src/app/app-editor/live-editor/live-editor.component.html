@@ -1,8 +1,5 @@
-<div class="row" *ngIf="status == 'initializing'">
-  Loading.. hold on a second!!
-  <img [src]="LOADING_GIF_SRC" />
-  <h4>{{getQuote()}}</h4>
-</div>
+<loading-bar *ngIf="status == 'initializing'"></loading-bar>
+
 <div class="row" *ngIf="status != 'initializing'" style="margin-bottom:10px">
   <file-menu></file-menu>
 </div>

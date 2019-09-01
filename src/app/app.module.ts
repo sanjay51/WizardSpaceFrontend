@@ -21,12 +21,13 @@ import { AppComponent } from './root/app.component';
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatToolbarModule, MatDialogModule, MatSidenavModule, MatListModule, MatButtonModule, MatIconModule, MatCardModule, MatTabsModule, MatGridListModule } from "@angular/material";
+import { MatToolbarModule, MatProgressSpinnerModule, MatDialogModule, MatSidenavModule, MatListModule, MatButtonModule, MatIconModule, MatCardModule, MatTabsModule, MatGridListModule } from "@angular/material";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import {MatDividerModule} from '@angular/material/divider';
 import { PublishAppDialog } from './app-editor/publish-app-dialog/publish-app-dialog.component';
 import { AppSettingsDialogComponent } from './app-editor/app-settings-dialog/app-settings-dialog.component';
 import { AppDetailsPageComponent } from './app-details-page/app-details-page.component';
+import { LoadingBarComponent } from './util/loading-bar/loading-bar.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { AppDetailsPageComponent } from './app-details-page/app-details-page.com
     AppSubmissionsComponent,
     AdminComponent,
     AppCardComponent,
-    AppDetailsPageComponent
+    AppDetailsPageComponent,
+    LoadingBarComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +71,8 @@ import { AppDetailsPageComponent } from './app-details-page/app-details-page.com
     MatCardModule,
     MatTabsModule,
     MatGridListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     {
