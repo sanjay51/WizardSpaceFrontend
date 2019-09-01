@@ -10,8 +10,12 @@
     </mat-card-content>
     <mat-card-actions>
         <div align=center>
-            <button mat-flat-button style="width:40%; margin-right: 10px; background-color: whitesmoke">Details</button>
-            <button mat-flat-button color="primary" style="width:40%">
+            <button mat-flat-button (click)="gotoAppDetailsPage()"
+                style="width:40%; margin-right: 10px; background-color: whitesmoke">
+                <mat-icon>details</mat-icon>
+                Details
+            </button>
+            <button mat-flat-button color="primary" style="width:40%" (click)="runApp()">
                 <mat-icon>play_arrow</mat-icon>
                 Run
             </button>

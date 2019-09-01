@@ -5,13 +5,14 @@ import { AppSubmissionsGuardService } from './admin/app-submissions/app-submissi
 import { AppSubmissionsComponent } from './admin/app-submissions/app-submissions.component';
 import { AppEditorComponent } from './app-editor/app-editor.component';
 import { AppPlayerComponent } from './app-player/app-player.component';
-import { ROUTE_PLAY } from './constants';
+import { ROUTE_PLAY, ROUTE_APP_DETAILS } from './constants';
 import { ContactDevstudioComponent } from './contact-devstudio/contact-devstudio.component';
 import { HomeComponent } from './home/home.component';
 import { ReportBugComponent } from './report-bug/report-bug.component';
 import { RequestFeatureComponent } from './request-feature/request-feature.component';
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
+import { AppDetailsPageComponent } from './app-details-page/app-details-page.component';
 
 const routes: Routes = [
   { 
@@ -59,6 +60,11 @@ const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     canActivate: [AppSubmissionsGuardService]
+  },
+
+  {
+    path: ROUTE_APP_DETAILS,
+    component: AppDetailsPageComponent
   },
 
   {
