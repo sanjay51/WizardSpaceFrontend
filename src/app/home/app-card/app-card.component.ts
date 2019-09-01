@@ -17,7 +17,7 @@ export class AppCardComponent implements OnInit {
   }
 
   gotoAppDetailsPage() {
-    this.state.navigateWithParams(ROUTE_APP_DETAILS, {appId: this.app.appId})
+    this.state.navigateTo(ROUTE_APP_DETAILS + "/" + this.app.appId);
   }
 
   runApp() {

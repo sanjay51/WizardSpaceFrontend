@@ -1,1 +1,33 @@
-<p>app-details-page works!</p>
+<div class="row" *ngIf="status == 'loading'">
+    Loading.. hold on a second!!
+    <img [src]="LOADING_GIF_SRC" />
+</div>
+
+<div class="row" *ngIf="status == 'ready'" align=center>
+    <div style="background-color: white; width: 80%; padding: 20px" align=left>
+        <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px" fxLayoutAlign="flex-start">
+            <div fxFlex="1 1 calc(10%)" fxFlex.lt-md="1 1 calc(10%)" fxFlex.lt-sm="10%"
+                style=" border-radius:5px">
+                <img style="width:100%;" mat-card-image [src]="app.logo" />
+            </div>
+            <div fxFlex="1 1 calc(50% - 20px)" fxFlex.lt-md="1 1 calc(50% - 20px)" fxFlex.lt-sm="90%"
+                style="box-shadow: 0 1px 2px #FFF; border-radius:5px">
+                <div align=left style="width:100%; height: 100%">
+                    <h2>{{app.appName}}</h2>
+                    {{app.category}}<br /><br />
+
+                    <button mat-flat-button color="primary" (click)="runApp()">
+                        <mat-icon>play_arrow</mat-icon>
+                        Launch
+                    </button><br /><br />
+
+                    {{app.description}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{app}}
+</div>
+<div class="row" *ngIf="status == 'error'">
+    An error occured. Please refresh the page.
+</div>

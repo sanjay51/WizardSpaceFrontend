@@ -63,7 +63,7 @@ const routes: Routes = [
   },
 
   {
-    path: ROUTE_APP_DETAILS,
+    path: ROUTE_APP_DETAILS + "/:appId",
     component: AppDetailsPageComponent
   },
 

@@ -4,7 +4,7 @@
         <mat-card-title>{{app.appName}}</mat-card-title>
         <mat-card-subtitle>{{app.category}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image [src]="app.logo" alt="Photo of a Shiba Inu">
+    <img mat-card-image [src]="app.logo">
     <mat-card-content>
         {{app.description}}
     </mat-card-content>
@@ -17,7 +17,7 @@
             </button>
             <button mat-flat-button color="primary" style="width:40%" (click)="runApp()">
                 <mat-icon>play_arrow</mat-icon>
-                Run
+                Launch
             </button>
         </div>
     </mat-card-actions>

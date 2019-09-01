@@ -47,7 +47,6 @@ export class LiveEditorComponent implements OnInit {
   private dataChangeHandlerFlow: Flow;
 
   ngOnInit() {
-
     // get appId from route
     let appId = this.route.snapshot.params.appId;
     this.flowStateService.flowState.set("appId", appId);
