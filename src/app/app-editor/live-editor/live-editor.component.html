@@ -7,9 +7,14 @@
   <file-menu></file-menu>
 </div>
 
-<div class="clr-row" [hidden]="status == 'initializing'">
-  <mat-grid-list cols="2" rowHeight="1:1">
-    <mat-grid-tile>
+<div [hidden]="status == 'initializing'">
+  <div fxLayout="row wrap" 
+  fxLayout.lt-sm="column" 
+  fxLayoutGap="20px" 
+  fxLayoutAlign="flex-start">
+    <div fxFlex="1 1 calc(50% - 20px)"
+    fxFlex.lt-md="1 1 calc(50% - 20px)"
+    fxFlex.lt-sm="90%">
         <mat-tab-group>
           <mat-tab label="HTML">
             <div id="html">
@@ -54,11 +59,13 @@
             </clr-tab-content>
           </mat-tab>
         </mat-tab-group>
-    </mat-grid-tile>
-    <mat-grid-tile>
+      </div>
+    <div fxFlex="1 1 calc(50% - 20px)"
+    fxFlex.lt-md="1 1 calc(50% - 20px)"
+    fxFlex.lt-sm="90%">
       <div>
         <iframe id="iframeview" class="iframeview"></iframe>
       </div>
-    </mat-grid-tile>
-  </mat-grid-list>
+    </div>
+    </div>
 </div>
