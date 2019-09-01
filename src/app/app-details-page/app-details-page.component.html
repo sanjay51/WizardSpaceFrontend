@@ -6,17 +6,16 @@
 <div class="row" *ngIf="status == 'ready'" align=center>
     <div style="background-color: white; width: 80%; padding: 20px" align=left>
         <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px" fxLayoutAlign="flex-start">
-            <div fxFlex="1 1 calc(10%)" fxFlex.lt-md="1 1 calc(10%)" fxFlex.lt-sm="10%"
-                style=" border-radius:5px">
+            <div fxFlex="1 1 calc(15%)" fxFlex.lt-md="1 1 calc(15%)" fxFlex.lt-sm="15%" style=" border-radius:5px">
                 <img style="width:100%;" mat-card-image [src]="app.logo" />
             </div>
-            <div fxFlex="1 1 calc(50% - 20px)" fxFlex.lt-md="1 1 calc(50% - 20px)" fxFlex.lt-sm="90%"
+            <div fxFlex="1 1 calc(75%)" fxFlex.lt-md="1 1 calc(75%)" fxFlex.lt-sm="80%"
                 style="box-shadow: 0 1px 2px #FFF; border-radius:5px">
                 <div align=left style="width:100%; height: 100%">
                     <h2>{{app.appName}}</h2>
                     {{app.category}}<br /><br />
 
-                    <button mat-flat-button color="primary" (click)="runApp()">
+                    <button mat-flat-button color="primary" (click)="launchApp()">
                         <mat-icon>play_arrow</mat-icon>
                         Launch
                     </button><br /><br />
@@ -25,8 +24,13 @@
                 </div>
             </div>
         </div>
+        <br/><br/>
+
+        <div style="white-space:nowrap; max-width: 100%; overflow-x: scroll" align=center>
+            <img *ngFor="let image of app.images" 
+            style="max-height: 600px; box-shadow: 0 1px 10px whitesmoke; margin-right: 20px" [src]="image" />
+        </div>
     </div>
-    {{app}}
 </div>
 <div class="row" *ngIf="status == 'error'">
     An error occured. Please refresh the page.

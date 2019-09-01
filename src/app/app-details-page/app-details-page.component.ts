@@ -39,4 +39,8 @@ export class AppDetailsPageComponent implements OnInit, AfterViewInit {
     });
   }
 
+  launchApp() {
+    window.open("/play/" + this.app.appId, "_blank");
+  }
+
 }
