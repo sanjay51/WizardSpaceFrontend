@@ -6,7 +6,6 @@ import { APP_CATEGORIES, App } from '../app-editor/app';
 import { ROUTE_HOME } from '../constants';
 import { CreateAppAPI } from '../app-editor/flows/api/create-app.api';
 import { UpdateAppAPI } from '../app-editor/flows/api/update-app.api';
-import { create } from 'domain';
 
 @Component({
   selector: 'app-submit-external-app',
@@ -101,6 +100,7 @@ export class SubmitExternalAppComponent implements OnInit {
 
       let createAppAPI = new CreateAppAPI(userId, authId, app.appName);
       createAppAPI.setExternal();
+
       return this.apiService.call(createAppAPI).toPromise().then(
         response => {
           console.log(response);
