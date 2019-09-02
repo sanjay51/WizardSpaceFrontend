@@ -13,6 +13,7 @@ import { RequestFeatureComponent } from './request-feature/request-feature.compo
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
 import { AppDetailsPageComponent } from './app-details-page/app-details-page.component';
+import { SubmitExternalAppComponent } from './submit-external-app/submit-external-app.component';
 
 const routes: Routes = [
   { 
@@ -51,9 +52,15 @@ const routes: Routes = [
     path: 'bug-report',
     component: ReportBugComponent
   },
+  
   {
     path: 'contact',
     component: ContactDevstudioComponent
+  },
+  
+  {
+    path: 'submit-external-app',
+    component: SubmitExternalAppComponent
   },
 
   {

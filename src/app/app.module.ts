@@ -29,6 +29,7 @@ import { AppSettingsDialogComponent } from './app-editor/app-settings-dialog/app
 import { AppDetailsPageComponent } from './app-details-page/app-details-page.component';
 import { LoadingBarComponent } from './util/loading-bar/loading-bar.component';
 import {BidiModule} from '@angular/cdk/bidi';
+import { SubmitExternalAppComponent } from './submit-external-app/submit-external-app.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {BidiModule} from '@angular/cdk/bidi';
     AdminComponent,
     AppCardComponent,
     AppDetailsPageComponent,
-    LoadingBarComponent
+    LoadingBarComponent,
+    SubmitExternalAppComponent
   ],
   imports: [
     BrowserModule,

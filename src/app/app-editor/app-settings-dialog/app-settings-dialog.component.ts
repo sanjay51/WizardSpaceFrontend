@@ -3,7 +3,7 @@ import { Validators } from '@angular/forms';
 import { APIService, AuthenticationService } from 'ix-angular-elements';
 import { AppStateService } from '../../app-state.service';
 import { LOADING_GIF_SRC } from '../../constants';
-import { App } from '../app';
+import { App, APP_CATEGORIES } from '../app';
 import { GetAppByIdAPI } from '../flows/api/get-app-by-id.api';
 import { UpdateAppAPI } from '../flows/api/update-app.api';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -78,7 +78,7 @@ export class AppSettingsDialogComponent implements OnInit {
         name: "category",
         type: "select",
         label: "Category*",
-        options: ["Art & Design", "Auto & Vehicles", "Beauty", "Books & Reference", "Business", "Comics", "Communications", "Dating", "Education", "Entertainment", "Events", "Finance", "Food & Drink", "Health & Fitness", "House & Home", "Libraries & Demo", "Lifestyle", "Maps & Navigation", "Medical", "Music & Audio", "News & Magazines", "Parenting", "Personalization", "Photography", "Productivity", "Shopping", "Social", "Sports", "Tools", "Travel & Local", "Video Players & Editors", "Weather"],
+        options: APP_CATEGORIES,
         validators: [Validators.required],
         defaultValue: 'Productivity'
       },

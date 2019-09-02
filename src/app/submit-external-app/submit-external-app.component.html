@@ -1,0 +1,10 @@
+<div *ngIf="!isSubmitted" align=center>
+    <ix-form [form]="form" align=left></ix-form>
+</div>
+
+<div *ngIf="isSubmitted">
+    Thank you for submitting the app! It's under review and will be published soon. If you have any questions, please email at <i>help@devstudio.app</i>.
+    <br /><br/>
+    <button mat-raised-button (click)="goHome()">Go to home</button>&nbsp;
+    <button mat-raised-button (click)="fileAnother()">Submit another app</button>
+</div>
