@@ -21,7 +21,7 @@ import { AppComponent } from './root/app.component';
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatToolbarModule, MatProgressSpinnerModule, MatDialogModule, MatSidenavModule, MatListModule, MatButtonModule, MatIconModule, MatCardModule, MatTabsModule, MatGridListModule } from "@angular/material";
+import { MatToolbarModule, MatListModule, MatProgressSpinnerModule, MatDialogModule, MatSidenavModule, MatButtonModule, MatIconModule, MatCardModule, MatTabsModule, MatGridListModule } from "@angular/material";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import {MatDividerModule} from '@angular/material/divider';
 import { PublishAppDialog } from './app-editor/publish-app-dialog/publish-app-dialog.component';
@@ -74,7 +74,8 @@ import {BidiModule} from '@angular/cdk/bidi';
     MatTabsModule,
     MatGridListModule,
     MatDialogModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatListModule
   ],
   providers: [
     {

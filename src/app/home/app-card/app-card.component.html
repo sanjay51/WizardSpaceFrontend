@@ -4,8 +4,10 @@
         <mat-card-title>{{app.appName}}</mat-card-title>
         <mat-card-subtitle>{{app.category}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image [src]="app.logo">
     <mat-card-content>
+        <div align=center>
+            <img mat-card-image style="width: 200px" [src]="app.logo">
+        </div><br />
         {{app.description}}
     </mat-card-content>
     <mat-card-actions>

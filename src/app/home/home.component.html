@@ -1,5 +1,18 @@
-<div class="clr-row">
-    <div *ngFor="let app of apps" class="clr-col-xl-2 clr-col-lg-3 clr-col-md-4 clr-col-sm-6 clr-col-12">
-        <app-card [app]="app"></app-card>
-    </div>
-</div>
+<mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>
+        <mat-nav-list>
+            <a mat-list-item class="sidebar-list-item" *ngFor="let category of categories" [href]="category.path">
+                <mat-icon>{{category.icon}}</mat-icon>&nbsp;{{category.name}}
+            </a>
+        </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-conent *ngIf="status == 'loading'">
+        <loading-bar></loading-bar>
+    </mat-drawer-conent>
+    <mat-drawer-conent *ngIf="status == 'error'">
+        An error occured. Please try again.
+    </mat-drawer-conent>
+    <mat-drawer-content *ngIf="status == 'ready'" style="padding-left: 20px">
+        <app-card *ngFor="let app of apps" [app]="app"></app-card>
+    </mat-drawer-content>
+</mat-drawer-container>
