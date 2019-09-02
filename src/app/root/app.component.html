@@ -23,6 +23,7 @@
           </mat-menu>
   
           <a mat-button *ngIf="isAdmin()" [routerLink]="'admin'" mat-button>Admin</a>
+          <a mat-button *ngIf="isAdmin()" [routerLink]="'admin/todo'" mat-button>TODO</a>
   
           <button *ngIf="isLoggedIn()" mat-button [matMenuTriggerFor]="userMenu">Sanjay <mat-icon>arrow_drop_down
             </mat-icon></button>

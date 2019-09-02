@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
-import { AppSubmissionsGuardService } from './admin/app-submissions/app-submissions-guard.service';
+import { AdminAreaGuardService } from './admin/admin-area-guard.service';
 import { AppSubmissionsComponent } from './admin/app-submissions/app-submissions.component';
 import { AppEditorComponent } from './app-editor/app-editor.component';
 import { AppPlayerComponent } from './app-player/app-player.component';
@@ -14,6 +14,7 @@ import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
 import { AppDetailsPageComponent } from './app-details-page/app-details-page.component';
 import { SubmitExternalAppComponent } from './submit-external-app/submit-external-app.component';
+import { TodoComponent } from './admin/todo/todo.component';
 
 const routes: Routes = [
   { 
@@ -66,7 +67,13 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate: [AppSubmissionsGuardService]
+    canActivate: [AdminAreaGuardService]
+  },
+
+  {
+    path: 'admin/todo',
+    component: TodoComponent,
+    canActivate: [AdminAreaGuardService]
   },
 
   {
@@ -77,7 +84,7 @@ const routes: Routes = [
   {
     path: 'admin/app-submissions',
     component: AppSubmissionsComponent,
-    canActivate: [AppSubmissionsGuardService]
+    canActivate: [AdminAreaGuardService]
   },
 ];
 

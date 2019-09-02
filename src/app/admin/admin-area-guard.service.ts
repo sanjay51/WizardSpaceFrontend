@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { AuthenticationService } from 'ix-angular-elements';
-import { ROUTE_HOME } from '../../constants';
+import { ROUTE_HOME } from '../constants';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AppSubmissionsGuardService implements CanActivate {
+export class AdminAreaGuardService implements CanActivate {
   constructor(private auth: AuthenticationService, private router: Router) { }
   canActivate(): boolean {
       if (this.auth.isLoggedIn() && this.auth.state.getAuthStateAttribute("accessLevel") == "TWELVE") {

@@ -30,6 +30,7 @@ import { AppDetailsPageComponent } from './app-details-page/app-details-page.com
 import { LoadingBarComponent } from './util/loading-bar/loading-bar.component';
 import { BidiModule } from '@angular/cdk/bidi';
 import { SubmitExternalAppComponent } from './submit-external-app/submit-external-app.component';
+import { TodoComponent } from './admin/todo/todo.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { SubmitExternalAppComponent } from './submit-external-app/submit-externa
     AppCardComponent,
     AppDetailsPageComponent,
     LoadingBarComponent,
-    SubmitExternalAppComponent
+    SubmitExternalAppComponent,
+    TodoComponent
   ],
   imports: [
     BrowserModule,
