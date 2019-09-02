@@ -14,6 +14,8 @@ export class AppSubmissionsComponent implements OnInit {
   LOADING_GIF_SRC: string = LOADING_GIF_SRC;
   status = 'loading';
 
+  displayedColumns = ['action', 'domain', 'userId', 'app', 'key', 'lastUpdated']
+
   submissions = [];
 
   constructor(private state: AuthStateService, private apiService: APIService) { }
@@ -27,7 +29,9 @@ export class AppSubmissionsComponent implements OnInit {
   }
 
   async approveSubmission(submission) {
+    console.log(submission)
     let app: App = JSON.parse(submission.value);
+    if (!app.appId) app.appId = submission.wzkey;
     
     console.log(app);
     console.log(app.devId);

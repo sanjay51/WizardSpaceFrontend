@@ -18,7 +18,7 @@ export class SubmitExternalAppAPI extends PostAPI {
     getBody() {
         return {
             "domain": "APP_SUBMISSIONS",
-            "key": "external",
+            "key": this.app.appId,
             "value": JSON.stringify(this.app),
             "userId": this.userId,
             "authId": this.authId

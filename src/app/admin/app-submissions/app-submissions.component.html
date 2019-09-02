@@ -2,39 +2,46 @@
 <button (click)="gotoAdminHome()">&lt; Back</button><br />
 
 <div *ngIf="status == 'loading'">Loading app settings <img [src]="LOADING_GIF_SRC" /></div>
-<div *ngIf="status == 'loaded'">
-    <table class="table">
-        <thead>
-            <tr>
-                <th class="left"></th>
-                <th class="left">UserId</th>
-                <th class="left">App</th>
-                <th class="left">Last updated</th>
-            </tr>
-        </thead>
-        <tbody>
+<table *ngIf="status == 'loaded'" mat-table [dataSource]="submissions" class="mat-elevation-z8">
 
-            <tr *ngFor="let submission of submissions">
-                <th class="left">
-                    <button (click)="approveSubmission(submission)" class="btn btn-sm">Approve</button>
-                </th>
-                <td class="left">{{submission.userId}}</td>
-                <td class="left">{{submission.value}}</td>
-                <td class="left">{{submission.lastUpdatedEpoch}}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <!-- Position Column -->
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Approve </th>
+        <td mat-cell *matCellDef="let element"> 
+            <button mat-raised-button (click)="approveSubmission(element)">Approve</button> 
+        </td>
+    </ng-container>
 
+    <!-- Position Column -->
+    <ng-container matColumnDef="domain">
+        <th mat-header-cell *matHeaderCellDef> Domain </th>
+        <td mat-cell *matCellDef="let element"> {{element.wzdomain}} </td>
+    </ng-container>
 
-<!--
-creationEpoch: 1566621973178
-lastUpdatedEpoch: 1566621973178
-userId: "bd52e962-c5ee-4494-b052-d091e7456194"
-value: "{"devId":"bd52e962-c5ee-4494-b052-d091e7456194","images":["hey hey 2","asdfasdfasdf"],"appName":"my first app
-","description":"asdfasdfasd
-jjjxx","creationEpoch":1566155234658,"appId":"1930329f-5e1b-49e2-b25f-47180af36058","logo":"my first app
-logo","lastUpdatedEpoch":1566621967820,"category":"Productivity","draftVersion":1566621967820}"
-wzdomain: "APP_SUBMISSIONS"
-wzkey: "1930329f-5e1b-49e2-b25f-47180af36058_bd52e962-c5ee-4494-b052-d091e7456194_637e50bd-bb5a-42cc-86b6-897a1b15ed5d"
--->
+    <!-- Position Column -->
+    <ng-container matColumnDef="userId">
+        <th mat-header-cell *matHeaderCellDef> UserId </th>
+        <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="app">
+        <th mat-header-cell *matHeaderCellDef> App </th>
+        <td mat-cell *matCellDef="let element"> {{element.value}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="key">
+        <th mat-header-cell *matHeaderCellDef> Key </th>
+        <td mat-cell *matCellDef="let element"> {{element.wzkey}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="lastUpdated">
+        <th mat-header-cell *matHeaderCellDef> Last updated </th>
+        <td mat-cell *matCellDef="let element"> {{element.lastUpdatedEpoch}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

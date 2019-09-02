@@ -5,6 +5,7 @@ export class CreateAppAPI extends PostAPI {
     userId: string;
     authId: string;
     name: string;
+    isExternal: string = "false";
 
     constructor(userId: string, authId: string, name: string) {
         super();
@@ -13,11 +14,16 @@ export class CreateAppAPI extends PostAPI {
         this.name = name;
     }
 
+    setExternal() {
+        this.isExternal = "true";
+    }
+
     getBody() {
         return {
             "userId": this.userId,
             "authId": this.authId,
-            "appName": this.name
+            "appName": this.name,
+            "isExternal": this.isExternal
         }
     }
     

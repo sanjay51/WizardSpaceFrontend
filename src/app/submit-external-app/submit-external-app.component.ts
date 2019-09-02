@@ -4,6 +4,9 @@ import { Validators } from '@angular/forms';
 import { SubmitExternalAppAPI } from './submit-external-app.api';
 import { APP_CATEGORIES, App } from '../app-editor/app';
 import { ROUTE_HOME } from '../constants';
+import { CreateAppAPI } from '../app-editor/flows/api/create-app.api';
+import { UpdateAppAPI } from '../app-editor/flows/api/update-app.api';
+import { create } from 'domain';
 
 @Component({
   selector: 'app-submit-external-app',
@@ -94,9 +97,30 @@ export class SubmitExternalAppComponent implements OnInit {
       app.images = images;
       app.logo = fields.logo.value;
       app.video = fields.video.value;
+      app.isExternal = "true";
 
-      let api = new SubmitExternalAppAPI(app, userId, authId);
-      return this.apiService.call(api).toPromise();
+      let createAppAPI = new CreateAppAPI(userId, authId, app.appName);
+      createAppAPI.setExternal();
+      return this.apiService.call(createAppAPI).toPromise().then(
+        response => {
+          console.log(response);
+          app.appId = response.appId;
+
+          let updateAppAPI = new UpdateAppAPI(app.appId, app.appName, app.description,
+            app.category, app.logo, app.images, userId, authId)
+
+          this.apiService.call(updateAppAPI).toPromise().then(
+            response => {
+              console.log(response);
+
+              let api = new SubmitExternalAppAPI(app, userId, authId);
+              return this.apiService.call(api).toPromise().then(
+                response => console.log(response)
+              );
+            }
+          )
+        }
+      )
     },
 
     postSubmit: (response) => {
