@@ -31,6 +31,7 @@ import { LoadingBarComponent } from './util/loading-bar/loading-bar.component';
 import { BidiModule } from '@angular/cdk/bidi';
 import { SubmitExternalAppComponent } from './submit-external-app/submit-external-app.component';
 import { TodoComponent } from './admin/todo/todo.component';
+import { IxTableComponent } from './util/ix-table/ix-table.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { TodoComponent } from './admin/todo/todo.component';
     AppDetailsPageComponent,
     LoadingBarComponent,
     SubmitExternalAppComponent,
-    TodoComponent
+    TodoComponent,
+    IxTableComponent
   ],
   imports: [
     BrowserModule,

@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./todo.component.scss']
 })
 export class TodoComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  features = FEATURES;
+  issues = ISSUES;
 
   constructor() { }
 
@@ -16,22 +16,61 @@ export class TodoComponent implements OnInit {
 
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+const IN_PROGRESS = "IN_PROGRESS";
+const TODO = "TODO";
+const COMPLETE = "COMPLETE";
+
+const FEATURES = [
+  {
+    Serial: 1, 
+    Category: 'Frontend', 
+    Title: "A way to share a draft app (generate link with token)", 
+    Description: "", 
+    Status: TODO
+  },
+  {
+    Serial: 2, 
+    Category: 'Frontend', 
+    Title: "Create a beautiful landing app (with bootstrap)", 
+    Description: "", 
+    Status: TODO
+  },
+  {
+    Serial: 3, 
+    Category: 'Frontend', 
+    Title: "Setup logging with remote calls", 
+    Description: "", 
+    Status: TODO
+  },
+  {
+    Serial: 4, 
+    Category: 'Frontend', 
+    Title: "Add image upload capability in app settings form", 
+    Description: "", 
+    Status: TODO
+  },
 ];
 
-export class PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
+const ISSUES = [
+  {
+    Serial: 1, 
+    Category: 'Backend', 
+    Title: "Fix: CORS access denied on backend exception (any API)", 
+    Description: "An exception should also be casted in Response object with CORS headers.", 
+    Status: TODO
+  },
+  {
+    Serial: 2, 
+    Category: 'Backend', 
+    Title: "Fix: Use data from the time of app publish", 
+    Description: "When approving publishing app, get data from wz-app-versions rather than wz-app (as the app may have changed in the meantime)", 
+    Status: TODO
+  },
+  {
+    Serial: 3, 
+    Category: 'Backend', 
+    Title: "Avoid duplicates when publishing apps - by default a duplicate entry will be created (if one already existed for a given app)", 
+    Description: "Solution: When publishing an app, also update wz-apps table for that app, with the 'appRank'. Next time when we publish a new update, check the wz-apps table, and delete the old entry.", 
+    Status: TODO
+  }
+];
