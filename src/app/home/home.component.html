@@ -13,6 +13,8 @@
         An error occured. Please try again.
     </mat-drawer-conent>
     <mat-drawer-content *ngIf="status == 'ready'" style="padding-left: 20px">
-        <app-card *ngFor="let app of apps" [app]="app"></app-card>
+        <div fxLayout="row wrap">
+            <app-card *ngFor="let app of apps" [app]="app" class="card-item"></app-card>
+        </div>
     </mat-drawer-content>
 </mat-drawer-container>
