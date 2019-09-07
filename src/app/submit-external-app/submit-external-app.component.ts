@@ -6,6 +6,7 @@ import { APP_CATEGORIES, App } from '../app-editor/app';
 import { ROUTE_HOME } from '../constants';
 import { CreateAppAPI } from '../app-editor/flows/api/create-app.api';
 import { UpdateAppAPI } from '../app-editor/flows/api/update-app.api';
+import { AppMetadata } from '../app-editor/app-metadata';
 
 @Component({
   selector: 'app-submit-external-app',
@@ -78,6 +79,40 @@ export class SubmitExternalAppComponent implements OnInit {
         label: "Video URL (optional)",
         validators: [],
         defaultValue: ''
+      },
+      {
+        name: "isHTTPSEnabled",
+        type: "select",
+        label: "Is HTTPS enabled?",
+        options: ["true", "false"],
+        defaultValue: 'false'
+      },
+      {
+        name: "offline",
+        type: "select",
+        label: "Works offline?",
+        options: ["true", "false"],
+        defaultValue: 'false'
+      },
+      {
+        name: "isAndroidInstallable",
+        type: "select",
+        label: "Is Android installable?",
+        options: ["true", "false"],
+        defaultValue: 'false'
+      },
+      {
+        name: "isIOSInstallable",
+        type: "select",
+        label: "Is iOS installable?",
+        options: ["true", "false"],
+        defaultValue: 'false'
+      },
+      {
+        name: "lighthouseScore",
+        label: "Lighthouse score",
+        validators: [Validators.min(0), Validators.max(100)],
+        defaultValue: '100'
       }
     ],
 
@@ -105,6 +140,12 @@ export class SubmitExternalAppComponent implements OnInit {
       app.video = fields.video.value;
       app.isExternal = "true";
 
+      app.isHTTPSEnabled = (fields.isHTTPSEnabled.value == "true");
+      app.isOfflineSupported = (fields.offline.value == "true");
+      app.isAndroidInstallable = (fields.isAndroidInstallable.value == "true");
+      app.isIOSInstallable = (fields.isIOSInstallable.value == "true");
+      app.lighthouseScore = fields.lighthouseScore.value;
+
       let createAppAPI = new CreateAppAPI(userId, authId, app.appName);
       createAppAPI.setExternal();
 
@@ -113,8 +154,7 @@ export class SubmitExternalAppComponent implements OnInit {
           console.log(response);
           app.appId = response.appId;
 
-          let updateAppAPI = new UpdateAppAPI(app.appId, app.appName, app.description,
-            app.category, app.logo, app.images, userId, authId)
+          let updateAppAPI = new UpdateAppAPI(app.appId, app, userId, authId)
 
           this.apiService.call(updateAppAPI).toPromise().then(
             response => {

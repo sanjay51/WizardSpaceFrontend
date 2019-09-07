@@ -1,3 +1,5 @@
+import { AppMetadata } from './app-metadata';
+
 export class App {
     appId: string;
     versionId: number;
@@ -13,6 +15,12 @@ export class App {
     logo: string;
     video: string;
     isExternal: string = "false";
+
+    isHTTPSEnabled: boolean;
+    isOfflineSupported: boolean;
+    isAndroidInstallable: boolean;
+    isIOSInstallable: boolean;
+    lighthouseScore: number;
 }
 
 export const APP_CATEGORIES = ["Art & Design", "Auto & Vehicles", "Beauty", "Books & Reference", "Business", "Comics", "Communications", "Dating", "Education", "Entertainment", "Events", "Finance", "Food & Drink", "Games", "Health & Fitness", "House & Home", "Libraries & Demo", "Lifestyle", "Maps & Navigation", "Medical", "Music & Audio", "News & Magazines", "Parenting", "Personalization", "Photography", "Productivity", "Shopping", "Social", "Sports", "Tools", "Travel & Local", "Video Players & Editors", "Weather"];

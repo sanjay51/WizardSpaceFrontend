@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
     let api = new GetAppsByGroupIdAPI("LIVE_APPS", userId, authId);
     this.apiService.call(api).toPromise().then(response => {
       for (let app of response) {
+        console.log(app);
         this.apps.push(app);
       }
       this.status = 'ready';
