@@ -44,6 +44,12 @@ export class SubmitExternalAppComponent implements OnInit {
         defaultValue: 'Productivity'
       },
       {
+        name: "link",
+        label: "Link *",
+        validators: [Validators.required],
+        defaultValue: 'http://'
+      },
+      {
         name: "logo",
         label: "Logo URL *",
         validators: [Validators.required],
@@ -91,6 +97,7 @@ export class SubmitExternalAppComponent implements OnInit {
       app.appName = fields.name.value;
       app.category = fields.category.value;
       app.description = fields.description.value;
+      app.appLink = fields.link.value;
       app.devId = userId;
       app.draftVersion = 0;
       app.images = images;

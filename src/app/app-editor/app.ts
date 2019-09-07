@@ -6,6 +6,7 @@ export class App {
     creationEpoch: number;
     description: string;
     devId: string;
+    appLink: string;
     draftVersion: number;
     images: string[];
     lastUpdatedEpoch: string;

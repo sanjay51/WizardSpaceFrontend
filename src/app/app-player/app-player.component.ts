@@ -23,5 +23,4 @@ export class AppPlayerComponent implements OnInit {
     iframe.contentWindow.document.write(sanitizedData);
     iframe.contentWindow.document.close();
   }
-
 }
