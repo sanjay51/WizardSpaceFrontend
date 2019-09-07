@@ -4,16 +4,16 @@ import { LOADING_GIF_SRC, ROUTE_LOGIN } from '../../constants';
 import { AppStateService } from '../../app-state.service';
 import { App } from '../app';
 import { GetAppByIdAPI } from '../flows/api/get-app-by-id.api';
-import { SubmitAppAPI } from './publish-app.api';
+import { SubmitAppAPI } from './submit-app.api';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { AppSettingsDialogComponent } from '../app-settings-dialog/app-settings-dialog.component';
 
 @Component({
-  selector: 'publish-app-dialog',
-  templateUrl: './publish-app-dialog.component.html',
-  styleUrls: ['./publish-app-dialog.component.scss']
+  selector: 'submit-app-dialog',
+  templateUrl: './submit-app-dialog.component.html',
+  styleUrls: ['./submit-app-dialog.component.scss']
 })
-export class PublishAppDialog implements OnInit {
+export class SubmitAppDialog implements OnInit {
   screen = Screen.INITIAL;
   Screen = Screen;
   app: App = null;
@@ -22,7 +22,7 @@ export class PublishAppDialog implements OnInit {
   constructor(public appState: AppStateService,
     private authentication: AuthenticationService,
     private apiService: APIService,
-    public dialogRef: MatDialogRef<PublishAppDialog>,
+    public dialogRef: MatDialogRef<SubmitAppDialog>,
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 

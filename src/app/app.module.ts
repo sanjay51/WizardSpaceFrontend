@@ -1,4 +1,3 @@
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,7 +23,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule, MatListModule, MatProgressSpinnerModule, MatDialogModule, MatSidenavModule, MatButtonModule, MatIconModule, MatTableModule, MatCardModule, MatTabsModule, MatGridListModule } from "@angular/material";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatDividerModule } from '@angular/material/divider';
-import { PublishAppDialog } from './app-editor/publish-app-dialog/publish-app-dialog.component';
+import { SubmitAppDialog } from './app-editor/submit-app-dialog/submit-app-dialog.component';
 import { AppSettingsDialogComponent } from './app-editor/app-settings-dialog/app-settings-dialog.component';
 import { AppDetailsPageComponent } from './app-details-page/app-details-page.component';
 import { LoadingBarComponent } from './util/loading-bar/loading-bar.component';
@@ -32,6 +31,7 @@ import { BidiModule } from '@angular/cdk/bidi';
 import { SubmitExternalAppComponent } from './submit-external-app/submit-external-app.component';
 import { TodoComponent } from './admin/todo/todo.component';
 import { IxTableComponent } from './util/ix-table/ix-table.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -47,7 +47,7 @@ import { IxTableComponent } from './util/ix-table/ix-table.component';
     ContactDevstudioComponent,
     FooterComponent,
     AppPlayerComponent,
-    PublishAppDialog,
+    SubmitAppDialog,
     AppSettingsDialogComponent,
     AppSubmissionsComponent,
     AdminComponent,
@@ -63,9 +63,9 @@ import { IxTableComponent } from './util/ix-table/ix-table.component';
     BidiModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AceEditorModule,
     IxAngularElementsModule,
-    HttpClientModule,
     MatMenuModule,
     MatButtonModule,
     MatToolbarModule,
@@ -94,6 +94,6 @@ import { IxTableComponent } from './util/ix-table/ix-table.component';
   schemas: [
     NO_ERRORS_SCHEMA
   ],
-  entryComponents: [PublishAppDialog, AppSettingsDialogComponent]
+  entryComponents: [SubmitAppDialog, AppSettingsDialogComponent]
 })
 export class AppModule { }

@@ -3,7 +3,7 @@ import { AuthStateService } from 'ix-angular-elements';
 import { AppStateService } from '../../app-state.service';
 import { FlowStateService } from '../flows/flow-state.service';
 import { MatDialog } from '@angular/material';
-import { PublishAppDialog } from '../publish-app-dialog/publish-app-dialog.component';
+import { SubmitAppDialog } from '../submit-app-dialog/submit-app-dialog.component';
 import { AppSettingsDialogComponent } from '../app-settings-dialog/app-settings-dialog.component';
 
 @Component({
@@ -26,7 +26,7 @@ export class FileMenuComponent implements OnInit {
 
   openPublishAppDialog(): void {
     console.log('opening dialog (publish app)');
-    const dialogRef = this.dialog.open(PublishAppDialog, {
+    const dialogRef = this.dialog.open(SubmitAppDialog, {
       data: {}
     });
 
