@@ -62,7 +62,7 @@ export class AppSettingsDialogComponent implements OnInit {
   form = {
     fields: [
       {
-        name: "title",
+        name: "name",
         label: "App Name/Title*",
         validators: [Validators.required, Validators.minLength(6)],
         defaultValue: '',
@@ -107,6 +107,12 @@ export class AppSettingsDialogComponent implements OnInit {
         defaultValue: ''
       },
       {
+        name: "screenshot4",
+        label: "Screenshot-4 URL",
+        validators: [],
+        defaultValue: ''
+      },
+      {
         name: "video",
         label: "Video URL (optional)",
         validators: [],
@@ -122,10 +128,27 @@ export class AppSettingsDialogComponent implements OnInit {
       let images: string[] = [fields.screenshot1.value];
       if (fields.screenshot2) images.push(fields.screenshot2.value)
       if (fields.screenshot3) images.push(fields.screenshot3.value)
+      if (fields.screenshot4) images.push(fields.screenshot4.value)
 
-      let api = new UpdateAppAPI(this.appState.state.getAppId(), fields.title.value, 
-      fields.description.value, fields.category.value, fields.logo.value,
-      images, this.authentication.state.getAuthStateAttribute("userId"),
+      let app = new App();
+      app.appId = this.appState.state.getAppId();
+
+      app.appName = fields.name.value;
+      app.category = fields.category.value;
+      app.description = fields.description.value;
+      app.images = images;
+      app.logo = fields.logo.value;
+      app.video = fields.video.value;
+      app.isExternal = "false";
+
+      app.isHTTPSEnabled = true;
+      app.isOfflineSupported = true;
+      app.isAndroidInstallable = true;
+      app.isIOSInstallable = true;
+      app.lighthouseScore = 100;
+
+      let api = new UpdateAppAPI(this.appState.state.getAppId(), app, 
+      this.authentication.state.getAuthStateAttribute("userId"),
       this.authentication.state.getAuthStateAttribute("authId"));
       console.log(api);
       return this.apiService.call(api).toPromise();

@@ -75,6 +75,12 @@ export class SubmitExternalAppComponent implements OnInit {
         defaultValue: ''
       },
       {
+        name: "screenshot4",
+        label: "Screenshot-4 URL",
+        validators: [],
+        defaultValue: ''
+      },
+      {
         name: "video",
         label: "Video URL (optional)",
         validators: [],
@@ -127,6 +133,7 @@ export class SubmitExternalAppComponent implements OnInit {
       let images: string[] = [fields.screenshot1.value];
       if (fields.screenshot2) images.push(fields.screenshot2.value)
       if (fields.screenshot3) images.push(fields.screenshot3.value)
+      if (fields.screenshot4) images.push(fields.screenshot3.value)
 
       let app = new App();
       app.appName = fields.name.value;

@@ -2,6 +2,7 @@ import { APIService, AuthenticationService, State, Step } from 'ix-angular-eleme
 import { CreateAppAPI } from '../api/create-app.api';
 import { UpdateAppAPI } from '../api/update-app.api';
 import { FlowStateService } from '../flow-state.service';
+import { App } from '../../app';
 
 export class SaveAppInfoStep extends Step {
     private static INSTANCE: SaveAppInfoStep = null;
@@ -39,7 +40,7 @@ export class SaveAppInfoStep extends Step {
             let remoteApp: App = await this.updateRemoteApp(appId);
 
             if (remoteApp.appId) {
-                newAppVersion = remoteApp.appVersion;
+                newAppVersion = remoteApp.draftVersion;
             }
         }
         
@@ -68,16 +69,20 @@ export class SaveAppInfoStep extends Step {
             });
 
         if (appResponse) {
-            return new App(appResponse.appId, +appResponse.draftVersion);
+            return appResponse;
         }
 
-        return new App(null, 0);
+        return new App();
     }
 
     async updateRemoteApp(appId: string): Promise<App> {
         let userId = this.authentication.state.getAuthStateAttribute("userId");
         let authId = this.authentication.state.getAuthStateAttribute("authId");
-        let api = new UpdateAppAPI(appId, null, null, null, null, null, userId, authId);
+
+        let app: App = new App();
+        app.devId = userId;
+        app.appId = appId;
+        let api = new UpdateAppAPI(appId, app, userId, authId);
 
         let appResponse = null;
         let x = await this.apiService.call(api).toPromise()
@@ -91,20 +96,10 @@ export class SaveAppInfoStep extends Step {
             });
 
         if (appResponse) {
-            return new App(appResponse.appId, +appResponse.draftVersion);
+            return appResponse;
         }
 
-        return new App(null, 0);
+        return new App();
 
-    }
-}
-
-class App {
-    appId: string;
-    appVersion: number;
-
-    constructor(appId: string, appVersion: number) {
-        this.appId = appId;
-        this.appVersion = appVersion;
     }
 }
