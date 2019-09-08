@@ -24,13 +24,16 @@ export class HomeComponent implements OnInit {
     let authId = this.state.getAuthStateAttribute("authId");
     let api = new GetAppsByGroupIdAPI("LIVE_APPS", userId, authId);
     this.apiService.call(api).toPromise().then(response => {
-      for (let app of response) {
+      for (let appResponse of response) {
+        let app = App.fromAppGroupResponse(appResponse.appData);
         console.log(app);
         this.apps.push(app);
       }
       this.status = 'ready';
       console.log(response)
-    }).catch(error => { this.status = 'error' });
+    }).catch(error => { 
+      console.log(error);
+      this.status = 'error' });
   }
 
   public categories = [
