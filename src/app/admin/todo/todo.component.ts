@@ -49,6 +49,13 @@ const FEATURES = [
     Description: "", 
     Status: TODO
   },
+  {
+    Serial: 5, 
+    Category: 'Static assets', 
+    Title: "Use own storage for images instead of hotlinking with appscope", 
+    Description: "", 
+    Status: TODO
+  },
 ];
 
 const ISSUES = [
