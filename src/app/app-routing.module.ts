@@ -38,6 +38,10 @@ const routes: Routes = [
     component: HomeComponent
   },
   { 
+    path: 'category/:category',
+    component: HomeComponent
+  },
+  { 
     path: 'login',
     component: LoginComponent
   },
