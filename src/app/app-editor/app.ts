@@ -25,7 +25,6 @@ export class App {
     public static fromAppGroupResponse(appData: any): App{
         let app: App = new App();
 
-        console.log(appData);
         app.appId = this.get("appId", appData);
         app.appName = this.get("appName", appData);
         app.category = this.get("category", appData);
@@ -33,7 +32,7 @@ export class App {
         app.description = this.get("description", appData);
         app.devId = this.get("devId", appData);
         app.appLink = this.get("appLink", appData);
-        app.images = this.get("images", appData);
+        app.images = JSON.parse(this.get("images", appData));
         app.logo = this.get("logo", appData);
         app.video = this.get("video", appData);
         app.isExternal = this.get("isExternal", appData);

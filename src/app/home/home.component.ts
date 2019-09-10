@@ -26,11 +26,9 @@ export class HomeComponent implements OnInit {
     this.apiService.call(api).toPromise().then(response => {
       for (let appResponse of response) {
         let app = App.fromAppGroupResponse(appResponse.appData);
-        console.log(app);
         this.apps.push(app);
       }
       this.status = 'ready';
-      console.log(response)
     }).catch(error => { 
       console.log(error);
       this.status = 'error' });

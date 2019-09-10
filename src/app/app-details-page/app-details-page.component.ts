@@ -4,6 +4,7 @@ import { GetAppByIdAPI } from '../app-editor/flows/api/get-app-by-id.api';
 import { ActivatedRoute } from '@angular/router';
 import { App } from '../app-editor/app';
 import { LOADING_GIF_SRC } from '../constants';
+import { GetLiveAppByIdAPI } from './get-live-app-by-id.api';
 
 @Component({
   selector: 'app-app-details-page',
@@ -28,10 +29,11 @@ export class AppDetailsPageComponent implements OnInit, AfterViewInit {
 
     let userId = this.authentication.state.getAuthStateAttribute("userId");
     let authId = this.authentication.state.getAuthStateAttribute("authId");
-    let api = new GetAppByIdAPI(appId, userId, authId);
+    let api = new GetLiveAppByIdAPI(appId, "LIVE_APPS", userId, authId);
     this.apiService.call(api).toPromise().then(response => {
       console.log(response);
-      this.app = response;
+      this.app = App.fromAppGroupResponse(response.appData);
+      console.log(this.app);
       this.status = "ready";
     }).catch(error => {
       console.log(error);
