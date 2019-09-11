@@ -1,7 +1,7 @@
 <mat-drawer-container class="example-container">
     <mat-drawer mode="side" opened>
         <mat-nav-list>
-            <a mat-list-item class="sidebar-list-item" *ngFor="let category of categories" [routerLink]="['/category/' + category.name]">
+            <a mat-list-item class="sidebar-list-item" *ngFor="let category of categories" [routerLink]="['/category/' + category.path]">
                 <mat-icon>{{category.icon}}</mat-icon>&nbsp;{{category.name}}
             </a>
         </mat-nav-list>
