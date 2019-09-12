@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   categories = ACTIVE_APP_CATEGORIES;
   apps: App[] = [];
   status = 'loading';
+  category: string;
 
   constructor(private state: AuthStateService, private route: ActivatedRoute, private apiService: APIService) {
   }
@@ -26,11 +27,11 @@ export class HomeComponent implements OnInit {
 
     this.route.params.subscribe(
         params => {
-            let category = params.category;
-            console.log(category);
+            this.category = params.category;
+            console.log(this.category);
 
-            if (category) {
-              this.loadCategorySpecificApps(category);
+            if (this.category) {
+              this.loadCategorySpecificApps(this.category);
             } else {
               this.loadAllApps();
             }
