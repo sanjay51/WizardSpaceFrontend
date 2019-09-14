@@ -19,6 +19,7 @@
     </mat-drawer-conent>
     <mat-drawer-content *ngIf="status == 'ready'" style="padding-left: 20px">
         <h1 *ngIf="category">{{category}}</h1>
+        <app-carousal></app-carousal>
         <div fxLayout="row wrap">
             <app-card *ngFor="let app of apps" [app]="app" class="card-item"></app-card>
         </div>

@@ -32,6 +32,8 @@ import { SubmitExternalAppComponent } from './submit-external-app/submit-externa
 import { TodoComponent } from './admin/todo/todo.component';
 import { IxTableComponent } from './util/ix-table/ix-table.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NguCarouselModule } from '@ngu/carousel';
+import { AppCarousalComponent } from './home/app-carousal/app-carousal.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoadingBarComponent,
     SubmitExternalAppComponent,
     TodoComponent,
-    IxTableComponent
+    IxTableComponent,
+    AppCarousalComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +85,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatDialogModule,
     MatProgressSpinnerModule,
     MatListModule,
-    MatTableModule
+    MatTableModule,
+    NguCarouselModule
   ],
   providers: [
     {
