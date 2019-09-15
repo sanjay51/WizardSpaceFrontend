@@ -1,3 +1,24 @@
 .example-card {
-    max-width: 250px;
+    max-width: 190px;
+}
+
+.card-image {
+    max-width: 150px;
+    margin-top: 0px;
+}
+
+.example-header-image {
+    width: 0px;
+}
+
+mat-card-title {
+    max-width: 100%;
+}
+
+.shrink-2x {
+    transform: scale(1.0);
+}
+
+.enlarge-2x {
+    transform: scale(1.5);
 }
