@@ -34,6 +34,7 @@ import { IxTableComponent } from './util/ix-table/ix-table.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NguCarouselModule } from '@ngu/carousel';
 import { AppCarousalComponent } from './home/app-carousal/app-carousal.component';
+import { AppCarousalBannerComponent } from './home/app-carousal-banner/app-carousal-banner.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { AppCarousalComponent } from './home/app-carousal/app-carousal.component
     SubmitExternalAppComponent,
     TodoComponent,
     IxTableComponent,
-    AppCarousalComponent
+    AppCarousalComponent,
+    AppCarousalBannerComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,7 @@
+<div align=center [style.backgroundColor]="banner.backgroundColor" style="cursor: pointer"
+    (click)="gotoApp(banner.appId)">
+    <img [src]="banner.imageUrl" style="padding: 10px; height:100%; width: auto; max-width: 90%; max-height: 300px;" />
+    <h2 style="padding-bottom: 10px">
+        <a style="text-decoration: none" [href]="'/app/' + banner.appId">{{banner.title}}</a>
+    </h2>
+</div>
