@@ -24,4 +24,14 @@ export class AppCardComponent implements OnInit {
     window.open("/play/" + this.app.appId, "_blank");
   }
 
+  trim(str: string, charCount: number) {
+    if (!str) return str;
+    
+    if (str.length < charCount) {
+      return str;
+    }
+
+    return str.substr(0, charCount - 2) + ".."
+  }
+
 }
