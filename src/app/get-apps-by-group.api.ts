@@ -8,18 +8,28 @@ export class GetAppsByGroupIdAPI extends GetAPI {
     appGroupId: string;
     userId: string;
     authId: string;
+    pageSize: number;
+    paginationHandle: string = "";
 
-    constructor(appGroupId: string, userId: string, authId: string) {
+    constructor(appGroupId: string, userId: string, authId: string, pageSize: number) {
         super();
         this.appGroupId = appGroupId;
         this.userId = userId;
         this.authId = authId;
+        this.pageSize = pageSize;
+    }
+
+    withPaginationHandle(paginationHandle: string) {
+        this.paginationHandle = paginationHandle;
+        return this;
     }
 
     getParams(): HttpParams {
         let params = new HttpParams()
         .set("userId", this.userId)
         .set("authId", this.authId)
+        .set("pageSize", this.pageSize + "")
+        .set("paginationHandle", this.paginationHandle)
 
         return params;
     }

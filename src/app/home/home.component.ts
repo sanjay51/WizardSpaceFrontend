@@ -12,7 +12,8 @@ import { GetAppsByGroupAndCategoryAPI } from './get-apps-by-group-and-category.a
 })
 export class HomeComponent implements OnInit {
   categories = ACTIVE_APP_CATEGORIES;
-  apps: App[] = [];
+  pages = [];
+  paginationHandle: string = "";
   status = 'loading';
   category: string;
 
@@ -43,14 +44,20 @@ export class HomeComponent implements OnInit {
     let userId = this.state.getAuthStateAttribute("userId");
     let authId = this.state.getAuthStateAttribute("authId");
     this.status = 'loading';
-    this.apps = [];
     
-    let api = new GetAppsByGroupIdAPI("LIVE_APPS", userId, authId);
+    let api = new GetAppsByGroupIdAPI("LIVE_APPS", userId, authId, 60)
+                .withPaginationHandle(this.paginationHandle);
     this.apiService.call(api).toPromise().then(response => {
-      for (let appResponse of response) {
+      console.log(response);
+      let apps = [];
+      for (let appResponse of response.apps) {
         let app = App.fromAppGroupResponse(appResponse.appData);
-        this.apps.push(app);
+        apps.push(app);
       }
+
+      this.pages.push(apps)
+
+      this.paginationHandle = response.paginationHandle;
       
       this.status = 'ready';
     }).catch(error => {
@@ -59,19 +66,26 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  loadMore() {
+    this.loadAllApps();
+  }
+
   loadCategorySpecificApps(category: string) {
     let userId = this.state.getAuthStateAttribute("userId");
     let authId = this.state.getAuthStateAttribute("authId");
     this.status = 'loading';
-    this.apps = [];
+    this.pages = [];
+
+    let apps = []
     
     let api = new GetAppsByGroupAndCategoryAPI("LIVE_APPS", category, userId, authId);
     this.apiService.call(api).toPromise().then(response => {
       for (let appResponse of response) {
         let app = App.fromAppGroupResponse(appResponse.appData);
-        this.apps.push(app);
+        apps.push(app);
       }
       this.status = 'ready';
+      this.pages.push(apps);
     }).catch(error => {
       console.log(error);
       this.status = 'error'

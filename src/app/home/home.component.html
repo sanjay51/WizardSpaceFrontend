@@ -5,24 +5,33 @@
                 <mat-icon>apps</mat-icon>&nbsp;Apps Home
             </a>
             <mat-divider></mat-divider>
-            <a mat-list-item class="sidebar-list-item" *ngFor="let category of categories" 
-            [routerLink]="['/category/' + category.path]">
+            <a mat-list-item class="sidebar-list-item" *ngFor="let category of categories"
+                [routerLink]="['/category/' + category.path]">
                 <mat-icon>{{category.icon}}</mat-icon>&nbsp;{{category.name}}
             </a>
         </mat-nav-list>
     </mat-drawer>
-    <mat-drawer-conent *ngIf="status == 'loading'">
-        <loading-bar></loading-bar>
-    </mat-drawer-conent>
-    <mat-drawer-conent *ngIf="status == 'error'">
-        An error occured. Please try again.
-    </mat-drawer-conent>
-    <mat-drawer-content *ngIf="status == 'ready'" style="padding-left: 20px">
+    <mat-drawer-content style="padding-left: 20px">
         <h1 *ngIf="category">{{category}}</h1>
-        <app-carousal *ngIf="!category"></app-carousal><br/>
+        <app-carousal *ngIf="!category"></app-carousal><br />
         <mat-divider></mat-divider>
-        <div fxLayout="row wrap">
-            <app-card *ngFor="let app of apps" [app]="app" class="card-item"></app-card>
+
+        <mat-drawer-conent *ngIf="status == 'loading'">
+            <loading-bar></loading-bar>
+        </mat-drawer-conent>
+        <mat-drawer-conent *ngIf="status == 'error'">
+            An error occured. Please try again.
+        </mat-drawer-conent>
+        <div *ngFor="let page of pages">
+            <div fxLayout="row wrap">
+                <app-card *ngFor="let app of page" [app]="app" class="card-item"></app-card>
+            </div>
+            <mat-divider></mat-divider>
+        </div><br />
+        <div align=center *ngIf="!category">
+            <button mat-raised-button [disabled]="status == 'loading'" (click)="loadMore()"
+                color="primary">{{status == 'loading' ? "Loading.." : "Load more.."}}</button>
         </div>
+        <br /><br />
     </mat-drawer-content>
 </mat-drawer-container>
