@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { App } from '../app-editor/app';
 import { LOADING_GIF_SRC } from '../constants';
 import { GetLiveAppByIdAPI } from './get-live-app-by-id.api';
+import { Utils } from '../utils';
 
 @Component({
   selector: 'app-app-details-page',
@@ -42,7 +43,7 @@ export class AppDetailsPageComponent implements OnInit, AfterViewInit {
   }
 
   launchApp() {
-    window.open("/play/" + this.app.appId, "_blank");
+    Utils.launchApp(this.app);
   }
 
 }

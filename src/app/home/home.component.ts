@@ -51,6 +51,7 @@ export class HomeComponent implements OnInit {
         let app = App.fromAppGroupResponse(appResponse.appData);
         this.apps.push(app);
       }
+      
       this.status = 'ready';
     }).catch(error => {
       console.log(error);

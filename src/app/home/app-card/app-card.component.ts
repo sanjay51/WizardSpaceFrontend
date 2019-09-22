@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { App } from '../../app-editor/app';
 import { AuthStateService } from 'ix-angular-elements';
 import { ROUTE_APP_SUBMISSIONS, ROUTE_APP_DETAILS } from '../../constants';
+import { Utils } from 'src/app/utils';
 
 @Component({
   selector: 'app-card',
@@ -21,7 +22,7 @@ export class AppCardComponent implements OnInit {
   }
 
   runApp() {
-    window.open("/play/" + this.app.appId, "_blank");
+    Utils.launchApp(this.app);
   }
 
   trim(str: string, charCount: number) {

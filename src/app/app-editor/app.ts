@@ -22,6 +22,10 @@ export class App {
     isIOSInstallable: boolean;
     lighthouseScore: number;
 
+    public isExternalApp() {
+        return this.isExternal == "true";
+    }
+
     public static fromAppGroupResponse(appData: any): App {
         let app: App = new App();
 

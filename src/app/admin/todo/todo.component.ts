@@ -56,6 +56,20 @@ const FEATURES = [
     Description: "", 
     Status: TODO
   },
+  {
+    Serial: 6, 
+    Category: 'Static assets', 
+    Title: "Make carousal banner images small", 
+    Description: "They are too big - currently stored in S3", 
+    Status: TODO
+  },
+  {
+    Serial: 6, 
+    Category: 'Home page', 
+    Title: "Make it mobile friendly", 
+    Description: "Atleast reduce the sidebar size", 
+    Status: TODO
+  },
 ];
 
 const ISSUES = [
