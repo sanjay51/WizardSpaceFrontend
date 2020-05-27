@@ -1,7 +1,7 @@
 <ngu-carousel #myCarousel [inputs]="carouselTile" [dataSource]="carouselTileItems">
     <button NguCarouselPrev class="leftRs" [style.opacity]="myCarousel.isFirst ? 0.5:1">&lt;</button>
     <button NguCarouselNext class="rightRs" [style.opacity]="myCarousel.isLast ? 0.5:1">&gt;</button>
-    <ngu-tile *nguCarouselDef="let item; let i = index">
+    <ngu-tile class="carousal-tile" *nguCarouselDef="let item; let i = index">
         <app-carousal-banner [banner]="banners[i]"></app-carousal-banner>
     </ngu-tile>
 </ngu-carousel>

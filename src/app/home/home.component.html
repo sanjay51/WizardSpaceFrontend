@@ -16,12 +16,12 @@
         <app-carousal *ngIf="!category"></app-carousal><br />
         <mat-divider></mat-divider>
 
-        <mat-drawer-conent *ngIf="status == 'loading'">
+        <mat-drawer-content *ngIf="status == 'loading'">
             <loading-bar></loading-bar>
-        </mat-drawer-conent>
-        <mat-drawer-conent *ngIf="status == 'error'">
+        </mat-drawer-content>
+        <mat-drawer-content *ngIf="status == 'error'">
             An error occured. Please try again.
-        </mat-drawer-conent>
+        </mat-drawer-content>
         <div *ngFor="let page of pages">
             <div fxLayout="row wrap">
                 <app-card *ngFor="let app of page" [app]="app" class="card-item"></app-card>
